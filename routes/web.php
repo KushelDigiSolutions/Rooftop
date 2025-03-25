@@ -187,14 +187,3 @@ Route::prefix('orders')->group(function () {
 Route::post('razorpay-order', [RazorpayController::class, 'createOrder'])->name('razorpay.order');
 Route::post('razorpay-success', [RazorpayController::class, 'paymentSuccess'])->name('razorpay.success');
 Route::get('razorpay-fail', [RazorpayController::class, 'paymentFail'])->name('razorpay.fail');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
