@@ -1,8 +1,0 @@
-[12-Mar-2025 06:21:38 UTC] PHP Warning:  require(/home2/curtaegv/staging.curtainsandblinds.in/vendor/composer/../../app/Helpers/common_helper.php): Failed to open stream: No such file or directory in /home2/curtaegv/staging.curtainsandblinds.in/vendor/composer/autoload_real.php on line 41
-[12-Mar-2025 06:21:38 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/curtaegv/staging.curtainsandblinds.in/vendor/composer/../../app/Helpers/common_helper.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/curtaegv/staging.curtainsandblinds.in/vendor/composer/autoload_real.php:41
-Stack trace:
-#0 /home2/curtaegv/staging.curtainsandblinds.in/vendor/composer/autoload_real.php(45): {closure}('b6ec9d0c98757ad...', '/home2/curtaegv...')
-#1 /home2/curtaegv/staging.curtainsandblinds.in/vendor/autoload.php(25): ComposerAutoloaderInit91b7fc1e73541ae1dadb65baf1d4c848::getLoader()
-#2 /home2/curtaegv/staging.curtainsandblinds.in/artisan(9): require('/home2/curtaegv...')
-#3 {main}
-  thrown in /home2/curtaegv/staging.curtainsandblinds.in/vendor/composer/autoload_real.php on line 41
