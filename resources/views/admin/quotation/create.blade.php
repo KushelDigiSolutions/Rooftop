@@ -172,7 +172,7 @@
 
     line-height: 28px;
 
-    color: #3F3F3F;
+    color: #2a3d97;
 
     display: inline-block;
 
@@ -260,7 +260,7 @@
 
     top: 50%;
 
-    background: #3F3F3F;
+    background: #2a3d97;
 
     border-radius: 1px;
 
@@ -346,7 +346,7 @@
 
     opacity: 1;
 
-    color: #3F3F3F !important;
+    color: #2a3d97 !important;
 
   }
 
@@ -356,7 +356,7 @@
 
     opacity: 1;
 
-    color: #3F3F3F;
+    color: #2a3d97;
 
     transform: translate(0, 0);
 

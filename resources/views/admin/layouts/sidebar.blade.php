@@ -2,7 +2,7 @@
     <div class="menu-btn"><i class="bi bi-list"></i></div>
     <div class="head">
         <div class="user-img">
-            <img src="{{ asset('images/logo.svg') }}" alt="">
+            <img src="{{ asset('images/rooftop_logo.png') }}" alt="">
         </div>
     </div>
     <div class="nav">

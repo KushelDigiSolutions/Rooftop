@@ -66,7 +66,7 @@
     position: relative;
     padding: 0 24px 6px 8px;
     line-height: 28px;
-    color: #3F3F3F;
+    color: #2a3d97;
     display: inline-block;
     vertical-align: top;
     margin: 0 6px 0 0;
@@ -105,7 +105,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    background: #3F3F3F;
+    background: #2a3d97;
     border-radius: 1px;
   }
   .selectMultiple > div a i:before {
@@ -139,11 +139,11 @@
   }
   .selectMultiple > div a.notShown.shown i {
     opacity: 1;
-    color: #3F3F3F !important;
+    color: #2a3d97 !important;
   }
   .selectMultiple > div a.notShown.shown em {
     opacity: 1;
-    color: #3F3F3F;
+    color: #2a3d97;
     transform: translate(0, 0);
   }
   .selectMultiple > div a.remove:before {
