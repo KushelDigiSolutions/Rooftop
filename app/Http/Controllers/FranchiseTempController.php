@@ -224,7 +224,7 @@ class FranchiseTempController extends Controller
 
         // Assign franchise role to the user
 
-        $user->assignRole("Franchise");
+        $user->assignRole("Vendor");
 
         // Save additional franchise data
 

@@ -18,7 +18,7 @@
                 <p class="m-0 small">Total number of Order</p>
             </div>
         </a>
-    @elseif (Auth::user()->hasRole('Franchise'))
+    @elseif (Auth::user()->hasRole('Vendor'))
         <a href="/appointments_list">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_franchise.svg') }}" alt="">

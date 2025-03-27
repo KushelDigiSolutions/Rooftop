@@ -16,12 +16,13 @@
                     </li>
                     <li class="{{ request()->is('user_list') ? 'active' : '' }}">
                         <a href="/user_list">
-                            <i class="bi bi-people"></i><span class="text">Users</span>
+                            <i class="bi bi-people"></i><span class="text">Customer
+                            </span>
                         </a>
                     </li>
                     <li class="{{ request()->is('franchise_approval') ? 'active' : '' }}">
                         <a href="{{ route('franchise.temp.index') }}">
-                            <i class="bi bi-building-add"></i><span class="text">Franchise</span>
+                            <i class="bi bi-building-add"></i><span class="text">Vendors</span>
                         </a>
                     </li>
 

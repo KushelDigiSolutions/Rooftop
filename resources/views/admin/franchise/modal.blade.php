@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Franchise Temp List')
+@section('title', ' Temp List')
 
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Franchise <span
+        <h6 class="fw-bold m-0 custem">All Vendors <span
                 class="fw-normal text-muted">({{ count($franchises) }})</span></h6>
         <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addFranchiseModal1">+ Add
-            Franchise</a>
+        Vendors</a>
     </div>
 
     <div class="dataOverview mt-3">

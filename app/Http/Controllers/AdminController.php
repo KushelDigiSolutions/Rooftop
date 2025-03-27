@@ -30,7 +30,7 @@ class AdminController extends Controller
         if ($request->has('dateFilter')) {
             $appointment->whereDate('created_at', $request->dateFilter);
         }
-        if($userRole == "Franchise"){
+        if($userRole == "Vendor"){
             $appointment->where('id',$franchiseID->id);
         }
         $appointmentCount = $appointment->count();
@@ -38,7 +38,7 @@ class AdminController extends Controller
 
 
         $quotations = Quotation::with('appointment')->orderBy('created_at', 'desc');
-        if($userRole == "Franchise"){
+        if($userRole == "Vendor"){
             $quotations->where('id',$franchiseID->id);
         }
         $quotationCount = $quotations->count();
@@ -48,7 +48,7 @@ class AdminController extends Controller
         $franchiseQuery = new Franchise;
         $franchiseTemp = new FranchiseTemp;
         $total_franchise = 0;
-        if($userRole == 'Franchise'){
+        if($userRole == 'Vendor'){
             $franchise = $franchiseQuery->where('franchise_id', $franchiseID)->get();
             $franchiseCount = $franchise->count();
             $total_franchise = $franchiseCount;
@@ -89,9 +89,9 @@ class AdminController extends Controller
         
         // Now you can access the counts like so:
         $pendingCount = $statusCounts->get('Appointment Booked', 0);  // Default to 0 if no 'pending' status found
-        $assignedCount = $statusCounts->get('Franchise Assigned', 0);
-        $completedCount = $statusCounts->get('Franchise Completed', 0);
-        $rejectedCount = $statusCounts->get('Franchise Rejected', 0);
+        $assignedCount = $statusCounts->get('Vendor Assigned', 0);
+        $completedCount = $statusCounts->get('Vendor Completed', 0);
+        $rejectedCount = $statusCounts->get('Vendor Rejected', 0);
 
         // Fetch appointments with status 'Assigned'
         $assignedAppointments = Appointment::join('franchises','appointments.franchise_id','=','franchises.id')->join('users','users.id','=','franchises.user_id')->select('appointments.*','users.name as franchise_name')->where('appointments.status', 'Franchise Assigned')->get();
@@ -111,7 +111,7 @@ class AdminController extends Controller
                 $status = 'Appointment Booked';
                 break;
             case 'complete':
-                $status = 'Franchise Completed';
+                $status = 'Vendor Completed';
                 break;
             default:
                 $status = 'Appointment Booked';

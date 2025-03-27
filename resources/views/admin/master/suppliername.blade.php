@@ -3,7 +3,7 @@
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Supplier Name <span class="fw-normal text-muted">({{ $suppliers->count() }})</span></h6>
+        <h6 class="fw-bold m-0 custem">All Supplier Name <span class="fw-normal text-muted">({{ $suppliers->count() }})</span></h6>
         <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addSupplierModal">+
             Add Supplier Name</a>
     </div>

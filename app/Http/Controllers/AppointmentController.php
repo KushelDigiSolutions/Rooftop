@@ -47,7 +47,7 @@ class AppointmentController extends Controller
 
         $appointmentsQuery = Appointment::with('franchise')->where("status", "!=", "0");
 
-        if ($userRole == "Franchise") {
+        if ($userRole == "Vendor") {
             $franchise = Franchise::where("user_id", $user->id)->first();
             if ($franchise) {
                 $appointments = $appointmentsQuery
@@ -163,7 +163,7 @@ class AppointmentController extends Controller
         // Check if the user is a Franchise or Admin/Super Admin
         $userRole = Auth::user()->getRoleNames()[0];
 
-        if ($userRole === "Franchise") {
+        if ($userRole === "Vendor") {
             // Fetch Franchise-specific appointments
             $statusMap = [
                 "pending" => "2",
@@ -320,7 +320,7 @@ class AppointmentController extends Controller
         // Redirect back with success message
         return redirect()
             ->back()
-            ->with("success", "Franchise assigned successfully.");
+            ->with("success", "Vendor assigned successfully.");
     }
 
     public function reassign(Request $request)
@@ -378,7 +378,7 @@ class AppointmentController extends Controller
         // Redirect back with success message
         return redirect()
             ->back()
-            ->with("success", "Franchise Re-assigned successfully.");
+            ->with("success", "Vendor Re-assigned successfully.");
     }
 
     public function getAppointmentDetails($id, $type=null)
@@ -426,7 +426,7 @@ class AppointmentController extends Controller
         $appointData = Appointment::findOrFail($id);
 
         // Update the status to 'reject'
-        $appointData->status = "Franchise Rejected";
+        $appointData->status = "Vendors Rejected";
 
         // Save the changes
         $appointData->save();

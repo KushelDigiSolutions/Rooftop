@@ -94,7 +94,7 @@ class OrderController extends Controller
 
         $ordersQuery = new Order;
 
-        if($userRole == 'Franchise'){
+        if($userRole == 'Vendor'){
 
             $ordersQuery = $ordersQuery->where('franchise_id', $franchise_data->id);
 
@@ -222,7 +222,7 @@ class OrderController extends Controller
 
             ->where("status", $status);
 
-            if($userRole == 'Franchise'){
+            if($userRole == 'Vendor'){
 
                 $orders_query->where('franchise_id', $franchise_data->id);
 

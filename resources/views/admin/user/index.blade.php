@@ -9,8 +9,8 @@
 
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Users <span class="fw-normal text-muted">({{ count($users) }})</span></h6>
-        <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addUserModal">+ Add Users</a>
+        <h6 class="fw-bold m-0 custem">All Customer<span class="fw-normal text-muted">({{ count($users) }})</span></h6>
+        <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addUserModal">+ Add Customer</a>
     </div>
 
     <!-- Add User Modal Start -->
@@ -56,6 +56,7 @@
                             <select class="form-select form-select-lg w-100" id="role" name="role" required>
                                 <option value="">Select</option>
                                 <option value="Admin">Admin</option>
+                                <option value="Vendor">Vendor</option>
                                 <option value="Help Desk">Help Desk</option>
                                 <option value="Fulfillment Desk">Fulfillment Desk</option>
                                 <option value="Data Entry Operator">Data Entry Operator</option>
@@ -110,7 +111,7 @@
                                 <option value="Fulfillment Desk">Fulfillment Desk</option>
                                 <option value="Data Entry Operator">Data Entry Operator</option>
                                 <option value="Accounts">Accounts</option>
-                                <option value="Franchise">Franchise</option>
+                                <option value="Vendor">Vendor</option>
                                 
                             </select>
                             <div class="form-text text-danger" id="edit_role_error"></div> <!-- Validation message -->

@@ -102,7 +102,7 @@ class QuotationController extends Controller
 
             // If the user is a "Franchise", filter the quotations by franchise_id
 
-            if ($userRole === 'Franchise') {
+            if ($userRole === 'Vendor') {
 
                 $quotationQuery->where('franchise_id', $franchise->id);
 
@@ -568,7 +568,7 @@ class QuotationController extends Controller
 
         // If the user is a "Franchise", filter the quotations by franchise_id
 
-        if ($userRole == 'Franchise') {
+        if ($userRole == 'Vendor') {
 
             $quotationQuery->where('franchise_id', $franchise->id);
 

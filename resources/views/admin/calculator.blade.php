@@ -4,7 +4,7 @@
 
 <div class="dataOverviewSection mt-3">
                     <div class="section-title">
-                        <h6 class="fw-bold m-0">Calculators</h6>
+                        <h6 class="fw-bold m-0 custem">Calculators</h6>
                     </div>
 
                     <div class="row mt-3">

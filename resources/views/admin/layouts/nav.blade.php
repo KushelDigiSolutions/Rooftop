@@ -8,9 +8,9 @@
           <div class="d-flex align-items-center justify-content-center" type="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               <div class="d-flex align-items-center justify-content-start">
-                  <i class="bi bi-person-circle me-2" style="font-size: 32px; line-height: 0;"></i>
+                  <i class="bi bi-person-circle me-2 custem" style="font-size: 32px; line-height: 0;"></i>
                   <div>
-                      <p class="m-0 fw-bold" style="line-height: normal;">{{ Auth::user()->name }}</p>
+                      <p class="m-0 fw-bold custem" style="line-height: normal;">{{ Auth::user()->name }}</p>
                       <p class="m-0 small" style="line-height: normal;">{{ Auth::user()->getRoleNames()[0] }}</p>
                   </div>
               </div>
