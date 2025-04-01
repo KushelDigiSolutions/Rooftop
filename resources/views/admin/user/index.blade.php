@@ -55,13 +55,11 @@
                             <label for="role" class="form-label mb-1">Select Role</label>
                             <select class="form-select form-select-lg w-100" id="role" name="role" required>
                                 <option value="">Select</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Vendor">Vendor</option>
-                                <option value="Help Desk">Help Desk</option>
-                                <option value="Fulfillment Desk">Fulfillment Desk</option>
-                                <option value="Data Entry Operator">Data Entry Operator</option>
-                                <option value="Accounts">Accounts</option>
-                                @if ($user->hasAnyRole(['Super Admin', 'Admin']))
+                                <!-- <option value="Admin">Admin</option> -->
+                                <option value="Sub-Vendor">Vendor</option>
+                                <option value="Customer">Customer</option>
+                               
+                                @if ($user->hasAnyRole(['Super Admin']))
                                     
                                 @else
                                 @endif
@@ -107,11 +105,9 @@
                             <label for="edit_role" class="form-label mb-1">Role</label>
                             <select class="form-select form-select-lg w-100" id="edit_role" name="role" required>
                                 <option value="Admin">Admin</option>
-                                <option value="Help Desk">Help Desk</option>
-                                <option value="Fulfillment Desk">Fulfillment Desk</option>
-                                <option value="Data Entry Operator">Data Entry Operator</option>
-                                <option value="Accounts">Accounts</option>
-                                <option value="Vendor">Vendor</option>
+                                <option value="Customer">Customer</option>
+                              
+                                <option value="Sub-Vendor">Sub-Vendor</option>
                                 
                             </select>
                             <div class="form-text text-danger" id="edit_role_error"></div> <!-- Validation message -->

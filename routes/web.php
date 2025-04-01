@@ -1,4 +1,10 @@
 <?php 
+use App\Http\Controllers\AfterWorkController;
+use App\Http\Controllers\BeforeWorkController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\ReferralController;
+use App\Http\Controllers\SubContractorsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FranchiseTempController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -81,7 +87,7 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'role:Help Desk'])->group(function () {
+Route::middleware(['auth', 'role:Customer'])->group(function () {
     Route::get('/help-desk/dashboard', [HelpDeskController::class, 'index'])->name('help.desk.dashboard');
 });
 
@@ -182,6 +188,39 @@ Route::prefix('orders')->group(function () {
     
 });
 
+// BeforeWork
+Route::prefix('work-before')->group(function () {
+    Route::get('/index', [BeforeWorkController::class, 'index'])->name('work_before.index');
+    Route::get('/create', [BeforeWorkController::class, 'create'])->name('work_before.create');
+});
+// AftereWork
+Route::prefix('work-after')->group(function () {
+    Route::get('/index', [AfterWorkController::class, 'index'])->name('work_after.index');
+    Route::get('/create', [AfterWorkController::class, 'create'])->name('work_after.create');
+});
+// referral
+Route::prefix('referral')->group(function () {
+    Route::get('/index', [ReferralController::class, 'index'])->name('referral.index');
+    Route::get('/create', [ReferralController::class, 'create'])->name('referral.create');
+});
+// Job
+Route::prefix('Job')->group(function () {
+    Route::get('/index', [JobsController::class, 'index'])->name('jobs.index');
+    Route::get('/create', [JobsController::class, 'create'])->name('Jobs.create');
+    Route::post('/store', [JobsController::class, 'store'])->name('job.store');
+});
+// Customer
+Route::prefix('Customer')->group(function () {
+    Route::get('/index', [CustomerController::class, 'index'])->name('Customer.index');
+    Route::get('/create', [CustomerController::class, 'create'])->name('customer.create');
+    Route::post('/create', [CustomerController::class, 'store'])->name('customer.store');
+});
+// sub-contractors
+Route::prefix('Sub-Contractor')->group(function () {
+    Route::get('/index', [SubContractorsController::class, 'index'])->name('subContractors.index');
+    Route::get('/create', [SubContractorsController::class, 'create'])->name('subContractors.create');
+    Route::post('/create', [SubContractorsController::class, 'store'])->name('subContractors.store');
+});
 
 Route::post('razorpay-order', [RazorpayController::class, 'createOrder'])->name('razorpay.order');
 Route::post('razorpay-success', [RazorpayController::class, 'paymentSuccess'])->name('razorpay.success');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 use App\Models\Franchise;
 use App\Models\Product;
@@ -24,7 +25,7 @@ class AdminController extends Controller
             $franchiseID = Franchise::where('user_id',$user->id)->first();
         }
         
-        $product=Product::all();
+        $product=Job::all();
         $appointment = Appointment::where('status', "!=" ,"0")->orderBy('created_at', 'desc');
 
         if ($request->has('dateFilter')) {
@@ -53,16 +54,15 @@ class AdminController extends Controller
             $franchiseCount = $franchise->count();
             $total_franchise = $franchiseCount;
         }else{
-            $franchise = $franchiseQuery->all();
-            $franchiseCount = $franchiseQuery->count();
+           $Customer=User::where('role', 'Customer')->get();
+            $CustomerCount = $Customer->count();
+           
 
-            $franchiseTempCount = $franchiseTemp->count(); 
-
-            $total_franchise =   $franchiseCount + $franchiseTempCount;
         }
         
 
-        return view('admin.dashboard',compact('franchise','total_franchise','product','appointment','appointmentCount','user','quotations','quotationCount'));
+        return view('admin.dashboard',compact("Customer",
+'CustomerCount','product','appointment','appointmentCount','user','quotations','quotationCount'));
     }
 
     public function getLocationByPincode(Request $request)

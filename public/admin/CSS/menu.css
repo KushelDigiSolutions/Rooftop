@@ -26,6 +26,7 @@
   
   .user-img {
     max-width: 160px;
+    margin-top: 8%;
   }
   .user-img img {
     width: 72px;

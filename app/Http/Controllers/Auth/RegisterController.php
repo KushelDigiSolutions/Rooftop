@@ -118,9 +118,9 @@ class RegisterController extends Controller
     }
 
     public function user_list(){
-        $users = User::all();
+        $users = User::where(column: 'role',  'Admin')->get();
 
-        return view('admin.user.index', compact('users'));
+        return view('admin.Customer.index', compact('users'));
     }
 
     /**

@@ -3,6 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react'; // React plugin imported
 
 export default defineConfig({
+    // plugins: [vue()],
     plugins: [
         laravel({
             input: [

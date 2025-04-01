@@ -904,7 +904,7 @@
 
                                     actions += '<li><a href="quotations/download_quotes/' + order.quotation_id + '" class="dropdown-item small download_quotation_btn" data-quotation-id="' + order.quotation_id + '" >Download Quotation</a></li>';
 
-                                    (response.role == 'Help Desk' || response.role == 'Super Admin') ? actions += '<li><a href="javascript:" class="dropdown-item small update-orders-btn" data-orders-id="' + order.id + '" onclick="confirmAssign(\'' + order.id + '\')">Assign Fulfillment Desk</a></li>' : '';
+                                    (response.role == 'Customer' || response.role == 'Super Admin') ? actions += '<li><a href="javascript:" class="dropdown-item small update-orders-btn" data-orders-id="' + order.id + '" onclick="confirmAssign(\'' + order.id + '\')">Assign Fulfillment Desk</a></li>' : '';
 
                                     break;
 
@@ -922,7 +922,7 @@
 
                                     (response.role == 'Fulfillment Desk' || response.role == 'Super Admin') ? actions += '<li><a href="javascript:" class="dropdown-item small update-orders-btn" data-orders-id="' + order.id + '" onclick="statusUpdate(\'' + order.id + '\')">Update Installation</a></li>' : '';
 
-                                   // (response.role == 'Help Desk' || response.role == 'Super Admin') ? actions += '<li><a href="javascript:" class="dropdown-item small update-orders-btn udateayment" data-orders-id="' + order.id + '" data-orders-paid-amount="' + order.paid_amount + '" data-orders-order-value="' + order.order_value + '" >Update Payment</a></li>' : '';
+                                   // (response.role == 'Customer' || response.role == 'Super Admin') ? actions += '<li><a href="javascript:" class="dropdown-item small update-orders-btn udateayment" data-orders-id="' + order.id + '" data-orders-paid-amount="' + order.paid_amount + '" data-orders-order-value="' + order.order_value + '" >Update Payment</a></li>' : '';
 
                                     break;
 
