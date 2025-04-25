@@ -14,12 +14,7 @@
         </button> -->
     </div>
     <div class="dataOverview mt-3">
-        <!-- <div class="d-flex align-items-center justify-content-end mb-3">
-            <a class="secondary-btn me-2 addBtn" href="{{ url('products/download/csv') }}"><i class="bi bi-cloud-arrow-down me-2"></i>
-                Export Data</a>
-            <a class="secondary-btn addBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"><i class="bi bi-filter me-2"></i> Filter</a>
-        </div> -->
+       
         <div class="table-responsive">
             <table class="table" id="projectsTable">
                 <thead>
@@ -44,24 +39,36 @@
                         <td>{{$customers->email}}</td>
                         <td>{{$customers->phone}}</td>
                         <td>{{$customers->source}}</td>
-                        <td>{{ \Illuminate\Support\Str::words($customers->address, 5, '...') }}</td>
-                       
-                       
-                        <td>{{$customers->assigned_to || 'N/A' }}</td>
+                        <td>{{ ucfirst($customers->status ?? 'prospect') }}</td>
+                        <td>
+                            <form action="{{ route('update.status', $customers->id) }}" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <select name="status">
+                                    <option value="prospect" {{ $customers->status == 'prospect' ? 'selected' : '' }}>Prospect</option>
+                                    <option value="dead" {{ $customers->status == 'dead' ? 'selected' : '' }}>Closed & Dead</option>
+                                    <option value="in_progress" {{ $customers->status == 'in_progress' ? 'selected' : '' }}>In Progress</option>
+                                    <option value="active" {{ $customers->status == 'active' ? 'selected' : '' }}>Active</option>
+                                    <option value="completed" {{ $customers->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                                    <option value="confirmed" {{ $customers->status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
+                                </select>
+                                <button type="submit">Update</button>
+                            </form>
+                        </td>
                         <td>
                         <div class="dropdown">
                                 <i class="bi bi-three-dots-vertical" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"></i>
-                                <ul class="dropdown-menu">
-                                    
-                                    <li>
-                                        <a href="javascript::void(0)" class="dropdown-item small viewProductLink" id="open-customer-details-{{ $customers->id }}" data-id="{{ $customers->id }}">
-                                            View
-                                        </a>
-                                    </li>
-                                   
-                                </ul>
-                                
+                                 <ul class="dropdown-menu">
+
+                                        <li>
+                                            <a href="javascript::void(0)" class="dropdown-item small viewProductLink" id="open-customer-details-{{ $customers->id }}" data-id="{{ $customers->id }}">
+                                                View
+                                            </a>
+                                        </li>
+                                       
+                                </ul> 
+                                 
                             </div>
                         </td>
                     </tr>
@@ -79,8 +86,8 @@
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form id="deleteUserForm" method="POST"
-                action="{{ route('products.destroy', ['product' => '__product_id__']) }}" autocomplete="off">
+            {{-- <form id="deleteUserForm" method="POST"
+                action="{{ route('leadDelete', ) }}" autocomplete="off">
                 @csrf
                 @method('DELETE')
                 <div class="modal-header">
@@ -94,7 +101,7 @@
                     <button type="button" class="secondary-btn" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="primary-btn">Delete</button>
                 </div>
-            </form>
+            </form> --}}
 
         </div>
     </div>

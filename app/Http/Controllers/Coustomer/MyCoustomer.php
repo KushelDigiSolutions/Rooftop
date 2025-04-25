@@ -38,6 +38,7 @@ class MyCoustomer extends Controller
         $costomer->dob      = $request->dob;
 
         $costomer->save();
+        
 
          
         return redirect()->route('coustomer', $id)->with('success', 'Customer updated successfully.');

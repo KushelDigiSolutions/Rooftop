@@ -165,7 +165,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($customerdata as $customers)
+                    @foreach ($customerData as $customers)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{$customers->full_name}}</td>

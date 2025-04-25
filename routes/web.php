@@ -208,9 +208,9 @@ Route::get('/state',[LocationController::class,'getStates']);
 
 Route::get('/leadIndex', [LeadController::class, 'LeadIndex'])->name('leadIndex');
 Route::post('/leadcreate', [LeadController::class, 'LeadCreate'])->name('leadcreate');
-Route::get('/leads/edit/{id}', [LeadController::class, 'LeadEdit'])->name('leadEdit'); // <-- fixed
+Route::get('/leads/edit/{id}', [LeadController::class, 'LeadEdit'])->name('leadEdit'); 
 Route::put('/leads/update/{id}', [LeadController::class, 'LeadUpdate'])->name('leadUpdate');
-Route::get('/leads/delete/{id}', [LeadController::class, 'LeadDelete'])->name('leadDelete');
+Route::delete('/leads/delete/{id}', [LeadController::class, 'LeadDelete'])->name('leadDelete');
 Route::get('/coustomers', [MyCoustomer::class, 'Coustomer'])->name('coustomer');
 Route::post('/coustomers/post', [MyCoustomer::class, 'createCoustomer'])->name('coustomer.Create');
 
@@ -222,3 +222,8 @@ Route::get('/customer/details/{id}', [leadCustomer::class, 'getCustomerDetails']
 
 Route::get('/assigned-works/create', [AssignedController::class, 'WorkAssign'])->name('assignedworks.create');
 Route::post('/assigned-works', [AssignedController::class, 'store'])->name('assignedworks.store');
+
+
+
+Route::put('/update-status/{id}', [leadCustomer::class, 'updateCustomerStatus'])->name('update.status');
+
