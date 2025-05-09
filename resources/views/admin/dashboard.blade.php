@@ -34,13 +34,13 @@
             </div>
         </a>
     @elseif (Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin'))
-        <a href="{{ route('franchise.temp.index') }}">
+        {{-- <a href="{{ route('franchise.temp.index') }}">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_franchise.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ $total_franchise }}</h2>
                 <p class="m-0 small">Total number of Franchises</p>
             </div>
-        </a>
+        </a> --}}
         <a href="/products">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_products.svg') }}" alt="">
@@ -48,13 +48,13 @@
                 <p class="m-0 small">Total number of Products</p>
             </div>
         </a>
-        <a href="/user_list">
+        {{-- <a href="/user_list">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_users.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($user) }}</h2>
                 <p class="m-0 small">Total number of Users</p>
             </div>
-        </a>
+        </a> --}}
     @elseif (Auth::user()->hasRole('Help Desk'))
         <a href="/orders">
             <div class="card info-card">
@@ -87,11 +87,11 @@
             <div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Appointments</button>
+                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Leads</button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Quotations</button>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <div class="d-flex justify-content-start align-items-center">
