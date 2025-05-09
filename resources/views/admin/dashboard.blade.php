@@ -109,7 +109,7 @@
                                 <th>Lead ID</th>
                                 <th>Name</th>
                                 <th>Mobile</th>
-                                <th>Pincode</th>
+                                {{-- <th>Pincode</th> --}}
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -120,7 +120,7 @@
                                     <td>{{ $appointments->uniqueid }}</td>
                                     <td>{{ $appointments->name }}</td>
                                     <td>{{ $appointments->mobile }}</td>
-                                    <td>{{ $appointments->pincode }}</td>
+                                    {{-- <td>{{ $appointments->pincode }}</td> --}}
                                     <td>
                                         @if($appointments->status == "1")
                                             <span class="badge badge-pending">Pending</span>
