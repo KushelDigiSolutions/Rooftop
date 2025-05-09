@@ -58,7 +58,7 @@
 <!-- product-showcase -->
 <section class="showcase-product wrapper">
     <div class="container">
-        <h2 class="NewKansas-medium text-center mb-4">Types of Curtains & Blinds</h2>
+        <h2 class="NewKansas-medium text-center mb-4">Types of KMI Roofing</h2>
         <div class="product-collection">
             <ul class="nav nav-pills mb-3 wow animate__animated animate__fadeIn" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">

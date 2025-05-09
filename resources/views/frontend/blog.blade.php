@@ -114,7 +114,7 @@
 <section class="container wrapper wow animate__animated animate__fadeIn">
     <div class="CTABanner">
         <div class="w-50">
-            <h2 class="NewKansas-medium">Transform your space with perfect curtains & blinds!</h2>
+            <h2 class="NewKansas-medium">Transform your space with perfect KMI Roofing!</h2>
             <p>Schedule your free design consultation today – let’s bring your vision to life!</p>
         </div>
         <a href="/appointments" class="btn primary-btn bg-white" style="color: #000 !important;">Schedule Your

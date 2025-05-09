@@ -567,7 +567,7 @@ HAS NEVER BEEN EASIER</h2>
 <!--<section class="container wrapper">-->
 <!--    <div class="CTABanner">-->
 <!--        <div class="w-50">-->
-<!--            <h2 class="NewKansas-medium text-white">Transform Your Space with Perfect Curtains & Blinds!</h2>-->
+<!--            <h2 class="NewKansas-medium text-white">Transform Your Space with Perfect KMI Roofing!</h2>-->
 <!--            <p class="text-white">Schedule Your Free Design Consultation Today – Let’s Bring Your Vision to Life!</p>-->
 <!--        </div>-->
 <!--        <a href="/appointments" class="btn primary-btn bg-white" style="color: #000 !important;">Schedule Your-->

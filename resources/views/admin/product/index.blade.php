@@ -23,7 +23,7 @@
                     <tr>
                         <th>S/N</th>
                         <th>Image</th>
-                        <th>Tally Code</th>
+                        {{-- <th>Tally Code</th> --}}
                         <!-- <th>SKU</th> -->
                         <th>MRP</th>
                         <th>Unit</th>
@@ -43,7 +43,7 @@
                                 <span>No Image</span>
                             @endif
                         </td>
-                        <td>{{ $product->tally_code ?? '-' }}</td>
+                        {{-- <td>{{ $product->tally_code ?? '-' }}</td> --}}
                         <!-- <td>{{ $product->design_sku ?? '-' }}</td> -->
                         <td>{{ $product->mrp ?? '-' }}</td>
                         <td>{{ $product->unit ?? '-' }}</td>
