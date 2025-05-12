@@ -53,11 +53,11 @@
                             <i class="bi bi-journal"></i><span class="text">Query Booked</span>
                         </a>
                     </li> --}}
-                    {{-- <li class="{{ request()->is('quotations') ? 'active' : '' }}">
+                    <li class="{{ request()->is('quotations') ? 'active' : '' }}">
                         <a href="{{ route('quotations.list') }}">
-                            <i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span>
+                            <i class="bi bi-receipt-cutoff"></i><span class="text">Customer Bids</span>
                         </a>
-                    </li> --}}
+                    </li>
                     {{-- <li class="{{ request()->is('zipcodes*') || request()->is('product-types*') || request()->is('suppliers*') || request()->is('supplier-collections*') || request()->is('supplierCollectionDesigns*') || request()->is('compositions*') || request()->is('types*') || request()->is('usages*') || request()->is('design-types*') ? 'active' : '' }}">
                         <a href="#">
                             <i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i>

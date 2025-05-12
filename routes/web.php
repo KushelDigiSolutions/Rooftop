@@ -142,24 +142,24 @@ Route::get('/supplier-collection-designs/{supplierId}/{collectionId}', [Supplier
 Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 // Quotation Work
-Route::middleware(['auth'])->prefix('quotations')->group(function () {
-    Route::get('/', [QuotationController::class, 'index'])->name('quotations.list');
-    Route::get('get_quotation_data/{appointment_id}', [QuotationController::class, 'getQuotationData'])->name('quotations.data');
-    Route::get('create/{appointment_id}', [QuotationController::class, 'create'])->name('quotations.create');
-    Route::post('/store', [QuotationController::class, 'store'])->name('quotation.store');
-    Route::get('data', [QuotationController::class, 'getQuotationsData']);
-    Route::put('delete/{id}', [QuotationController::class, 'deleteQuotationsData'])->name('quotation.delete');
-    Route::get('/details/{id}/{type}', [QuotationController::class, 'getAppointmentDetails'])->name('quotations.details');
+// Route::middleware(['auth'])->prefix('quotations')->group(function () {
+//     Route::get('/', [QuotationController::class, 'index'])->name('quotations.list');
+//     Route::get('get_quotation_data/{appointment_id}', [QuotationController::class, 'getQuotationData'])->name('quotations.data');
+//     Route::get('create/{appointment_id}', [QuotationController::class, 'create'])->name('quotations.create');
+//     // Route::post('/store', [QuotationController::class, 'store'])->name('quotation.store');
+//     Route::get('data', [QuotationController::class, 'getQuotationsData']);
+//     Route::put('delete/{id}', [QuotationController::class, 'deleteQuotationsData'])->name('quotation.delete');
+//     Route::get('/details/{id}/{type}', [QuotationController::class, 'getAppointmentDetails'])->name('quotations.details');
 
-    Route::get('/download_quotes/{quotation_Id}', [QuotationController::class, 'downloadQuotationView']);
-});
+//     Route::get('/download_quotes/{quotation_Id}', [QuotationController::class, 'downloadQuotationView']);
+// });
 
 // Bid Work
 Route::middleware(['auth'])->prefix('bids')->group(function () {
     Route::get('/', [BidController::class, 'index'])->name('quotations.list');
     Route::get('get_quotation_data/{appointment_id}', [BidController::class, 'getQuotationData'])->name('quotations.data');
     Route::get('create/{appointment_id}', [BidController::class, 'create'])->name('bid.create');
-    Route::post('/store', [BidController::class, 'store'])->name('quotation.store');
+    Route::post('/store', [QuotationController::class, 'store'])->name('quotation.store');
     Route::get('data', [BidController::class, 'getQuotationsData']);
     Route::put('delete/{id}', [BidController::class, 'deleteQuotationsData'])->name('quotation.delete');
     Route::get('/details/{id}/{type}', [BidController::class, 'getAppointmentDetails'])->name('quotations.details');

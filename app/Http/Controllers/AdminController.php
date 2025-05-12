@@ -28,8 +28,9 @@ class AdminController extends Controller
         }
         
         $product=Product::all();
-        $appointment = Appointment::where('status', "!=" ,"0")->orderBy('created_at', 'desc');
-
+        $appointment = Appointment::where('status', "=" ,"1")->orderBy('created_at', 'desc');
+        $totalCustomer = Appointment::where('status', "=" ,"7")->orderBy('created_at', 'desc')->get();
+        
         if ($request->has('dateFilter')) {
             $appointment->whereDate('created_at', $request->dateFilter);
         }
@@ -72,8 +73,9 @@ class AdminController extends Controller
             $totalOrders = Order::count();
         }
         
-
-        return view('admin.dashboard',compact('franchise','total_franchise','product','appointment','appointmentCount','user','quotations','quotationCount','totalOrders'));
+        $salesLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+        $salesData = [1200, 1500, 1700, 1400, 2000];    
+        return view('admin.dashboard',compact('salesData','salesLabels','totalCustomer','franchise','total_franchise','product','appointment','appointmentCount','user','quotations','quotationCount','totalOrders'));
     }
 
     public function getLocationByPincode(Request $request)

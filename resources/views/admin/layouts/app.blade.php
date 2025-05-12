@@ -46,21 +46,21 @@
         <!-- Footer -->
         @include('admin.layouts.footer')
         <!-- / Footer -->
-    <!-- delete modal start -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Are you sure you want to delete this item?</p>
-                <div class="d-flex justify-content-end">
-                    <button type="button" class="secondary-btn me-2" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="confirmDelete" class="primary-btn">Yes</button>
+             <!-- delete modal start -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this item?</p>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="secondary-btn me-2" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="confirmDelete" class="primary-btn">Yes</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- delete modal end -->
+        <!-- delete modal end -->
 
     </div>
 

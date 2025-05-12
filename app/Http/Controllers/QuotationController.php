@@ -105,6 +105,7 @@ class QuotationController extends Controller
     public function store(Request $request)
 
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'string|max:255',
             'email' => 'email',
@@ -115,7 +116,7 @@ class QuotationController extends Controller
         ]);
 
         $lastAppointmentId = Quotation::max("unique_id");
-        $nextAppointmentId = $this->generateNextCode($lastAppointmentId, "CAB");
+        $nextAppointmentId = $this->generateNextCode($lastAppointmentId, "KMI");
         $request["unique_id"] = $nextAppointmentId;
 
         // Prepare the quotation data
@@ -127,6 +128,9 @@ class QuotationController extends Controller
             'email' => $request->email ?? '',
             'number' => $request->number ?? '',
             'address' => $request->address ?? '',
+            'project_name' => $request->project_name ?? '',
+            'project_description' => $request->project_description ?? '',
+            'scope_work' => $request->scope_work ?? '',
             'quot_for' => $request->quotation_for ?? '',
             'cartage' => $request->cartage ?? '',
             'gst_no' =>  $request->gst_uin ?? '',
@@ -224,8 +228,8 @@ class QuotationController extends Controller
             ]  
         ];
 
-         $this->whatsAppService->sendMessage('91'.$franchise_data->mobile, 'quotations_generated',$parameters);
-         $this->whatsAppService->sendMessage('91'.$appointData->mobile, 'quotations_generated',$parameters);
+        //  $this->whatsAppService->sendMessage('91'.$franchise_data->mobile, 'quotations_generated',$parameters);
+        //  $this->whatsAppService->sendMessage('91'.$appointData->mobile, 'quotations_generated',$parameters);
         // end send whatsaap Message
 
         Mail::to($appointment->email)->send(

@@ -15,7 +15,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <style>
 #gst_error {
     font-size: 12px;
@@ -882,7 +883,7 @@
 
               <label for="stateInput" class="form-label mb-1">Bid Creation Date</label>
 
-              <input type="date" name="date" id="date" class="form-control w-100" >
+              <input type="text" name="date" id="biddate" class="form-control w-100"  placeholder="MM-DD-YYYY">
 
             </div>
 
@@ -905,7 +906,7 @@
             <div class="mb-3 w-100">
 
               <label for="gst_uin" class="form-label mb-1">Project Name</label>
-              <input type="text" name="project_description" id="" class="form-control w-100" maxlength="15">
+              <input type="text" name="project_name" id="" class="form-control w-100" maxlength="15">
               <div id="gst_error" class="text-danger mt-1" style="display:none;">Invalid GSTIN format.</div>
 
             </div>
@@ -944,7 +945,7 @@
 
               <label for="other_ref_Input" class="form-label mb-1">Scope of Work</label>
 
-              <textarea name="address" id="AddressInput" class="form-control w-100" ></textarea>
+              <textarea name="scope_work" id="scope_work" class="form-control w-100" ></textarea>
 
             </div>
 
@@ -1362,6 +1363,11 @@ $(document).ready(function() {
       $("#date").datepicker({
           dateFormat: "dd-mm-yy"
       });
+  });
+</script>
+<script>
+  flatpickr("#biddate", {
+      dateFormat: "m-d-Y" // mm-dd-yyyy
   });
 </script>
 @endsection
