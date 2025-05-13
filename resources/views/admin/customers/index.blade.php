@@ -51,7 +51,7 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Active <span class="fw-normal small">({{ $completedCount }})</span></button>
+                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Active <span class="fw-normal small"></span></button>
                     </li>
 
                     {{-- <li class="nav-item" role="presentation">
