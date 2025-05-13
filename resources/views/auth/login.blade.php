@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 p-0">
-                    <img src="{{ url('admin/images/loginScreenImage.jpg') }}" class="w-100 img-fluid" alt="" style="height:100vh !important;">
+                    <img src="{{ url('admin/images/loginScreenImage.png') }}" class="w-100 img-fluid" alt="" style="height:100vh !important;">
                 </div>
             </div>
         </div>
