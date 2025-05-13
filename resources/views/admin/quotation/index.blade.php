@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Customert Appointment List')
+@section('title', 'Customert Bid List')
 
 @section('content')
 <div class="dataOverviewSection mt-3">
@@ -67,7 +67,7 @@
                         <th>Bid ID</th>
                         <th>Name</th>
                         <th>Date</th>
-                        <th>Franchise Assign</th>
+                        {{-- <th>Franchise Assign</th> --}}
                         <th>Location</th>
                         <th>Action</th>
                     </tr>
@@ -339,7 +339,7 @@
                     row += `<td>${appnt.unique_id}</td>`;
                     row += `<td>${appnt.name}</td>`;
                     row += `<td>${date || 'N/A'}</td>`;
-                    row += `<td>${appnt.franchise?.name || 'N/A'}</td>`;
+                    // row += `<td>${appnt.franchise?.name || 'N/A'}</td>`;
                     row += `<td>${appnt.address || 'N/A'}</td>`;
                     row += `<td>
                                 <div>
