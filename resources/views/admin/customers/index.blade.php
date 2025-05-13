@@ -50,7 +50,9 @@
                         <button class="nav-link" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Prospect <span class="fw-normal small"></span></button>
                     </li>
 
-
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Active <span class="fw-normal small">({{ $completedCount }})</span></button>
+                    </li>
 
                     {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-assign-tab" data-bs-toggle="pill" data-bs-target="#pills-assign" type="button" role="tab" aria-controls="pills-assign" aria-selected="true">Assigned <span class="fw-normal small">({{ $assignedCount }})</span></button>
