@@ -206,7 +206,7 @@
 
                 <div class="col-md-3">
                     <div class="mb-1 w-100">
-                        <label for="gstInput" class="form-label mb-1">GST % <span class="text-danger">*</span></label>
+                        <label for="gstInput" class="form-label mb-1">Tax % <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="gstInput" name="gst_percentage" value="{{ old('gst_percentage', isset($product) ? $product->gst_percentage : '') }}">
                     </div>
                 </div>
