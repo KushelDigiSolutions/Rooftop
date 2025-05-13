@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            {{-- <div class="row mb-2">
                 <div class="col-md-4">
                     <label for="supplier_name" class="form-label m-0 mb-1">Supplier Name <span class="text-danger">*</span></label>
                     <select name="supplier_name" id="supplier_name" class="form-select w-100 select2" required>
@@ -71,7 +71,7 @@
                         <!-- Populate based on selected collection -->
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row mb-2">
                 <div class="col-md-4">
@@ -96,11 +96,11 @@
 
             <!-- Image Upload -->
             <div class="mb-2 w-100 d-flex justify-content-start">
-                <img src="{{ isset($product) && $product->image ? url('storage/' . $product->image) : url('admin/images/image.jpg') }}" class="rounded" id="imagePreview" alt="" width="140" height="140">
+                <img src="{{ isset($product) && $product->image ? url('images/products/' . $product->image) : url('admin/images/image.jpg') }}" class="rounded" id="imagePreview" alt="" width="140" height="140">
                 <div class="w-100 ms-3">
                     <div>
                         <label for="image" class="form-label mb-1">Image <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control w-100" id="image" name="image" value="{{ isset($product) && $product->image ? url('storage/' . $product->image) : '' }}" onchange="previewImage(event)">
+                        <input type="file" class="form-control w-100" id="image" name="image" value="{{ isset($product) && $product->image ? url('images/products/' . $product->image) : '' }}" onchange="previewImage(event)">
                     </div>
                     <div>
                         <label for="image_alt" class="form-label mb-1">Image Alt <span class="text-danger">*</span></label>

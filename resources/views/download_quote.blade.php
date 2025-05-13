@@ -72,16 +72,15 @@
             <table>
                 <tr>
                     <td colspan="4">
-                        <h2 style="text-align: center; margin: 4px 0px !important; font-size: 18px;">Quotation Order</h2>
+                        <h2 style="text-align: center; margin: 4px 0px !important; font-size: 18px;">Bid Order</h2>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="1">
-                        <p><strong>CURTAINS AND BLINDS</strong></p>
-                        <p>Plot No 3, Khasra-385, Ground Floor, 100 FT Road,
-                            Ghitorni, Delhi - 110030</p>
-                        <p><b>GSTIN/UIN</b>: 07AABPS3060K1ZN</p>
-                        <p><b>E-Mail: </b> info@pretfab.com</p>
+                        <p><strong>KMI Roofing</strong></p>
+                        <p>KMI Address </p>
+                        <p><b>GSTIN/UIN</b>: --</p>
+                        <p><b>E-Mail: </b>example.kmiroofing@gmail.com</p>
                     </td>
                     <td>
                         
@@ -90,7 +89,7 @@
                                 <td><strong>Voucher No.</strong> {{$order_data['unique_id'] ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Dated:</strong> {{ \Carbon\Carbon::parse($order_data['date'])->format('d-M-Y') }}</td>
+                                <td><strong>Date:</strong> {{ \Carbon\Carbon::parse($order_data['date'])->format('M-d-Y') }}</td>
                             </tr>
                             <tr>
                                 <td><strong>Mode/Terms of Payment:</strong> Online</td>
@@ -102,16 +101,19 @@
                     </td>
                     <td>
                         <table class="no-border">
-                            <tr>
-                                <td><strong>Other References:</strong> {{$order_data['other_ref'] ?? 'N/A'}}</td>
+                             <tr>
+                                <td><strong>Project Name:</strong> {{$order_data['project_name'] ?? 'N/A'}}</td>
+                            </tr>
+                          <tr>
+                                <td><strong>Project Description:</strong> {{$order_data['project_description'] ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Dispatched through:</strong> {{$order_data['dispatch'] ?? 'N/A'}}</td>
+                                <td><strong>Scope of Work:</strong> {{$order_data['scope_work'] ?? 'N/A'}}</td>
                             </tr>
-                            <tr>
+                              <tr>
                                 <td><strong>Destination:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
                             </tr>
-                            <tr>
+                           {{-- <tr>
                                 <td><strong>City/Port of Loading:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
                             </tr>
                             <tr>
@@ -119,19 +121,11 @@
                             </tr>
                             <tr>
                                 <td><strong>Terms of Delivery:</strong> {{$order_data['terms_delivery'] ?? 'N/A'}}</td>
-                            </tr>
+                            </tr> --}}
                         </table>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="4">
-                        <p><strong>Consignee (Ship to)</strong></p>
-                        <p>{{ $order_data['appointment']['name'] ?? $order_data['appointment']['company_name'] }}</p>
-                        <p>{{ $order_data['appointment']['mobile'] }}</p>
-                        <p>{{ $order_data['appointment']['address'] ?? '' }}</p>
-                        <p><strong>GSTIN/UIN</strong>: {{ $order_data['gst_no'] ?? 'N/A' }}</p>
-                    </td>
-                </tr>
+               
                 <tr>
                     <td colspan="4">
                         <p><strong>Buyer (Bill to)</strong></p>
@@ -148,10 +142,10 @@
                     <th class="table-heading">Description of Goods and Services</th>
                     <th class="table-heading">Quantity</th>
                     <th class="table-heading">Unit</th>
-                    <th class="table-heading">Rate</th>
-					<th class="table-heading">GST %</th>
+                    <th class="table-heading">Price</th>
+					<th class="table-heading">Tax %</th>
                     <th class="table-heading">Discount %</th>
-                    <th class="table-heading">Amount</th>
+                    <th class="table-heading">Bid Amount</th>
                 </tr>
                 <?php $total = 0; $gst_amount=0; $total_gst_per=0;$per_item_discount=0; $per_item_total_discount=0;   ?>
                 @foreach($order_data['quotaiton_section'] as $sectionItem)
@@ -171,10 +165,10 @@
                     <td>{{$item['name']}} / {{$item['tally_code']}} / {{$item['file_number']}}</td>
                     <td>{{$item['qty']}}</td>
                     <td>{{$item['unit']}}</td>
-                    <td>{{$item['price']}}</td>
+                    <td>$ {{$item['price']}}</td>
 					<td>{{$item['gst_percentage']}}</td>  
                     <td>{{$item['discount']}}</td>
-                    <td>{{(round(($item['price']*$item['qty'])- $per_item_discount))}}</td>
+                    <td>$ {{(round(($item['price']*$item['qty'])- $per_item_discount))}}</td>
                 </tr>
                 <?php  $per_item_discount=0; ?>
                 @endforeach
@@ -190,12 +184,12 @@
                 </tr>
                 <tr>
                     <td style="text-align: right; width: 35.20%;">CGST-OUTPUT </td>
-                    <td class="align-right">{{ $gst_amount/2 }}</td>
+                    <td class="align-right">$ {{ $gst_amount/2 }}</td>
                 </tr>
                 @else
                 <tr>
-                    <td style="text-align: right; width: 35.20%;">IGST-OUTPUT </td>
-                    <td class="align-right">{{ round($gst_amount) }}</td>
+                    <td style="text-align: right; width: 35.20%;">Total Tax</td>
+                    <td class="align-right">$ {{ round($gst_amount) }}</td>
                 </tr>
                 @endif
 
@@ -203,7 +197,7 @@
             <table>
                 <tr class="table-heading">
                     <td style="text-align: right; width: 35.20%;">Total</td>
-                    <td class="align-right"><strong> {{ round(($total+$gst_amount) - $per_item_total_discount) }}</strong></td>     
+                    <td class="align-right"><strong>$ {{ round(($total+$gst_amount) - $per_item_total_discount) }}</strong></td>     
                 </tr>
             </table>
 
@@ -219,13 +213,13 @@
 
 						 ?>
                     <td style="width: 62%;"><strong><?php echo ucwords($numberTransformer->toWords(round(($total+$gst_amount)- $per_item_total_discount))) . " Only"?></strong></td>
-                    <td><strong>For Curtains and Blinds</strong></td>
+                    <td><strong>For KMI Roofing</strong></td>
                 </tr>
             </table>
 
             <table>
                 <tr>
-                    <td style="width: 62%;"><strong>Declaration:</strong><br>The above mentioned rates are valid for 7 days from
+                    <td style="width: 62%;"><strong>Declaration:</strong><br>The above mentioned price are valid for 7 days from
                         the date of issue.
                         We declare that this invoice shows the actual price of the goods described and that all particulars are
                         true and correct.</td>

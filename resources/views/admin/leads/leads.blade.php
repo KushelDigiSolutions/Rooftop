@@ -26,9 +26,9 @@
                         <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small">({{ $completedCount }})</span></button>
                     </li>
                     @else
-                    <li class="nav-item" role="presentation">
+                    {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="false">Pending <span class="fw-normal small"></span></button>
-                    </li>
+                    </li> --}}
 
 
 
@@ -38,7 +38,7 @@
 
 
                     {{-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">Hold <span class="fw-normal small">({{ $holdCount }})</span></button>
+                        <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">Hold <span class="fw-normal small"></span></button>
                     </li> --}}
 
                     {{-- <li class="nav-item" role="presentation">
@@ -883,9 +883,9 @@
                                 statusBadge = '<span class="badge badge-inactive">Hold</span>';
                                 actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 const blockedRoles1 = ['Help Desk', 'Fulfillment Desk'];
-                                if (!blockedRoles1.includes(response.role)) {
-                                    actions += '<li><a href="javascript:" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '" onclick="updatepayment(' + appnt.id + ')">Update Payment</a></li>';
-                                }
+                                // if (!blockedRoles1.includes(response.role)) {
+                                //     actions += '<li><a href="javascript:" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '" onclick="updatepayment(' + appnt.id + ')">Update Payment</a></li>';
+                                // }
                                 break;
                             case '5':
                                 viewType = 'rejected';

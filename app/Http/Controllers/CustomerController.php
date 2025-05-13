@@ -35,7 +35,8 @@ class CustomerController extends Controller
         
         $appointments = collect(); 
 
-        $appointmentsQuery = Appointment::with('franchise')->where("status", "!=", "0");
+        // $appointmentsQuery = Appointment::with('franchise')->where("status", "!=", "0");
+        $appointmentsQuery = Appointment::with('franchise') ->whereNotIn('status', [0, 1]);
 
         if ($userRole == "Franchise") {
             $franchise = Franchise::where("user_id", $user->id)->first();
@@ -96,21 +97,22 @@ class CustomerController extends Controller
 
     public function getCustomerData(Request $request)
     {
-        // Define status mapping
-        // dd($request->all());
+      
         $statusMap = [
             
             "pending" => "1",
             "assign" => "2",
             "complete" => "4",
-            "hold" => "3",
+            "sent_bid" => "3",
+            "sent_contract" => "9",
             "rejected" => "5",
             "prospect" => "7",
         ];
         
 
-        $status = $request->input("status", "7");
-        $status = $statusMap[$status] ?? "7";
+        // $status = $request->input("status", "7");
+        // $status = $statusMap[$status] ?? "7";
+        $statusInput = $request->input("status");
         $franchises = [];
 
         // Check if the user is a Franchise or Admin/Super Admin
@@ -121,13 +123,14 @@ class CustomerController extends Controller
             $statusMap = [
                 "pending" => "2",
                 "complete" => "4",
-                "hold" => "3",
+                "sent_bid" => "3",
                 "rejected" => "5",
                 "prospect" => "7",
+                // "prospect" => "8",
             ];
 
-            $status = $request->input("status");
-            $status = $statusMap[$status] ?? "7";
+            // $status = $request->input("status");
+            $status = $statusMap[$status] ?? null;
             $franchiseDetail = Franchise::where(
                 "user_id",
                 Auth::user()->id
@@ -141,11 +144,17 @@ class CustomerController extends Controller
                     ->toArray();
             }
         } elseif (in_array($userRole, ["Admin", "Super Admin","Help Desk"])) {
-            $franchises = Appointment::where("status", $status)
-                ->with('franchise')
-                ->orderBy('id', 'desc')
-                ->get()
-                ->toArray();
+            // $franchises = Appointment::where("status", $status)
+            //     ->with('franchise')
+            //     ->orderBy('id', 'desc')
+            //     ->get()
+            //     ->toArray();
+            $query = Appointment::with('franchise');
+            if ($statusInput && isset($statusMap[$statusInput])) {
+                $query->where("status", $statusMap[$statusInput]);
+            }
+            $query->where("status", "!=", "1");
+            $franchises = $query->orderBy('id', 'desc')->get()->toArray();
         }
 
         // Return the data as a JSON response

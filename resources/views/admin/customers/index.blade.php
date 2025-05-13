@@ -19,7 +19,11 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">Hold <span class="fw-normal small">({{ $holdCount }})</span></button>
+                        <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="true">Pending <span class="fw-normal small">({{ $pendingCount }})</span></button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">Hold <span class="fw-normal small"></span></button>
                     </li>
 
                     <li class="nav-item" role="presentation">
@@ -27,7 +31,23 @@
                     </li>
                     @else
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Prospect <span class="fw-normal small"></span></button>
+                        <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="false">All <span class="fw-normal small"></span></button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-sent_bid-tab" data-bs-toggle="pill" data-bs-target="#pills-sent_bid" type="button" role="tab" aria-controls="pills-sent_bid" aria-selected="false">Sent Bid<span class="fw-normal small"></span></button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-sent_contract-tab" data-bs-toggle="pill" data-bs-target="#pills-sent_contract" type="button" role="tab" aria-controls="pills-sent_contract" aria-selected="false">Sent Contract<span class="fw-normal small"></span></button>
+                    </li>
+
+                    {{-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">In Progress <span class="fw-normal small"></span></button>
+                    </li> --}}
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Prospect <span class="fw-normal small"></span></button>
                     </li>
 
 
@@ -37,9 +57,7 @@
                     </li> --}}
 
 
-                    {{-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">Hold <span class="fw-normal small">({{ $holdCount }})</span></button>
-                    </li> --}}
+                   
 
                     {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small">({{ $completedCount }})</span></button>
@@ -93,8 +111,8 @@
                             <th>Name</th>
                             <th>Mobile</th>
                             {{-- <th>Pincode</th> --}}
-                            <th>Assigned Date</th>
-                            <th>Assigned To</th>
+                            {{-- <th>Assigned Date</th>
+                            <th>Assigned To</th> --}}
                             <th>Remarks</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -838,8 +856,8 @@
                         row += '<td>' + appnt.name + '</td>';
                         row += '<td>' + appnt.mobile + '</td>';
                         // row += '<td>' + appnt.pincode + '</td>';
-                        row += '<td>' + (appnt.appointment_date ? customformatDate(appnt.appointment_date) : 'N/A') + '</td>';
-                        row += '<td>' + (appnt.franchise?.name || 'N/A') + '</td>';
+                        // row += '<td>' + (appnt.appointment_date ? customformatDate(appnt.appointment_date) : 'N/A') + '</td>';
+                        // row += '<td>' + (appnt.franchise?.name || 'N/A') + '</td>';
                         row += '<td>' + (appnt.remarks == null ? 'N/A' : appnt.remarks) + '</td>';
 
                         var statusBadge = '';
@@ -849,15 +867,23 @@
                         const baseUrl = "{{ url('quotations/create') }}";
                         switch (appnt.status) {
                             
-                            case '7':
+                            case '8':
                                 viewType = 'prospect';
                                 statusBadge = '<span class="badge badge-pending">Pending</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
-                                actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Start Bid</a></li>';
+                                actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
                                 actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="reject(\'' + appnt.id + '\')">Reject</a></li>';
                                 break;
-                            
+                                  
+                            case '7':
+                                viewType = 'pending';
+                                statusBadge = '<span class="badge badge-pending">Pending</span>';
+                                actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
+                                actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
+                                actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
+                                // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="reject(\'' + appnt.id + '\')">Reject</a></li>';
+                                break;
                             case '2':
                                 viewType = 'assign';
                                 if (response.role === 'Franchise') {
@@ -881,23 +907,29 @@
                                 actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 break;
                             case '3':
-                                viewType = 'hold';
-                                statusBadge = '<span class="badge badge-inactive">Hold</span>';
+                                viewType = 'sent_bid';
+                                statusBadge = '<span class="badge badge-active">Bid Sent</span>';
                                 actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
-                                const blockedRoles1 = ['Help Desk', 'Fulfillment Desk'];
-                                if (!blockedRoles1.includes(response.role)) {
-                                    actions += '<li><a href="javascript:" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '" onclick="updatepayment(' + appnt.id + ')">Update Payment</a></li>';
-                                }
+                                actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="createContract(this)">Create Contract</a></li>';
                                 break;
+
+                            case '9':
+                                viewType = 'sent_contract';
+                                statusBadge = '<span class="badge badge-active">Contract Sent</span>';
+                                actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
+                                actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="createContract(this)">Create Contract</a></li>';
+                                break;    
                             case '5':
                                 viewType = 'rejected';
                                 statusBadge = '<span class="badge badge-pending">Rejected</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                             
                                 break; 
+
+                         
                             default:
-                                viewType = 'pending';
-                                statusBadge = '<span class="badge badge-unknown">Unknown</span>';
+                                viewType = 'unknone';
+                                statusBadge = '<span class="badge badge-warning">unknone</span>';
                                 actions = '';
                                 break;
                         }
@@ -947,6 +979,11 @@
             const id = element.getAttribute('data-id');
             window.location.href = "{{ url('bids/create') }}/" + id;
         }
+
+        function createContract(element) {
+            const id = element.getAttribute('data-id');
+            window.location.href = "{{ url('/contract/create') }}/" + id;
+        }
         function showApproveFranchiseModal(franchiseId) {
             var form = document.getElementById('approveFranchiseForm');
             var actionUrl = form.action.replace('__franchise_id__', franchiseId); // Replace the placeholder with the actual franchise ID
@@ -994,7 +1031,7 @@
                             // Populate table data dynamically
                             $('#FranciseViewLabel').text(franchise.name);
                             $('#FranciseView .offcanvas-body table tbody').html(`
-                                    <tr><th>Status</th><td>${ franchise.status === "1" ? 'Pending' : franchise.status === "2" ? 'Assigned' : franchise.status === "3" ? 'Hold' 
+                                    <tr><th>Status</th><td>${ franchise.status === "1" ? 'Pending' : franchise.status === "2" ? 'Assigned' : franchise.status === "3" ? 'Send Bid' 
 
                                     : franchise.status === "4" ? 'Complete' : 'N/A' }</td></tr>
 

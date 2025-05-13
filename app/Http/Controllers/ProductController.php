@@ -50,37 +50,45 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $lastTallyCode = Product::max("tally_code");
-        $nextTallyCode = $this->generateNextCode($lastTallyCode, "CAB");
+        $nextTallyCode = $this->generateNextCode($lastTallyCode, "KMI");
 
         $request->validate([
             "product_name" => "required|string|max:255",
-            "file_number" => "required|string|unique:products,file_number",
-            "supplier_name" => "required|integer",
+            "file_number" => "nullable|string|unique:products,file_number",
+            "supplier_name" => "nullable|integer",
             "rubs_martendale" => "nullable|string|max:255",
             "width" => "nullable|string|max:255",
-            "image" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
-            "image_alt" => "required|string|max:255",
-            "colour" => "required|string|max:255",
-            "composition" => "required|array|min:1",
+            "image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "image_alt" => "nullable|string|max:255",
+            "colour" => "nullable|string|max:255",
+            "composition" => "nullable|array|min:1",
             "composition.*" => "string|max:255",
-            "design_type" => "required|array|min:1",
+            "design_type" => "nullable|array|min:1",
             "design_type.*" => "string|max:255",
             "usage" => "required|array|min:1",
             "usage.*" => "string|max:255",
             "type" => "required|array|min:1",
             "type.*" => "string|max:255",
             "note" => "nullable|string|max:255",
-            "supplier_price" => "required|numeric|min:0",
-            "freight" => "required|numeric|min:0",
-            "profit_percentage" => "required|numeric|min:0",
-            "gst_percentage" => "required|numeric|min:0",
-            "mrp" => "required|numeric|min:0",
+            "supplier_price" => "nullable|numeric|min:0",
+            "freight" => "nullable|numeric|min:0",
+            "profit_percentage" => "nullable|numeric|min:0",
+            "gst_percentage" => "nullable|numeric|min:0",
+            "mrp" => "nullable|numeric|min:0",
         ]);
 
         $imagePath = null;
+        // if ($request->hasFile("image")) {
+        //     $imagePath = $request->file("image")->store("products", "public");
+        // }
+
         if ($request->hasFile("image")) {
-            $imagePath = $request->file("image")->store("products", "public");
+            $image = $request->file("image");
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/products'), $imageName);
+            $imagePath =  $imageName;
         }
 
         $productData = [
@@ -440,12 +448,19 @@ class ProductController extends Controller
         // dd($request->all(), $request->file('image'));
         if ($request->hasFile("image") || !empty($request->file('image'))) {
             // Optionally delete the old image if it exists
-            if ($product->image && Storage::disk('public')->exists($product->image)) {
-                Storage::disk('public')->delete($product->image);
+            // if ($product->image && Storage::disk('public')->exists($product->image)) {
+            //     Storage::disk('public')->delete($product->image);
+            // }
+
+            if ($product->image && file_exists(public_path('images/products/' . $product->image))) {
+                unlink(public_path('images/products/' . $product->image));
             }
-        
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images/products'), $imageName);
+            $imagePath =  $imageName;
             // Store the new image and get the path
-            $imagePath = $request->file("image")->store("products", "public");
+            // $imagePath = $request->file("image")->store("products", "public");
         }
 
         

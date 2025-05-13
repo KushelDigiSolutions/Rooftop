@@ -15,6 +15,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CompositionController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\BidController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\SupplierCollectionController;
 use App\Http\Controllers\SupplierCollectionDesignController;
 use App\Http\Controllers\SupplierController;
@@ -152,7 +153,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 //     Route::get('/details/{id}/{type}', [QuotationController::class, 'getAppointmentDetails'])->name('quotations.details');
 
 //     Route::get('/download_quotes/{quotation_Id}', [QuotationController::class, 'downloadQuotationView']);
-// });
+//  });
 
 // Bid Work
 Route::middleware(['auth'])->prefix('bids')->group(function () {
@@ -160,11 +161,19 @@ Route::middleware(['auth'])->prefix('bids')->group(function () {
     Route::get('get_quotation_data/{appointment_id}', [BidController::class, 'getQuotationData'])->name('quotations.data');
     Route::get('create/{appointment_id}', [BidController::class, 'create'])->name('bid.create');
     Route::post('/store', [QuotationController::class, 'store'])->name('quotation.store');
-    Route::get('data', [BidController::class, 'getQuotationsData']);
-    Route::put('delete/{id}', [BidController::class, 'deleteQuotationsData'])->name('quotation.delete');
-    Route::get('/details/{id}/{type}', [BidController::class, 'getAppointmentDetails'])->name('quotations.details');
+    Route::get('data', [QuotationController::class, 'getQuotationsData']);
+    Route::put('delete/{id}', [QuotationController::class, 'deleteQuotationsData'])->name('quotation.delete');
+    Route::get('/details/{id}/{type}', [QuotationController::class, 'getAppointmentDetails'])->name('quotations.details');
+    Route::get('/download_quotes/{quotation_Id}', [QuotationController::class, 'downloadQuotationView']);
+});
 
-    Route::get('/download_quotes/{quotation_Id}', [BidController::class, 'downloadQuotationView']);
+
+// Contract Work
+Route::middleware(['auth'])->prefix('contract')->group(function () {
+    Route::get('/', [ContractController::class, 'index'])->name('contract.list');
+    Route::get('create/{appointment_id}', [ContractController::class, 'create'])->name('bid.create');
+    Route::post('/store', [ContractController::class, 'store'])->name('quotation.store');
+    
 });
 
 

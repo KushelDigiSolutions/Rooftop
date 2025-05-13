@@ -3,9 +3,18 @@
 @section('title', 'Product List')
 
 @section('content')
+<style>
+    .circular-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+</style>
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Product <span class="fw-normal text-muted">({{ $totalProducts }})</span></h6>
+        <h6 class="fw-bold m-0">All Product <span class="fw-normal text-muted"></span></h6> 
+        {{-- ({{ $totalProducts }}) --}}
         <a href="{{ route('products.create') }}" class="primary-btn addBtn">+ Add Product</a>
     </div>
     <div class="dataOverview mt-3">
@@ -25,7 +34,7 @@
                         <th>Image</th>
                         {{-- <th>Tally Code</th> --}}
                         <!-- <th>SKU</th> -->
-                        <th>MRP</th>
+                        <th>Price</th>
                         <th>Unit</th>
                         <th>Actions</th>
                     </tr>
@@ -36,8 +45,8 @@
                         <td>{{ $loop->iteration }}</td>
                         <td class="w-10">
                             @if($product->image)
-                                <a href="{{ url('storage/' . $product->image) }}" data-fancybox data-caption="{{ $product->tally_code }}">
-                                    <img class="tabelImage" src="{{ url('storage/' . $product->image) }}" alt="{{ $product->image_alt }}" />
+                                <a href="{{ url('images/products/' . $product->image) }}" data-fancybox data-caption="{{ $product->tally_code }}">
+                                    <img class="tabelImage circular-img" src="{{ url('images/products/' . $product->image) }}" alt="{{ $product->image_alt }}"   width="50" height="50"/>
                                 </a>
                             @else
                                 <span>No Image</span>
@@ -85,9 +94,9 @@
                     <tr><th>Type</th><td id="product-type">-</td></tr>
                     <tr><th>Code</th><td id="product-code">-</td></tr>
                     <tr><th>File Number</th><td id="file-number">-</td></tr>
-                    <tr><th>Supplier Name</th><td id="supplier-name">-</td></tr>
+                    {{-- <tr><th>Supplier Name</th><td id="supplier-name">-</td></tr>
                     <tr><th>Supplier Collection</th><td id="supplier-collection">-</td></tr>
-                    <tr><th>Supplier Collection Design</th><td id="supplier-design">-</td></tr>
+                    <tr><th>Supplier Collection Design</th><td id="supplier-design">-</td></tr> --}}
                     <tr><th>Color Number</th><td id="design-sku">-</td></tr>
                     <tr><th>Width</th><td id="width">-</td></tr>
                     <tr><th>Rubs Martendale</th><td id="rubs-martendale">-</td></tr>
@@ -262,8 +271,8 @@
 
                     if (product.image) {
                         $('#image-gallery').html(`
-                            <a href="${'/storage/' + product.image}" data-fancybox data-caption="${product.tally_code || 'Product Image'}">
-                                <img class="tableImage" src="${'/storage/' + product.image}" alt="${product.image_alt || 'Product Image'}" style="max-width: 150px; height: auto;">
+                            <a href="${'/images/products/' + product.image}" data-fancybox data-caption="${product.tally_code || 'Product Image'}">
+                                <img class="tableImage" src="${'/images/products/' + product.image}" alt="${product.image_alt || 'Product Image'}" style="max-width: 150px; height: auto;">
                             </a>
                         `);
                     } else {

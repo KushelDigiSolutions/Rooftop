@@ -34,8 +34,8 @@ class QuotationGeneratedMail extends Mailable
         $pdf=PDF::loadView('download_quote', compact('order_data'));
         $number = rand(100,100000);		
         return $this->view('emails.quotation_generated')
-                    ->subject('Quotation Generated Successfully')
-					->attachData($pdf->output(),$number."-"."quotaition.pdf")
+                    ->subject('Bid Generated Successfully')
+					->attachData($pdf->output(),$number."-"."bid.pdf")
                     ->with('data', $this->data);
     }
 }

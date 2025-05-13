@@ -5,7 +5,7 @@
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Quotations <span class="fw-normal text-muted">({{ count($quotationList) }})</span></h6>
+        <h6 class="fw-bold m-0">All Bids <span class="fw-normal text-muted"></span></h6>
         
     </div>
 
@@ -14,11 +14,11 @@
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="false">Hold <span class="fw-normal small">({{$quotationListPending}})</span></button>
+                    <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="false">Hold <span class="fw-normal small"></span></button>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link " id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small">({{$quotationListComplete}})</span></button>
+                    <button class="nav-link " id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small"></span></button>
                 </li>
             </ul>
         </div>
@@ -64,7 +64,7 @@
                 <thead>
                     <tr>
                         <th>S/N</th>
-                        <th>Quotation ID</th>
+                        <th>Bid ID</th>
                         <th>Name</th>
                         <th>Date</th>
                         <th>Franchise Assign</th>
@@ -305,7 +305,7 @@
 
     // AJAX call to fetch data from the server
     $.ajax({
-        url: '/quotations/data', // API endpoint to fetch the data
+        url: '/bids/data', // API endpoint to fetch the data
         method: 'GET',
         data: {
             status: status // Pass the selected tab status to the server
@@ -323,11 +323,22 @@
             // Populate the table if data exists
             if (response.data && response.data.length > 0) {
                 $.each(response.data, function(idx, appnt) {
+                    let date = '';
+                    if (appnt.date) {
+                        let d = new Date(appnt.date);
+                        let mm = String(d.getMonth() + 1).padStart(2, '0');
+                        let dd = String(d.getDate()).padStart(2, '0');
+                        let yyyy = d.getFullYear();
+                        date = `${mm}-${dd}-${yyyy}`;
+                    } else {
+                        date = 'N/A';
+                    }
+
                     var row = `<tr>`;
                     row += `<td>${idx + 1}</td>`;
                     row += `<td>${appnt.unique_id}</td>`;
                     row += `<td>${appnt.name}</td>`;
-                    row += `<td>${appnt.date ? new Date(appnt.date).toLocaleDateString('en-GB') : 'N/A'}</td>`;
+                    row += `<td>${date || 'N/A'}</td>`;
                     row += `<td>${appnt.franchise?.name || 'N/A'}</td>`;
                     row += `<td>${appnt.address || 'N/A'}</td>`;
                     row += `<td>
@@ -335,7 +346,7 @@
                                     <i class="bi bi-three-dots-vertical" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:" id="open-quotation-details-${appnt.id}" class="dropdown-item" data-id="${appnt.id}">View</a></li>
-                                        <li><a href="quotations/download_quotes/${appnt.id}" class="dropdown-item small download_quotation_btn" data-quotation-id="${appnt.id}">Download Quotation</a></li>
+                                        <li><a href="bids/download_quotes/${appnt.id}" class="dropdown-item small download_quotation_btn" data-quotation-id="${appnt.id}">Download Quotation</a></li>
                                     </ul>
                                 </div>
                             </td>`;
@@ -420,7 +431,7 @@
 
             // Ajax request to get quotation details
             $.ajax({
-                url: '/quotations/details/' + quotationId + '/' + quotationType, // Make sure the URL is correct
+                url: '/bids/details/' + quotationId + '/' + quotationType, // Make sure the URL is correct
                 method: 'GET',
                 success: function(response) {
                     if (response.status === 'success') {

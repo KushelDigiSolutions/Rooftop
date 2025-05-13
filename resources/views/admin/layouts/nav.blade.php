@@ -1,7 +1,7 @@
 <div class="topBar">
   <div class="topbarLeft">
       <h6 class="m-0 fw-bold">Welcome, {{ Auth::user()->name }}</h6>
-      <p class="m-0 small">Today is {{ \Carbon\Carbon::now()->format('l, jS F Y') }}.</p>
+      <p class="m-0 small">Today is {{ \Carbon\Carbon::now()->format('l, F jS Y') }}.</p>
   </div>
   <div class="topbarRight">
       <div class="dropdown">

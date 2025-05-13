@@ -53,48 +53,45 @@
                             <i class="bi bi-journal"></i><span class="text">Query Booked</span>
                         </a>
                     </li> --}}
-                    <li class="{{ request()->is('quotations') ? 'active' : '' }}">
+                    <li class="{{ request()->is('bids') ? 'active' : '' }}">
                         <a href="{{ route('quotations.list') }}">
                             <i class="bi bi-receipt-cutoff"></i><span class="text">Customer Bids</span>
                         </a>
                     </li>
-                    {{-- <li class="{{ request()->is('zipcodes*') || request()->is('product-types*') || request()->is('suppliers*') || request()->is('supplier-collections*') || request()->is('supplierCollectionDesigns*') || request()->is('compositions*') || request()->is('types*') || request()->is('usages*') || request()->is('design-types*') ? 'active' : '' }}">
+                    <li class="{{ request()->is('zipcodes*') || request()->is('product-types*') || request()->is('suppliers*') || request()->is('supplier-collections*') || request()->is('supplierCollectionDesigns*') || request()->is('compositions*') || request()->is('types*') || request()->is('usages*') || request()->is('design-types*') ? 'active' : '' }}">
                         <a href="#">
                             <i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li class="{{ request()->is('zipcodes') ? 'active' : '' }}">
+                            {{-- <li class="{{ request()->is('zipcodes') ? 'active' : '' }}">
                                 <a href="{{ route('zipcodes.index') }}"><span class="text">ZIP Codes</span></a>
-                            </li>
+                            </li> --}}
                             <li class="{{ request()->is('product-types') ? 'active' : '' }}">
                                 <a href="{{ route('product-types.index') }}"><span class="text">Product Type</span></a>
                             </li>
-                            <li class="{{ request()->is('suppliers') ? 'active' : '' }}">
+                            {{-- <li class="{{ request()->is('suppliers') ? 'active' : '' }}">
                                 <a href="{{ route('suppliers.index') }}"><span class="text">Supplier Name</span></a>
-                            </li>
-                            <li class="{{ request()->is('supplier-collections') ? 'active' : '' }}">
+                            </li> --}}
+                            {{-- <li class="{{ request()->is('supplier-collections') ? 'active' : '' }}">
                                 <a href="{{ route('supplier-collections.index') }}"><span class="text">Supplier Collection</span></a>
-                            </li>
-                            <li class="{{ request()->is('supplierCollectionDesigns') ? 'active' : '' }}">
+                            </li> --}}
+                            {{-- <li class="{{ request()->is('supplierCollectionDesigns') ? 'active' : '' }}">
                                 <a href="{{ route('supplierCollectionDesigns.index') }}"><span class="text">Supplier Design</span></a>
-                            </li>
-                            <!-- <li class="{{ request()->is('colors') ? 'active' : '' }}">
-                                <a href="{{ route('colors.index') }}"><span class="text">Color</span></a>
-                            </li> -->
-                            <li class="{{ request()->is('compositions') ? 'active' : '' }}">
+                            </li> --}}
+                            {{-- <li class="{{ request()->is('compositions') ? 'active' : '' }}">
                                 <a href="{{ route('compositions.index') }}"><span class="text">Composition</span></a>
-                            </li>
-                            <li class="{{ request()->is('types') ? 'active' : '' }}">
+                            </li> --}}
+                            {{-- <li class="{{ request()->is('types') ? 'active' : '' }}">
                                 <a href="{{ route('types.index') }}"><span class="text">Type</span></a>
-                            </li>
-                            <li class="{{ request()->is('usages') ? 'active' : '' }}">
+                            </li> --}}
+                            {{-- <li class="{{ request()->is('usages') ? 'active' : '' }}">
                                 <a href="{{ route('usages.index') }}"><span class="text">Usage</span></a>
-                            </li>
-                            <li class="{{ request()->is('design-types') ? 'active' : '' }}">
+                            </li> --}}
+                            {{-- <li class="{{ request()->is('design-types') ? 'active' : '' }}">
                                 <a href="{{ route('design-types.index') }}"><span class="text">Design Type</span></a>
-                            </li>
+                            </li> --}}
                         </ul>
-                    </li> --}}
+                    </li>
                     {{-- <li class="{{ request()->is('orders') ? 'active' : '' }}">
                         <a href="{{route('order.list')}}">
                             <i class="bi bi-truck"></i><span class="text">Orders</span>

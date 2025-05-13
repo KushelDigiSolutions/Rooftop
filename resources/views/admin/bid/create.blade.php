@@ -1123,196 +1123,207 @@
 
 <script>
 
-$(document).ready(function() {
-    let itemCounter = 1;
-    let unitCounter = 1;
-    var sectionCount = 1;
+  $(document).ready(function() {
+      let itemCounter = 1;
+      let unitCounter = 1;
+      var sectionCount = 1;
 
-    Add_section(sectionCount);
+      Add_section(sectionCount);
 
-    function Add_section(sectionCount) {
-        get_product_type(sectionCount, itemCounter);
-        let itemCount = 1;
+      function Add_section(sectionCount) {
+          get_product_type(sectionCount, itemCounter);
+          let itemCount = 1;
 
-        let sectionHtml = `<div class="addSectionDiv" id="section_${sectionCount}">
-                            <div class="newsection">
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div class="w-100 me-3">
-                                        <label for="SectionNameInput" class="form-label mb-1">Section Name</label>
-                                        <input type="text" name="section_name[${sectionCount}]" class="form-control w-100" id="SectionNameInput" required>
-                                    </div>
-                                    <button class="icon-btn m-0 delete-section" data-section-id="${sectionCount}">
-                                        <i class="bi bi-trash3"></i>
-                                    </button>
-                                </div>
-                                <div class="table-responsive mt-3">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;" scope="col">Name</th>
-                                               
-                                                <th scope="col">Qty</th>
-                                                <th scope="col">Unit</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Discount %</th>
-                                                <th scope="col">Amount</th>
-                                                <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px; width: 160px !important;" scope="col">
-                                                    <p class="secondary-btn addBtn m-0 p-0" data-section-id="${sectionCount}" style="font-size: 14px !important; width: 105px;">+ Add Items</p>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="item-list">
-                                            <tr>
-                                                <td><input type="text" class="form-control max-w-166" placeholder="Item Name" name="item_name[${sectionCount}][${itemCount}]" required></td>
-                                                
-                                                <td><input type="number" class="form-control max-w-166" name="item_qty[${sectionCount}][${itemCount}]" id="itemQty_${sectionCount}_${itemCount}" placeholder="Item quantity" value="1" min="1" max="100"></td>
-                                               
-                                                <td><input type="text" class="form-control max-w-166" name="item_unit[${sectionCount}][${itemCount}]" placeholder="Item Unit" ></td>
-                                                
-                                                <td><input type="number" class="form-control max-w-166" name="item_price[${sectionCount}][${itemCount}]" id="itemPrice_${sectionCount}_${itemCount}" placeholder="Item Price" ></td>
-                                                <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionCount}][${itemCount}]" id="itemDiscount_${sectionCount}_${itemCount}" placeholder="Item Discount"></td>
-                                                <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionCount}][${itemCount}]" placeholder="Total" readonly></td>
-                                                <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>`;
+          let sectionHtml = `<div class="addSectionDiv" id="section_${sectionCount}">
+                              <div class="newsection">
+                                  <div class="d-flex align-items-end justify-content-between">
+                                      <div class="w-100 me-3">
+                                          <label for="SectionNameInput" class="form-label mb-1">Section Name</label>
+                                          <input type="text" name="section_name[${sectionCount}]" class="form-control w-100" id="SectionNameInput" required>
+                                      </div>
+                                      <button class="icon-btn m-0 delete-section" data-section-id="${sectionCount}">
+                                          <i class="bi bi-trash3"></i>
+                                      </button>
+                                  </div>
+                                  <div class="table-responsive mt-3">
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;" scope="col">Name</th>
+                                                  <th scope="col">Product Code</th>
+                                                  <th scope="col">Qty</th>
+                                                  <th scope="col">Unit</th>
+                                                  <th scope="col">Price</th>
+                                                  <th scope="col">Discount %</th>
+                                                  <th scope="col">Amount</th>
+                                                  <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px; width: 160px !important;" scope="col">
+                                                      <p class="secondary-btn addBtn m-0 p-0" data-section-id="${sectionCount}" style="font-size: 14px !important; width: 105px;">+ Add Items</p>
+                                                  </th>
+                                              </tr>
+                                          </thead>
+                                          <tbody class="item-list">
+                                              <tr>
+                                                  <td><input type="text" class="form-control max-w-166" placeholder="Item Name" name="item_name[${sectionCount}][${itemCount}]" required></td>
+                                                  <td>
+                                                      <select class="select2 form-select w-100 max-w-166" name="product_item[${sectionCount}][${itemCount}]" id="itemProduct_${sectionCount}_${itemCount}">
+                                                      </select>
+                                                  </td>
+                                                  <td><input type="number" class="form-control max-w-166" name="item_qty[${sectionCount}][${itemCount}]" id="itemQty_${sectionCount}_${itemCount}" placeholder="Item quantity" value="1" min="1" max="100"></td>
+                                                  <td>
+                                                      <select class="form-select w-100 max-w-166" name="item_unit[${sectionCount}][${itemCount}]" id="item_unit_${sectionCount}_${itemCount}">
+                                                          <option selected>Select</option>
+                                                      </select>
+                                                  </td>
+                                                  <td><input type="number" class="form-control max-w-166" name="item_price[${sectionCount}][${itemCount}]" placeholder="Item Price" readonly></td>
+                                                  <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionCount}][${itemCount}]" id="itemDiscount_${sectionCount}_${itemCount}" placeholder="Item Discount"></td>
+                                                  <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionCount}][${itemCount}]" placeholder="Item Mrp" readonly></td>
+                                                  <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>`;
 
-        $('.sectionContainer').append(sectionHtml);
-        initializeSelect2();
-        itemCount++;
-    }
+          $('.sectionContainer').append(sectionHtml);
+          initializeSelect2();
+          itemCount++;
+      }
 
-    function initializeSelect2() {
-        $('.select2').select2();
-    }
+      function initializeSelect2() {
+          $('.select2').select2();
+      }
 
-    $('.add-section-btn').on('click', function() {
-        sectionCount++;
-        Add_section(sectionCount);
-    });
+      $('.add-section-btn').on('click', function() {
+          sectionCount++;
+          Add_section(sectionCount);
+      });
 
-    $(document).on('click', '.addBtn', function() {
-        let sectionId = $(this).data('section-id');
-        let itemCount = $('#section_' + sectionId + ' .item-list tr').length + 1;
+      $(document).on('click', '.addBtn', function() {
+          let sectionId = $(this).data('section-id');
+          let itemCount = $('#section_' + sectionId + ' .item-list tr').length + 1;
 
-        let itemRow = `<tr>
-                        <td><input type="text" class="form-control max-w-166" placeholder="Item Name" name="item_name[${sectionId}][${itemCount}]"></td>
-                       
-                        <td><input type="number" class="form-control max-w-166" name="item_qty[${sectionId}][${itemCount}]" id="itemQty_${sectionId}_${itemCount}" placeholder="Item quantity" value="1" min="1" max="100"></td>
-                        <td><input type="text" class="form-control max-w-166" name="item_unit[${sectionCount}][${itemCount}]" placeholder="Item Unit" ></td>
-                        
-                        <td><input type="number" class="form-control max-w-166" name="item_price[${sectionId}][${itemCount}]" id="itemPrice_${sectionCount}_${itemCount}" placeholder="Item Price" ></td>
-                        <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionId}][${itemCount}]" id="itemDiscount_${sectionId}_${itemCount}" placeholder="Item Discount"></td>
-                        <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionId}][${itemCount}]" placeholder="Total" readonly></td>
-                        <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
-                    </tr>`;
+          let itemRow = `<tr>
+                          <td><input type="text" class="form-control max-w-166" placeholder="Item Name" name="item_name[${sectionId}][${itemCount}]"></td>
+                          <td>
+                              <select class="select2 form-select w-100 max-w-166" name="product_item[${sectionId}][${itemCount}]" id="itemProduct_${sectionId}_${itemCount}">
+                              </select>
+                          </td>
+                          <td><input type="number" class="form-control max-w-166" name="item_qty[${sectionId}][${itemCount}]" id="itemQty_${sectionId}_${itemCount}" placeholder="Item quantity" value="1" min="1" max="100"></td>
+                          <td>
+                              <select class="form-select w-100 max-w-166" name="item_unit[${sectionId}][${itemCount}]" id="item_unit_${sectionId}_${itemCount}">
+                                  <option selected>Select</option>
+                              </select>
+                          </td>
+                          <td><input type="number" class="form-control max-w-166" name="item_price[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
+                          <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionId}][${itemCount}]" id="itemDiscount_${sectionId}_${itemCount}" placeholder="Item Discount"></td>
+                          <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionId}][${itemCount}]" placeholder="Item Mrp" readonly></td>
+                          <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
+                      </tr>`;
 
-        $('#section_' + sectionId + ' .item-list').append(itemRow);
-        get_product_type(sectionId, itemCount);
-        initializeSelect2();
-    });
+          $('#section_' + sectionId + ' .item-list').append(itemRow);
+          get_product_type(sectionId, itemCount);
+          initializeSelect2();
+      });
 
-    $(document).on('click', '.delete-section', function() {
-        let sectionId = $(this).data('section-id');
-        $('#section_' + sectionId).remove();
-    });
+      $(document).on('click', '.delete-section', function() {
+          let sectionId = $(this).data('section-id');
+          $('#section_' + sectionId).remove();
+      });
 
-    $(document).on('click', '.delete-item', function() {
-        $(this).closest('tr').remove();
-    });
+      $(document).on('click', '.delete-item', function() {
+          $(this).closest('tr').remove();
+      });
 
-    function get_product_type(sectionId, itemCount) {
-        $.ajax({
-            type: "GET",
-            url: "{{url('getProduct')}}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function(result) {
-                let htmlProductType = `<option disabled selected>Select Item</option>`;
-                result.forEach(function(item) {
-                    htmlProductType += `<option value="${item.id}" data-unit="${item.product_type.product_unit}" data-price="${item.supplier_price}" data-mrp="${item.mrp}" data-profit="${item.profit_percentage}" data-gst_percentage="${item.gst_percentage}">${item.tally_code}</option>`;
-                });
-                $("#itemProduct_" + sectionId + "_" + itemCount).html(htmlProductType);
-            }
-        });
-    }
+      function get_product_type(sectionId, itemCount) {
+          $.ajax({
+              type: "GET",
+              url: "{{url('getProduct')}}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function(result) {
+                  let htmlProductType = `<option disabled selected>Select Item</option>`;
+                  result.forEach(function(item) {
+                      htmlProductType += `<option value="${item.id}" data-unit="${item.product_type.product_unit}" data-price="${item.supplier_price}" data-mrp="${item.mrp}" data-profit="${item.profit_percentage}" data-gst_percentage="${item.gst_percentage}">${item.tally_code}</option>`;
+                  });
+                  $("#itemProduct_" + sectionId + "_" + itemCount).html(htmlProductType);
+              }
+          });
+      }
 
-    $(document).on('change', '[id^="itemProduct_"]', function() {
-        let sectionId = $(this).attr('id').split('_')[1];
-        let itemCount = $(this).attr('id').split('_')[2];
-        
-        let selectedProductId = $(this).val();
-        let $selectedOption = $("#itemProduct_" + sectionId + "_" + itemCount + " option[value='" + selectedProductId + "']");
-        
-        let productUnit = $selectedOption.data('unit');
-        let mrp = parseFloat($selectedOption.data('mrp')) || 0;
-        let gst_percent = parseFloat($selectedOption.data('gst_percentage')) || 0;
+      $(document).on('change', '[id^="itemProduct_"]', function() {
+          let sectionId = $(this).attr('id').split('_')[1];
+          let itemCount = $(this).attr('id').split('_')[2];
+          
+          let selectedProductId = $(this).val();
+          let $selectedOption = $("#itemProduct_" + sectionId + "_" + itemCount + " option[value='" + selectedProductId + "']");
+          
+          let productUnit = $selectedOption.data('unit');
+          let mrp = parseFloat($selectedOption.data('mrp')) || 0;
+          let gst_percent = parseFloat($selectedOption.data('gst_percentage')) || 0;
 
-        $("input[name='item_price[" + sectionId + "][" + itemCount + "]']").val(mrp);
-        $("input[name='item_qty[" + sectionId + "][" + itemCount + "]']").val(1);
-        $("input[name='item_discount[" + sectionId + "][" + itemCount + "]']").val("0");
+          $("input[name='item_price[" + sectionId + "][" + itemCount + "]']").val(mrp);
+          $("input[name='item_qty[" + sectionId + "][" + itemCount + "]']").val(1);
+          $("input[name='item_discount[" + sectionId + "][" + itemCount + "]']").val("0");
 
-        // Initial calculation
-        let finalMRP = Math.round(mrp * (1 + gst_percent / 100));
-        $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(finalMRP);
+          // Initial calculation
+          let finalMRP = Math.round(mrp * (1 + gst_percent / 100));
+          $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(finalMRP);
 
-        if (typeof productUnit === 'string') {
-            productUnit = productUnit.split(',');
-        }
+          if (typeof productUnit === 'string') {
+              productUnit = productUnit.split(',');
+          }
 
-        let $unitSelect = $("#item_unit_" + sectionId + "_" + itemCount);
-        $unitSelect.empty();
-        productUnit.forEach(function(unit) {
-            $unitSelect.append(`<option value="${unit}">${unit}</option>`);
-        });
-    });
+          let $unitSelect = $("#item_unit_" + sectionId + "_" + itemCount);
+          $unitSelect.empty();
+          productUnit.forEach(function(unit) {
+              $unitSelect.append(`<option value="${unit}">${unit}</option>`);
+          });
+      });
 
-    $(document).on('input', '[id^="itemQty_"]', function() {
-        let $this = $(this);
-        let sectionId = $this.attr('id').split('_')[1];
-        let itemCount = $this.attr('id').split('_')[2];
-        
-        let inputValue = $this.val().replace(/[^0-9]/g, '');
-        $this.val(inputValue);
-        
-        // Trigger discount recalculation
-        $("#itemDiscount_" + sectionId + "_" + itemCount).trigger('input');
-    });
+      $(document).on('input', '[id^="itemQty_"]', function() {
+          let $this = $(this);
+          let sectionId = $this.attr('id').split('_')[1];
+          let itemCount = $this.attr('id').split('_')[2];
+          
+          let inputValue = $this.val().replace(/[^0-9]/g, '');
+          $this.val(inputValue);
+          
+          // Trigger discount recalculation
+          $("#itemDiscount_" + sectionId + "_" + itemCount).trigger('input');
+      });
 
-    $(document).on('input', '[id^="itemDiscount_"]', function() {
-    let $this = $(this);
-    let sectionId = $this.attr('id').split('_')[1];
-    let itemCount = $this.attr('id').split('_')[2];
-    
-    let inputValue = $this.val().replace(/[^0-9]/g, '');
-    $this.val(inputValue);
+      $(document).on('input', '[id^="itemDiscount_"]', function() {
+      let $this = $(this);
+      let sectionId = $this.attr('id').split('_')[1];
+      let itemCount = $this.attr('id').split('_')[2];
+      
+      let inputValue = $this.val().replace(/[^0-9]/g, '');
+      $this.val(inputValue);
 
-    let $select = $("#itemProduct_" + sectionId + "_" + itemCount);
-    let selectedProductId = $select.val();
-    let $selectedOption = $select.find("option[value='" + selectedProductId + "']");
-    
-    if (!$selectedOption.length) return;
+      let $select = $("#itemProduct_" + sectionId + "_" + itemCount);
+      let selectedProductId = $select.val();
+      let $selectedOption = $select.find("option[value='" + selectedProductId + "']");
+      
+      if (!$selectedOption.length) return;
 
-    let mrp = parseFloat($selectedOption.data('mrp')) || 0;
-    let gst_percent = parseFloat($selectedOption.data('gst_percentage')) || 0;
-    
-    let qty = parseFloat($("input[name='item_qty[" + sectionId + "][" + itemCount + "]']").val()) || 1;
-    let discount = parseFloat(inputValue) || 0;
+      let mrp = parseFloat($selectedOption.data('mrp')) || 0;
+      let gst_percent = parseFloat($selectedOption.data('gst_percentage')) || 0;
+      
+      let qty = parseFloat($("input[name='item_qty[" + sectionId + "][" + itemCount + "]']").val()) || 1;
+      let discount = parseFloat(inputValue) || 0;
 
-    let baseAmount = mrp * qty;
-    let discountAmount = baseAmount * (discount / 100);
-    let amountAfterDiscount = baseAmount - discountAmount;
-    let gstAmount = amountAfterDiscount * (gst_percent / 100);
-    let finalAmount = amountAfterDiscount + gstAmount;
+      let baseAmount = mrp * qty;
+      let discountAmount = baseAmount * (discount / 100);
+      let amountAfterDiscount = baseAmount - discountAmount;
+      let gstAmount = amountAfterDiscount * (gst_percent / 100);
+      let finalAmount = amountAfterDiscount + gstAmount;
 
-    $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(Math.round(finalAmount));
-});
+      $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(Math.round(finalAmount));
+  });
 
-    initializeSelect2();
-});
+  initializeSelect2();
+  });
 </script>
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
 

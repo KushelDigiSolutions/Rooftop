@@ -34,21 +34,21 @@
             </div>
         </a>
     @elseif (Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin'))
-        <a href="{{ route('franchise.temp.index') }}">
+        <a href="javascript::void(0)">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_franchise.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($appointment) }}</h2>
                 <p class="m-0 small">Total number of Leads</p>
             </div>
         </a>
-        <a href="/products">
+        <a href="{{route('customer.list.index')}}">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_products.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($totalCustomer) }}</h2>
                 <p class="m-0 small">Total number of Customer</p>
             </div>
         </a>
-        <a href="/user_list">
+        <a href="javascript::void(0)">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_users.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">0</h2>

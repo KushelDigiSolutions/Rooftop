@@ -36,7 +36,7 @@
             </div>
 
             <div class="row mb-2">
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <label for="supplier_name" class="form-label m-0 mb-1">Supplier Name <span class="text-danger">*</span></label>
                     <select name="supplier_name" id="supplier_name" class="form-select select2" required>
                         <option value="">Select</option>
@@ -56,7 +56,7 @@
                     <select name="supplier_collection_design" id="supplier_collection_design" class="form-select w-100 select2">
                         <option value="">Select</option>
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="row mb-2">
                 <div class="col-md-4">
@@ -178,7 +178,7 @@
 
                 <div class="col-md-3">
                     <div class="mb-1 w-100">
-                        <label for="mrpInput" class="form-label mb-1">MRP <span class="text-danger">*</span></label>
+                        <label for="mrpInput" class="form-label mb-1">Price <span class="text-danger">*</span></label>
                         <input type="number" class="form-control w-100" id="mrpInput" name="mrp" value="0" readonly>
                     </div>
                 </div>
