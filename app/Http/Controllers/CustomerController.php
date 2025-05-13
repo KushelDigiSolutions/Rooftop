@@ -192,7 +192,7 @@ class CustomerController extends Controller
             'email' => $user->email,
             'password' => $randomPassword,
         ];
-        Mail::to($user->email)->send(new UserRegistrationMail($mailData));
+        // Mail::to($user->email)->send(new UserRegistrationMail($mailData));
         $appointment->status = '7';
         $appointment->save();
         DB::commit();

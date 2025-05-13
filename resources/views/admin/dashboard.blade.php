@@ -82,7 +82,7 @@
 
 @if(Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Help Desk') || Auth::user()->hasRole('Franchise'))
 
- <div class="container">
+ {{-- <div class="container">
     <div class="card mt-4">
         <div class="card-header">
             <h4 class="fw-bold">Graphs & Charts for Sales</h4>
@@ -91,7 +91,7 @@
             <canvas id="salesChart" height="100"></canvas>
         </div>
     </div>
-    </div>
+    </div> --}}
 @endif
 
 @endsection
