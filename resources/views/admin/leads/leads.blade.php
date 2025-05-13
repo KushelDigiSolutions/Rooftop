@@ -1003,17 +1003,17 @@
                                     <tr><th>Lead Source</th><td>${franchise.lead_source || 'N/A'}</td></tr>
                                     <tr><th>Internal Notes </th><td>${franchise.notes || 'N/A'}</td></tr>
                                     <tr><th>Scope of work Requested</th><td>${franchise.scope_work || 'N/A'}</td></tr>
-                                    <td>
-    ${
-      franchise.created_at
-        ? new Date(franchise.created_at).toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: '2-digit',
-          })
-        : 'N/A'
-    }
-  </td>
+                                    <td>Created Date
+                                        ${
+                                        franchise.created_at
+                                            ? new Date(franchise.created_at).toLocaleDateString('en-US', {
+                                                month: '2-digit',
+                                                day: '2-digit',
+                                                year: '2-digit',
+                                            })
+                                            : 'N/A'
+                                        }
+                                    </td>
                                 `);
 
                             // Show the off-canvas modal
