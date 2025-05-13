@@ -872,7 +872,7 @@
                                 statusBadge = '<span class="badge badge-pending">Pending</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
-                                actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
+                                // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="reject(\'' + appnt.id + '\')">Reject</a></li>';
                                 break;
                                   
@@ -881,7 +881,7 @@
                                 statusBadge = '<span class="badge badge-pending">Pending</span>';
                                 actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
-                                actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
+                                // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="reject(\'' + appnt.id + '\')">Reject</a></li>';
                                 break;
                             case '2':

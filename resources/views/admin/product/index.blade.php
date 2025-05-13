@@ -22,9 +22,9 @@
             <a class="secondary-btn me-2 addBtn" href="{{ url('products/download/csv') }}">
                 <i class="bi bi-cloud-arrow-down me-2"></i> Export Data
             </a>
-            <a class="secondary-btn addBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            {{-- <a class="secondary-btn addBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <i class="bi bi-filter me-2"></i> Filter
-            </a>
+            </a> --}}
         </div>
         <div class="table-responsive">
             <table class="table" id="projectsTable">
