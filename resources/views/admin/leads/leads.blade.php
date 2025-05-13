@@ -1003,7 +1003,7 @@
                                     <tr><th>Lead Source</th><td>${franchise.lead_source || 'N/A'}</td></tr>
                                     <tr><th>Internal Notes </th><td>${franchise.notes || 'N/A'}</td></tr>
                                     <tr><th>Scope of work Requested</th><td>${franchise.scope_work || 'N/A'}</td></tr>
-                                    <tr><th>Created Date
+                                    <tr><th>Created Date</th><td>
                                         ${
                                         franchise.created_at
                                             ? new Date(franchise.created_at).toLocaleDateString('en-US', {
