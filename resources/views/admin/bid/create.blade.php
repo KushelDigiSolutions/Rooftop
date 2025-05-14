@@ -1037,7 +1037,7 @@
 
       <div class="mt-3 d-flex gap-3 mb-4">
 
-        <button class="primary-btn">Create Quotation</button>
+        <button class="primary-btn">Create Bid</button>
 
         <button class="secondary-btn">Cancel</button>
 
@@ -1155,7 +1155,7 @@
                                                   <th scope="col">Unit</th>
                                                   <th scope="col">Price</th>
                                                   
-                                                  <th scope="col">Amount</th>
+                                                  <th scope="col">Total</th>
                                                   <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px; width: 160px !important;" scope="col">
                                                       <p class="secondary-btn addBtn m-0 p-0" data-section-id="${sectionCount}" style="font-size: 14px !important; width: 105px;">+ Add Items</p>
                                                   </th>
@@ -1217,8 +1217,8 @@
                           </td>
                           <td><input type="number" class="form-control max-w-166" name="item_price[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
                           <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
-                          <td><input type="hidden" class="form-control max-w-166" name="item_discount[${sectionId}][${itemCount}]" id="itemDiscount_${sectionId}_${itemCount}" placeholder="Item Discount"></td>
                           <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
+                          <td><input type="hidden" class="form-control max-w-166" name="item_discount[${sectionId}][${itemCount}]" id="itemDiscount_${sectionId}_${itemCount}" placeholder="Item Discount"></td>
                       </tr>`;
 
           $('#section_' + sectionId + ' .item-list').append(itemRow);
