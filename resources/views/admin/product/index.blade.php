@@ -54,7 +54,7 @@
                         </td>
                         {{-- <td>{{ $product->tally_code ?? '-' }}</td> --}}
                         <!-- <td>{{ $product->design_sku ?? '-' }}</td> -->
-                        <td>{{ $product->mrp ?? '-' }}</td>
+                        <td>${{ $product->mrp ?? '-' }}</td>
                         <td>{{ $product->unit ?? '-' }}</td>
                         <td>
                             <div class="dropdown">
