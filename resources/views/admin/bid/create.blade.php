@@ -1175,7 +1175,6 @@
                                                       </select>
                                                   </td>
                                                   <td><input type="number" class="form-control max-w-166" name="item_price[${sectionCount}][${itemCount}]" placeholder="Item Price" readonly></td>
-                                                  <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionCount}][${itemCount}]" id="itemDiscount_${sectionCount}_${itemCount}" placeholder="Item Discount"></td>
                                                   <td><input type="text" class="form-control max-w-166" name="item_mrp[${sectionCount}][${itemCount}]" placeholder="Item Price" readonly></td>
                                                   <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
                                               </tr>
@@ -1216,7 +1215,6 @@
                               </select>
                           </td>
                           <td><input type="number" class="form-control max-w-166" name="item_price[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
-                          <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionId}][${itemCount}]" id="itemDiscount_${sectionId}_${itemCount}" placeholder="Item Discount"></td>
                           <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
                           <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
                       </tr>`;
