@@ -1267,7 +1267,8 @@
           $("input[name='item_discount[" + sectionId + "][" + itemCount + "]']").val("0");
 
           // Initial calculation
-          let finalMRP = Math.round(mrp * (1 + gst_percent / 100)).toFixed(2);
+          // let finalMRP = Math.round(mrp * (1 + gst_percent / 100)).toFixed(2);
+          let finalMRP = (mrp * (1 + gst_percent / 100)).toFixed(2);
           $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(finalMRP);
 
           if (typeof productUnit === 'string') {
