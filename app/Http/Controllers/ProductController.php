@@ -52,10 +52,10 @@ class ProductController extends Controller
     {
         // dd($request->all());
         $lastTallyCode = Product::max("tally_code");
-        $nextTallyCode = $this->generateNextCode($lastTallyCode, "KMI");
+        $nextTallyCode = $this->generateNextCode($lastTallyCode, "KMI-P");
 
         $request->validate([
-            "product_name" => "required|string|max:255",
+            "product_name" => "nullable|string|max:255",
             "file_number" => "nullable|string|unique:products,file_number",
             "supplier_name" => "nullable|integer",
             "rubs_martendale" => "nullable|string|max:255",
@@ -67,9 +67,9 @@ class ProductController extends Controller
             "composition.*" => "string|max:255",
             "design_type" => "nullable|array|min:1",
             "design_type.*" => "string|max:255",
-            "usage" => "required|array|min:1",
+            "usage" => "nullable|array|min:1",
             "usage.*" => "string|max:255",
-            "type" => "required|array|min:1",
+            "type" => "nullable|array|min:1",
             "type.*" => "string|max:255",
             "note" => "nullable|string|max:255",
             "supplier_price" => "nullable|numeric|min:0",

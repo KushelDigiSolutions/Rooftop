@@ -28,11 +28,15 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <label for="colour" class="form-label m-0 mb-1">Color<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control w-100" id="colour" name="colour" required>
+                </div>
+                {{-- <div class="col-md-4">
                     <div class="mb-1 w-100">
                         <label for="file_number" class="form-label mb-1">File Number <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="file_number" name="file_number" required>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <div class="row mb-2">
@@ -58,7 +62,7 @@
                     </select>
                 </div> --}}
             </div>
-            <div class="row mb-2">
+            {{-- <div class="row mb-2">
                 <div class="col-md-4">
                     <div class="mb-1 w-100">
                         <label for="design_sku" class="form-label mb-1">Color Number</label>
@@ -77,7 +81,7 @@
                         <input type="text" class="form-control w-100" id="width" name="width">
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Image Upload -->
             <div class="mb-2 w-100 d-flex justify-content-start">
                 <img src="{{ url('admin/images/image.jpg') }}" class="rounded" id="imagePreview" alt="" width="140"
@@ -94,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-2">
+            {{-- <div class="row mb-2">
                 <div class="col-md-4">
                     <label for="usage" class="form-label m-0 mb-1">Usage<span class="text-danger">*</span></label>
                     <select name="usage[]" id="usage" class="mySelect for" multiple="multiple" style="width: 100%">
@@ -121,65 +125,41 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row mb-2">
-                <div class="col-md-4">
-                    <label for="colour" class="form-label m-0 mb-1">Colour<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control w-100" id="colour" name="colour" required>
-                </div>
-                <div class="col-md-4">
+                
+                {{-- <div class="col-md-4">
                     <label for="composition" class="form-label m-0 mb-1">Composition<span class="text-danger">*</span></label>
                     <select name="composition[]" id="composition" class="mySelect for" multiple="multiple" style="width: 100%">
                         @foreach ($compositions as $composition)
                         <option value="{{ $composition->composition }}">{{ $composition->composition }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
             </div>
 
             <div class="row mb-2">
                 <div class="col-md-12">
-                    <label for="noteInput" class="form-label mb-1">Note</label>
+                    <label for="noteInput" class="form-label mb-1">Notes</label>
                     <textarea name="note" id="noteInput" class="form-control w-100"></textarea>
                 </div>
+                
             </div>
             <hr class="m-0 mt-4 mb-2">
 
 
             <div class="row mb-2">
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="mb-1 w-100">
                         <label for="CostPriceInput" class="form-label mb-1">Cost Price <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="supplierPriceInput" name="supplier_price">
                     </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="mb-1 w-100">
-                        <label for="freightInput" class="form-label mb-1">Freight <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control w-100" id="freightInput" name="freight">
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="mb-1 w-100">
-                        <label for="profitInput" class="form-label mb-1">Profit % <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control w-100" id="profitInput" name="profit_percentage">
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="mb-1 w-100">
-                        <label for="gstInput" class="form-label mb-1">Tax % <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control w-100" id="gstInput" name="gst_percentage">
-                    </div>
-                </div>
-
+                </div> --}}
                 <div class="col-md-3">
                     <div class="mb-1 w-100">
                         <label for="mrpInput" class="form-label mb-1">Price <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control w-100" id="mrpInput" name="mrp" value="0" readonly>
+                        <input type="number" class="form-control w-100" id="mrpInput" name="mrp" >
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -190,6 +170,28 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="freightInput" class="form-label mb-1">Freight <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="freightInput" name="freight">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="profitInput" class="form-label mb-1">Profit % <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="profitInput" name="profit_percentage">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="gstInput" class="form-label mb-1">Tax % <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="gstInput" name="gst_percentage">
+                    </div>
+                </div>
+
+                
             </div>
 
             <div class="mt-3 d-flex gap-3 mb-4">
@@ -261,25 +263,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     required: true
                 },
                 file_number: {
-                    required: true
+                    required: false
                 },
                 supplier_name: {
-                    required: true
+                    required: false
                 },
                 'usage[]': {
-                    required: true
+                    required: false
                 },
                 'type[]': {
-                    required: true
+                    required: false
                 },
                 'design_type[]': {
-                    required: true
+                    required: false
                 },
                 colour: {
                     required: true
                 },
                 'composition[]': {
-                    required: true
+                    required: false
                 },
                 image: {
                     required: true
@@ -292,16 +294,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     number: true
                 },
                 freight: {
-                    required: true,
-                    number: true
+                    required: false,
+                    number: false
                 },
                 profit_percentage: {
-                    required: true,
-                    number: true
+                    required: false,
+                    number: false
                 },
                 gst_percentage: {
-                    required: true,
-                    number: true
+                    required: false,
+                    number: false
                 },
                 unit: {
                     required: true

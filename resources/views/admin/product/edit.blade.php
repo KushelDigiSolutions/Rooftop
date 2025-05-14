@@ -34,11 +34,15 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <label for="colour" class="form-label m-0 mb-1">Color <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control w-100" id="colour" name="colour" value="{{ old('colour', isset($product) ? $product->colour : '') }}" required>
+                </div>
+                {{-- <div class="col-md-4">
                     <div class="mb-1 w-100">
                         <label for="file_number" class="form-label mb-1">File Number <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="file_number" name="file_number" value="{{ old('file_number', isset($product) ? $product->file_number : '') }}" required>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             {{-- <div class="row mb-2">
@@ -73,7 +77,7 @@
                 </div>
             </div> --}}
 
-            <div class="row mb-2">
+            {{-- <div class="row mb-2">
                 <div class="col-md-4">
                     <div class="mb-1 w-100">
                         <label for="design_sku" class="form-label mb-1">Color Number</label>
@@ -92,7 +96,7 @@
                         <input type="text" class="form-control w-100" id="width" name="width" value="{{ old('width', isset($product) ? $product->width : '') }}">
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Image Upload -->
             <div class="mb-2 w-100 d-flex justify-content-start">
@@ -110,7 +114,7 @@
             </div>
 
             <!-- Other Selects for Multiple Values -->
-            <div class="row mb-2">
+            {{-- <div class="row mb-2">
                 <div class="col-md-4">
                     <label for="usage" class="form-label m-0 mb-1">Usage <span class="text-danger">*</span></label>
                     <select name="usage[]" id="usage" class="mySelect for" multiple="multiple" style="width: 100%">
@@ -155,15 +159,12 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Additional fields for other attributes -->
             <div class="row mb-2">
-                <div class="col-md-4">
-                    <label for="colour" class="form-label m-0 mb-1">Colour <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control w-100" id="colour" name="colour" value="{{ old('colour', isset($product) ? $product->colour : '') }}" required>
-                </div>
-                <div class="col-md-4">
+                
+                {{-- <div class="col-md-4">
                     <label for="composition" class="form-label m-0 mb-1">Composition<span class="text-danger">*</span></label>
                     <select name="composition[]" id="composition" class="mySelect for" multiple="multiple" style="width: 100%">
                         @foreach ($compositions as $composition)
@@ -173,48 +174,28 @@
                         </option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="row mb-2">
                 <div class="col-md-12">
-                    <label for="noteInput" class="form-label mb-1">Note</label>
+                    <label for="noteInput" class="form-label mb-1">Notes</label>
                     <textarea name="note" id="noteInput" class="form-control w-100">{{ old('note', isset($product) ? $product->note : '') }}</textarea>
                 </div>
+                
             </div>
             <hr class="m-0 mt-4 mb-2">
             <div class="row mb-2">
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="mb-1 w-100">
                         <label for="CostPriceInput" class="form-label mb-1">Cost Price <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="supplierPriceInput" name="supplier_price" value="{{ old('supplier_price', isset($product) ? $product->supplier_price : '') }}">
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-md-3">
                     <div class="mb-1 w-100">
-                        <label for="freightInput" class="form-label mb-1">Freight <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control w-100" id="freightInput" name="freight" value="{{ old('freight', isset($product) ? $product->freight : '') }}">
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="mb-1 w-100">
-                        <label for="profitInput" class="form-label mb-1">Profit % <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control w-100" id="profitInput" name="profit_percentage" value="{{ old('profit_percentage', isset($product) ? $product->profit_percentage : '') }}">
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="mb-1 w-100">
-                        <label for="gstInput" class="form-label mb-1">Tax % <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control w-100" id="gstInput" name="gst_percentage" value="{{ old('gst_percentage', isset($product) ? $product->gst_percentage : '') }}">
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="mb-1 w-100">
-                        <label for="mrpInput" class="form-label mb-1">MRP <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control w-100" id="mrpInput" name="mrp" value="{{ old('mrp', isset($product) ? $product->mrp : 0) }}" readonly>
+                        <label for="mrpInput" class="form-label mb-1">Price <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control w-100" id="mrpInput" name="mrp" value="{{ old('mrp', isset($product) ? $product->mrp : 0) }}" >
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -225,6 +206,29 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="freightInput" class="form-label mb-1">Freight <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="freightInput" name="freight" value="{{ old('freight', isset($product) ? $product->freight : '') }}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="profitInput" class="form-label mb-1">Profit % <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="profitInput" name="profit_percentage" value="{{ old('profit_percentage', isset($product) ? $product->profit_percentage : '') }}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="gstInput" class="form-label mb-1">Tax % <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="gstInput" name="gst_percentage" value="{{ old('gst_percentage', isset($product) ? $product->gst_percentage : '') }}">
+                    </div>
+                </div>
+
+               
             </div>
         </div>
 
