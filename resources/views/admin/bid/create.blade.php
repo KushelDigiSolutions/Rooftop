@@ -1262,15 +1262,12 @@
           let mrp = parseFloat($selectedOption.data('mrp')) || 0;
           let gst_percent = parseFloat($selectedOption.data('gst_percentage')) || 0;
 
-          $("input[name='item_price[" + sectionId + "][" + itemCount + "]']").val(mrp);
+          $("input[name='item_price[" + sectionId + "][" + itemCount + "]']").val(mrp.toFixed(2));
           $("input[name='item_qty[" + sectionId + "][" + itemCount + "]']").val(1);
           $("input[name='item_discount[" + sectionId + "][" + itemCount + "]']").val("0");
 
           // Initial calculation
-          // let finalMRP = Math.round(mrp * (1 + gst_percent / 100));
-        
-          let calculatedMRP = mrp * (1 + gst_percent / 100);
-          let finalMRP = parseFloat(calculatedMRP.toFixed(2));
+          let finalMRP = Math.round(mrp * (1 + gst_percent / 100)).toFixed(2);
           $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(finalMRP);
 
           if (typeof productUnit === 'string') {
