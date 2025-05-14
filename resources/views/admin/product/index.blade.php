@@ -93,18 +93,18 @@
                 <tbody>
                     <tr><th>Type</th><td id="product-type">-</td></tr>
                     <tr><th>Code</th><td id="product-code">-</td></tr>
-                    <tr><th>File Number</th><td id="file-number">-</td></tr>
+                    {{-- <tr><th>File Number</th><td id="file-number">-</td></tr> --}}
                     {{-- <tr><th>Supplier Name</th><td id="supplier-name">-</td></tr>
                     <tr><th>Supplier Collection</th><td id="supplier-collection">-</td></tr>
                     <tr><th>Supplier Collection Design</th><td id="supplier-design">-</td></tr> --}}
-                    <tr><th>Color Number</th><td id="design-sku">-</td></tr>
-                    <tr><th>Width</th><td id="width">-</td></tr>
-                    <tr><th>Rubs Martendale</th><td id="rubs-martendale">-</td></tr>
-                    <tr><th>Usage</th><td id="usage">-</td></tr>
-                    <tr><th>Type (Technical specs)</th><td id="type">-</td></tr>
-                    <tr><th>Design Type</th><td id="design-type">-</td></tr>
+                    {{-- <tr><th>Color Number</th><td id="design-sku">-</td></tr> --}}
+                    {{-- <tr><th>Width</th><td id="width">-</td></tr> --}}
+                    {{-- <tr><th>Rubs Martendale</th><td id="rubs-martendale">-</td></tr> --}}
+                    {{-- <tr><th>Usage</th><td id="usage">-</td></tr> --}}
+                    {{-- <tr><th>Type (Technical specs)</th><td id="type">-</td></tr> --}}
+                    {{-- <tr><th>Design Type</th><td id="design-type">-</td></tr> --}}
                     <tr><th>Color</th><td id="colour">-</td></tr>
-                    <tr><th>Composition</th><td id="composition">-</td></tr>
+                    {{-- <tr><th>Composition</th><td id="composition">-</td></tr> --}}
                     <tr><th>Note</th><td id="note">-</td></tr>
                     <tr><th>Image Gallery</th><td id="image-gallery">-</td></tr>
                     <tr><th>Created At</th><td id="created-at">-</td></tr>
