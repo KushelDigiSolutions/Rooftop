@@ -31,15 +31,11 @@
                         <div class="mb-1 w-100">
                             <label for="ProductUnitInput" class="form-label mb-1">Unit <span class="text-danger">*</span></label>
                             <select class="form-control w-100" name="product_unit[]" id="product_unit">
-                                <option value="Meter">Meter</option>
-                                <option value="Square Meter">Square Meter</option>
+                                <option value="SQS">SQS</option>
+                                <option value="Each">Each</option>
                                 <option value="Feet">Feet</option>
-                                <option value="Square Feet">Square Feet</option>
-                                <option value="Panel">Panel</option>
-                                <option value="Nos">Nos</option>
-                                <option value="Roll">Roll</option>
-                                <option value="Channel fitting">Channel fitting</option>
-                                <option value="Box">Box</option>
+                                <option value="L.FT">L.FT</option>
+                                
                             </select>
                         </div>
                     </div>
