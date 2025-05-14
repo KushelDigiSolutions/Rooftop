@@ -75,7 +75,7 @@
         <div class="container">
             <!-- <a class="fs-6" href="quotation.html"><i class="bi bi-arrow-left fs-6 me-2"></i> Back</a> -->
             <button class="primary-btn addBtn" data-quotation-name="{{$order_data['name']}}" type="button"><i class="bi bi-cloud-arrow-down-fill fs-6 me-2"></i>
-                Download Quotation
+                Download Bid
             </button>
         </div>
     </nav>
@@ -87,14 +87,14 @@
             <table>
                 <tr>
                     <td colspan="4">
-                        <h2 style="text-align: center; margin: 4px 0px !important; font-size: 18px;">Quotation Order</h2>
+                        <h2 style="text-align: center; margin: 4px 0px !important; font-size: 18px;">Bid Order</h2>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="1">
                         <p><strong>KMI Roofing</strong></p>
                         <p>KMI Address </p>
-                        <p><b>GSTIN/UIN</b>: --</p>
+                        {{-- <p><b>GSTIN/UIN</b>: --</p> --}}
                         <p><b>E-Mail: </b>example.kmiroofing@gmail.com</p>
                     </td>
                     <td>
@@ -105,14 +105,14 @@
                                 <td><strong>Voucher No.</strong> {{$order_data['unique_id'] ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Dated:</strong> {{ \Carbon\Carbon::parse($order_data['date'])->format('d-M-Y') }}</td>
+                                <td><strong>Date:</strong> {{ \Carbon\Carbon::parse($order_data['date'])->format('M-d-Y') }}</td>
                             </tr>
                             <tr>
                                 <td><strong>Mode/Terms of Payment:</strong> Online</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td><strong>Buyer's Ref/Order No:</strong> {{$order_data['buyer_ref'] ?? 'N/A'}}</td>
-                            </tr>
+                            </tr> --}}
                         </table>
                     </td>
                     <td>
@@ -126,9 +126,9 @@
                            <tr>
                                <td><strong>Scope of Work:</strong> {{$order_data['scope_work'] ?? 'N/A'}}</td>
                            </tr>
-                             <tr>
+                             {{-- <tr>
                                <td><strong>Destination:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
-                           </tr>
+                           </tr> --}}
                           {{-- <tr>
                                <td><strong>City/Port of Loading:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
                            </tr>
@@ -144,11 +144,12 @@
                
                 <tr>
                     <td colspan="4">
-                        <p><strong>Buyer (Bill to)</strong></p>
-                        <p>{{ $order_data['appointment']['name'] ?? $order_data['appointment']['company_name'] }}</p>
-                        <p>{{ $order_data['appointment']['mobile'] }}</p>
-                        <p>{{ $order_data['appointment']['address'] ?? '' }}, {{ $order_data['appointment']['city'] ?? '' }}, {{ $order_data['appointment']['state'] ?? '' }}, {{ $order_data['appointment']['pincode'] ?? '' }} {{ $order_data['appointment']['country'] ?? '' }}</p>
-                        <p><strong>GSTIN/UIN</strong>: {{ $order_data['gst_no'] ?? 'N/A' }}</p>
+                        {{-- <p><strong>Buyer (Bill to)</strong></p> --}}
+                        <p><strong>Customer </strong> : {{ $order_data['appointment']['name'] ?? $order_data['appointment']['company_name'] }}</p>
+                        <p><strong>Phone </strong> :{{ $order_data['appointment']['mobile'] }}</p>
+                        <p><strong>Address </strong> :{{ $order_data['appointment']['address'] ?? '' }}</p>
+                        <p><strong>Email </strong> :{{ $order_data['appointment']['email'] ?? '' }}</p>
+                        {{-- <p><strong>GSTIN/UIN</strong>: {{ $order_data['gst_no'] ?? 'N/A' }}</p> --}}
                     </td>
                 </tr>
             </table>
@@ -160,8 +161,8 @@
                     <th class="table-heading">Quantity</th>
                     <th class="table-heading">Unit</th>
                     <th class="table-heading">Price</th>
-					<th class="table-heading">Tax %</th>
-                    <th class="table-heading">Discount %</th>
+					{{-- <th class="table-heading">Tax %</th> --}}
+                    {{-- <th class="table-heading">Discount %</th> --}}
                     <th class="table-heading">Bid Amount</th>
                 </tr>
                 <?php $total = 0; $gst_amount=0; $total_gst_per=0;$per_item_discount=0; $per_item_total_discount=0;   ?>
@@ -184,10 +185,10 @@
                     <!-- <td>{{$item['qty']}}</td> -->
                     <td>{{$item['qty']}}</td>
                     <td>{{$item['unit']}}</td>
-                    <td>{{$item['price']}}</td>
-					<td>{{round($item['gst_percentage'])}}</td>  
-                    <td>{{round($item['discount'])}}</td>
-                    <td>{{((round(($item['price']*$item['qty'])- $per_item_discount)))}}</td>
+                    <td>${{$item['price']}}</td>
+					{{-- <td>{{round($item['gst_percentage'])}}</td>   --}}
+                    {{-- <td>{{round($item['discount'])}}</td> --}}
+                    <td>${{((round(($item['price']*$item['qty'])- $per_item_discount)))}}</td>
                 </tr>
                 <?php  $per_item_discount=0; ?>
                 @endforeach    
@@ -206,10 +207,10 @@
                     <td class="align-right">{{ $gst_amount/2 }}</td>
                 </tr>
                 @else
-                <tr>
+                {{-- <tr>
                     <td style="text-align: right; width: 35.20%;">Total Tax </td>
                     <td class="align-right">{{ round($gst_amount) }}</td>
-                </tr>
+                </tr> --}}
                 
                 @endif
 
@@ -229,7 +230,7 @@
             <table>
                 <tr>
                     <td style="width: 62%;">Amount Chargeable (in words):</td>
-                    <td class="align-right">E. & O.E</td>
+                    {{-- <td class="align-right">E. & O.E</td> --}}
                 </tr>
                 <tr>
 				<?php use NumberToWords\NumberToWords;
@@ -249,9 +250,9 @@
                         We declare that this invoice shows the actual price of the goods described and that all particulars are
                         true and correct.</td>
                     <td colspan="2">
-                        <img style="margin: 12px 0px;"
+                        {{-- <img style="margin: 12px 0px;"
                             src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png"
-                            alt="Signature" width="150">
+                            alt="Signature" width="150"> --}}
                         <br>
                         <p style="font-size: 12px;">Authorised Signatory</p>
                     </td>
@@ -261,15 +262,18 @@
             <table>
                 <tr>
                     <td>
-                        <p><strong>Terms and Conditions</strong></p>
-                        <ul style="padding-left: 25px;">
+                        {{-- <p><strong>Terms and Conditions</strong></p> --}}
+                        {{-- <ul style="padding-left: 25px;">
                             <li>Payment non-refundable.</li>
                             <li>Delivery of goods within 15 days
                                 of payment received.</li>
                             <li>Payment can be done
                                 via Bank account, Google Pay, or Phone Pay.</li>
                             <li>Any changes in order will be charged extra.</li>
-                        </ul>
+                        </ul> --}}
+                        <p><p>Satelitte realignments are the resonsibility of homeowner. We will resintall
+                            dishes on the roof if requested or dispose for free, but do not guarantee signal.
+                            If you have a dish, please let us know.</p></p>
                     </td>
                 </tr>
             </table>
