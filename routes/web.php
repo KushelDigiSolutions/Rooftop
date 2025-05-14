@@ -171,8 +171,8 @@ Route::middleware(['auth'])->prefix('bids')->group(function () {
 // Contract Work
 Route::middleware(['auth'])->prefix('contract')->group(function () {
     Route::get('/', [ContractController::class, 'index'])->name('contract.list');
-    Route::get('create/{appointment_id}', [ContractController::class, 'create'])->name('bid.create');
-    Route::post('/store', [ContractController::class, 'store'])->name('quotation.store');
+    Route::get('create/{appointment_id}', [ContractController::class, 'create'])->name('contract.create');
+    Route::post('/store', [ContractController::class, 'store'])->name('contract.store');
     
 });
 
