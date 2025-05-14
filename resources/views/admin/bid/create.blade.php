@@ -1217,7 +1217,7 @@
                           </td>
                           <td><input type="number" class="form-control max-w-166" name="item_price[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
                           <td><input type="text" class="form-control max-w-166" name="item_discount[${sectionId}][${itemCount}]" id="itemDiscount_${sectionId}_${itemCount}" placeholder="Item Discount"></td>
-                          <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionId}][${itemCount}]" placeholder="Item Mrp" readonly></td>
+                          <td><input type="number" class="form-control max-w-166" name="item_mrp[${sectionId}][${itemCount}]" placeholder="Item Price" readonly></td>
                           <td><button class="icon-btn m-0 delete-item"><i class="bi bi-trash3"></i></button></td>
                       </tr>`;
 
@@ -1319,7 +1319,8 @@
       let gstAmount = amountAfterDiscount * (gst_percent / 100);
       let finalAmount = amountAfterDiscount + gstAmount;
 
-      $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(Math.round(finalAmount));
+      // $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(Math.round(finalAmount));
+      $("input[name='item_mrp[" + sectionId + "][" + itemCount + "]']").val(finalAmount.toFixed(2));
   });
 
   initializeSelect2();
