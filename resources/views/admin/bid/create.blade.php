@@ -981,13 +981,13 @@
 
           <div class="col-md-3">
 
-            <div class="mb-3 w-100">
+            {{-- <div class="mb-3 w-100">
 
               <label for="destination_Input" class="form-label mb-1">Destination</label>
 
               <input type="text" name="destination" class="form-control w-100" id="destination_Input">
 
-            </div>
+            </div> --}}
 
           </div>
 
@@ -1154,7 +1154,7 @@
                                                   <th scope="col">Qty</th>
                                                   <th scope="col">Unit</th>
                                                   <th scope="col">Price</th>
-                                                  <th scope="col">Discount %</th>
+                                                  
                                                   <th scope="col">Amount</th>
                                                   <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px; width: 160px !important;" scope="col">
                                                       <p class="secondary-btn addBtn m-0 p-0" data-section-id="${sectionCount}" style="font-size: 14px !important; width: 105px;">+ Add Items</p>
