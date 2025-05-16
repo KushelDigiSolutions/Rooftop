@@ -92,10 +92,10 @@
                         <input type="file" class="form-control w-100" id="image" name="image" onchange="previewImage(event)"
                             required>
                     </div>
-                    <div>
+                    {{-- <div>
                         <label for="image_alt" class="form-label mb-1">Image Alt <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="image_alt" name="image_alt" required>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             {{-- <div class="row mb-2">
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     required: true
                 },
                 image_alt: {
-                    required: true
+                    required: false
                 },
                 supplier_price: {
                     required: true,

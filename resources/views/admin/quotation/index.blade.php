@@ -446,8 +446,7 @@
                                 <tr><th>Email ID</th><td>${quotation.email || 'N/A'}</td></tr>
                                 <tr><th>Contact Number</th><td>${quotation.number || 'N/A'}</td></tr>
                                  
-                                <tr><th>Quotation For</th><td>${quotation.quot_for || 'N/A'}</td></tr>
-                                <tr><th>Cartage</th><td>${quotation.cartage || 'N/A'}</td></tr>
+                               
                                 <tr><th>Address</th><td>${quotation.address || 'N/A'}</td></tr>
                                 
                                 

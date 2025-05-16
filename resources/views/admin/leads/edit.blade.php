@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Add Lead')
+@section('title', 'Edit Lead')
 @section('css')
 <style>
     .error {
@@ -17,28 +17,29 @@
 @endsection
 @section('content')
 <div class="dataOverviewSection mt-3 mb-3">
-    <form action="javascript:" method="POST" enctype="multipart/form-data" class="mt-3" id="contact-form1">
+    <form action="{{ route('leads.update', $leadData->id) }}" method="POST" enctype="multipart/form-data" class="mt-3" id="editLeadForm">
         @csrf
+        @method('PUT')
         <div class="dataOverview mt-3">
-            <h6 class="m-0">Add New Lead</h6>
+            <h6 class="m-0">Edit Lead</h6>
             <hr class="m-0 mt-2 mb-2">
             <div class="row mb-2">
             <div class="col-md-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="name" name="name"  required>
+                        <input type="text" class="form-control" id="name" name="name" value="{{$leadData->name}}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email ID <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="email" name="email" >
+                        <input type="email" class="form-control" id="email" value="{{$leadData->email}}" name="email" >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="mobile" autocomplete="off" class="form-label">Mobile Number <span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="mobile" name="mobile"  maxlength="10" required>
+                        <input type="tel" class="form-control" id="mobile" name="mobile" value="{{$leadData->mobile}}"  maxlength="10" required>
 
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                     <div class="mb-3">
                         <label for="address" autocomplete="off" class="form-label">Address <span class="text-danger">*</span></label>
                         {{-- <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required> --}}
-                        <textarea name="address" class="form-control" id="address" cols="30" rows="30"></textarea>
+                        <textarea name="address" class="form-control" id="address" cols="30" rows="30">{{$leadData->address}}</textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -54,9 +55,9 @@
                         <label for="pincode" class="form-label">Type of Property <span class="text-danger">*</span></label>
                         <select name="type_property" id="type_property" class="form-control">
                             <option value="">Select One</option>
-                            <option value="Residential">Residential</option>
-                            <option value="Commercial">Commercial</option>
-                            <option value="Industrial">Industrial</option>
+                            @foreach($typeProperties as $type)
+                            <option value="{{ $type }}" {{ $leadData->type_property == $type ? 'selected' : '' }}>{{ $type }}</option>
+                             @endforeach
                         </select>
                         <div class="invalid-feedback">Please enter a valid 6 digit pincode</div>
                     </div>
@@ -69,10 +70,9 @@
                         <label for="state" class="form-label">Requirement Type<span class="requried">*</span></label>
                         <select name="requirement_type" id="requirement_type" class="form-control">
                             <option value="">Select One</option>
-                            <option value="Installation">Installation</option>
-                            <option value="Maintenance">Maintenance</option>
-                            <option value="Repair">Repair</option>
-                            <option value="Inspection">Inspection</option>
+                            @foreach($requirementTypes as $reqType)
+                                <option value="{{ $reqType }}" {{ $leadData->requirement_type == $reqType ? 'selected' : '' }}>{{ $reqType }}</option>
+                            @endforeach
                         </select>
                         <div class="invalid-feedback">Please enter a valid state name.</div>
                     </div>
@@ -82,14 +82,9 @@
                         <label for="city" class="form-label">How Did You Hear About Us/ Lead Source?<span class="requried">*</span></label>
                         <select name="lead_source" id="lead_source" class="form-control">
                             <option value="">Select One</option>
-                            <option value="Google">Google</option>
-                            <option value="Referral">Referral</option>
-                            <option value="Website">Website</option>
-                            <option value="PhoneCall">PhoneCall</option>
-                            <option value="Email">Email</option>
-                            <option value="Walk-in">Walk-in</option>
-                            <option value="Social Media">Social Media</option>
-                            <option value="Others">Others</option>
+                            @foreach($leadSources as $source)
+                                <option value="{{ $source }}" {{ $leadData->lead_source == $source ? 'selected' : '' }}>{{ $source }}</option>
+                            @endforeach
                         </select>
                         <div class="invalid-feedback">Please enter a valid city name.</div>
                     </div>
@@ -98,14 +93,14 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="country" class="form-label">Internal Notes <span class="text-danger">*</span></label>
-                        <textarea name="notes" class="form-control" id="notes" cols="30" rows="10"></textarea>
+                        <textarea name="notes" class="form-control" id="notes" cols="30" rows="10">{{$leadData->notes}}</textarea>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="country" class="form-label">Scope of work requested <span class="text-danger">*</span></label>
-                        <input type="text"  id="scope_work" class="form-control" name="scope_work"   required >
+                        <input type="text"  id="scope_work" class="form-control" name="scope_work" value="{{$leadData->scope_work}}"   required >
                     </div>
                 </div>
             </div>
@@ -242,5 +237,44 @@
             });
         }
     });
+</script>
+<script>
+    $(document).ready(function () {
+    $('#editLeadForm').submit(function (e) {
+        e.preventDefault();
+
+        let form = $(this);
+        let url = form.attr('action');
+        let data = form.serialize();
+
+        // Clear previous errors
+        $('#error-name').text('');
+        $('#error-email').text('');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (response) {
+                alert('Lead updated successfully');
+                // Optionally redirect or reload
+                // window.location.href = '/leads';
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    if (errors.name) {
+                        $('#error-name').text(errors.name[0]);
+                    }
+                    if (errors.email) {
+                        $('#error-email').text(errors.email[0]);
+                    }
+                } else {
+                    alert('An error occurred.');
+                }
+            }
+        });
+    });
+});
 </script>
 @endsection

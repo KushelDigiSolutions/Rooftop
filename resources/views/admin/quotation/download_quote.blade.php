@@ -271,9 +271,9 @@
                                 via Bank account, Google Pay, or Phone Pay.</li>
                             <li>Any changes in order will be charged extra.</li>
                         </ul> --}}
-                        <p><p>Satelitte realignments are the resonsibility of homeowner. We will resintall
+                        <p>Satelitte realignments are the resonsibility of homeowner. We will resintall
                             dishes on the roof if requested or dispose for free, but do not guarantee signal.
-                            If you have a dish, please let us know.</p></p>
+                            If you have a dish, please let us know.</p>
                     </td>
                 </tr>
             </table>

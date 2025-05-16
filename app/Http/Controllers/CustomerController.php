@@ -100,13 +100,14 @@ class CustomerController extends Controller
       
         $statusMap = [
             
-            "pending" => "1",
+            "pending" => "7",
             "assign" => "2",
             "complete" => "4",
             "sent_bid" => "3",
             "sent_contract" => "9",
             "rejected" => "5",
-            "prospect" => "7",
+            "prospect" => "8",
+            "dead" => "10",
         ];
         
 
@@ -193,7 +194,7 @@ class CustomerController extends Controller
             'password' => $randomPassword,
         ];
         // Mail::to($user->email)->send(new UserRegistrationMail($mailData));
-        $appointment->status = '7';
+        $appointment->status = $request->status;
         $appointment->save();
         DB::commit();
         return redirect()

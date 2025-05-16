@@ -78,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('leads_list', [AppointmentController::class, 'index'])->name('leads.list.index');
 Route::get('customer_list', [CustomerController::class, 'index'])->name('customer.list.index');
 Route::get('lead/create', [AppointmentController::class, 'create'])->name('leads.create');
+Route::get('lead/edit/{id}', [AppointmentController::class, 'editLead'])->name('leads.edit');
+Route::put('lead/update/{id}', [AppointmentController::class, 'editUpdate'])->name('leads.update');
 Route::post('lead/store', [AppointmentController::class, 'store'])->name('leads.store');
 Route::get('querybooked', [AppointmentController::class, 'querybooked'])->name('querybooked.list');
 Route::get('/export/book-query', [AppointmentController::class, 'exportBookQuery'])->name('export.book.query');

@@ -106,10 +106,10 @@
                         <label for="image" class="form-label mb-1">Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control w-100" id="image" name="image" value="{{ isset($product) && $product->image ? url('images/products/' . $product->image) : '' }}" onchange="previewImage(event)">
                     </div>
-                    <div>
+                    {{-- <div>
                         <label for="image_alt" class="form-label mb-1">Image Alt <span class="text-danger">*</span></label>
                         <input type="text" class="form-control w-100" id="image_alt" name="image_alt" value="{{ old('image_alt', isset($product) ? $product->image_alt : '') }}" required>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -301,16 +301,16 @@
             $('#productForm').validate({
                 rules: {
                     type: {
-                        required: true
+                        required: false
                     },
                     file_number: {
-                        required: true
+                        required: false
                     },
                     supplier_name: {
-                        required: true
+                        required: false
                     },
                     image_alt: {
-                        required: true
+                        required: false
                     }
                 },
                 messages: {

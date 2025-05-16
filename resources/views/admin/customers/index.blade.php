@@ -35,6 +35,19 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="true">In Progress <span class="fw-normal small"></span></button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Close & Prospect <span class="fw-normal small"></span></button>
+                    </li>
+
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-dead-tab" data-bs-toggle="pill" data-bs-target="#pills-dead" type="button" role="tab" aria-controls="pills-dead" aria-selected="false">Close & Dead <span class="fw-normal small"></span></button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-sent_bid-tab" data-bs-toggle="pill" data-bs-target="#pills-sent_bid" type="button" role="tab" aria-controls="pills-sent_bid" aria-selected="false">Sent Bid<span class="fw-normal small"></span></button>
                     </li>
 
@@ -46,9 +59,7 @@
                         <button class="nav-link" id="pills-hold-tab" data-bs-toggle="pill" data-bs-target="#pills-hold" type="button" role="tab" aria-controls="pills-hold" aria-selected="false">In Progress <span class="fw-normal small"></span></button>
                     </li> --}}
 
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Prospect <span class="fw-normal small"></span></button>
-                    </li>
+                    
 
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Active <span class="fw-normal small"></span></button>
@@ -115,7 +126,7 @@
                             {{-- <th>Pincode</th> --}}
                             {{-- <th>Assigned Date</th>
                             <th>Assigned To</th> --}}
-                            <th>Remarks</th>
+                            {{-- <th>Remarks</th> --}}
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -860,7 +871,7 @@
                         // row += '<td>' + appnt.pincode + '</td>';
                         // row += '<td>' + (appnt.appointment_date ? customformatDate(appnt.appointment_date) : 'N/A') + '</td>';
                         // row += '<td>' + (appnt.franchise?.name || 'N/A') + '</td>';
-                        row += '<td>' + (appnt.remarks == null ? 'N/A' : appnt.remarks) + '</td>';
+                        // row += '<td>' + (appnt.remarks == null ? 'N/A' : appnt.remarks) + '</td>';
 
                         var statusBadge = '';
                         var viewType = '';
@@ -871,16 +882,25 @@
                             
                             case '8':
                                 viewType = 'prospect';
-                                statusBadge = '<span class="badge badge-pending">Pending</span>';
+                                statusBadge = '<span class="badge badge-pending">Close & Prospect</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="reject(\'' + appnt.id + '\')">Reject</a></li>';
                                 break;
+
+                            case '10':
+                                viewType = 'dead';
+                                statusBadge = '<span class="badge badge-pending text-danger">Close & Dead</span>';
+                                // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
+                                actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
+                                // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
+                                // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="reject(\'' + appnt.id + '\')">Reject</a></li>';
+                                break;    
                                   
                             case '7':
                                 viewType = 'pending';
-                                statusBadge = '<span class="badge badge-pending">Pending</span>';
+                                statusBadge = '<span class="badge badge-assigned">In Progress</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
@@ -911,14 +931,14 @@
                             case '3':
                                 viewType = 'sent_bid';
                                 statusBadge = '<span class="badge badge-active">Bid Sent</span>';
-                                actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
+                                // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="createContract(this)">Create Contract</a></li>';
                                 break;
 
                             case '9':
                                 viewType = 'sent_contract';
                                 statusBadge = '<span class="badge badge-active">Contract Sent</span>';
-                                actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
+                                // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="createContract(this)">Create Contract</a></li>';
                                 break;    
                             case '5':

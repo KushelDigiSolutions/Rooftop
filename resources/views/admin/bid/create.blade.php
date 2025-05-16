@@ -895,7 +895,7 @@
 
               <label for="AddressInput" class="form-label mb-1">Address</label>
 
-              <textarea name="address" id="AddressInput" class="form-control w-100" readonly>{{$appointment_data->address}}, {{$appointment_data->city}}, {{$appointment_data->state}}, {{$appointment_data->pincode}}, {{$appointment_data->country}}</textarea>
+              <textarea name="address" id="AddressInput" class="form-control w-100" readonly>{{$appointment_data->address}}</textarea>
 
             </div>
 

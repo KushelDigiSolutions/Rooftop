@@ -137,7 +137,7 @@
                     <td colspan="1">
                         <p><strong>KMI Roofing</strong></p>
                         <p>KMI Address </p>
-                        <p><b>GSTIN/UIN</b>: --</p>
+                        {{-- <p><b>GSTIN/UIN</b>: --</p> --}}
                         <p><b>E-Mail: </b>example.kmiroofing@gmail.com</p>
                     </td>
                     <td>
@@ -153,9 +153,9 @@
                            <tr>
                                <td><strong>Scope of Work:</strong> {{$order_data['scope_work'] ?? 'N/A'}}</td>
                            </tr>
-                             <tr>
+                             {{-- <tr>
                                <td><strong>Destination:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
-                           </tr>
+                           </tr> --}}
                           {{-- <tr>
                                <td><strong>City/Port of Loading:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
                            </tr>
@@ -175,9 +175,9 @@
                             <!-- <tr>
                                 <td><strong>Dispatched through:</strong> {{$order_data['dispatch'] ?? 'N/A'}}</td>
                             </tr> -->
-                            <tr>
+                            {{-- <tr>
                                 <td><strong>Destination:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
-                            </tr>
+                            </tr> --}}
                             <!-- <tr>
                                 <td><strong>City/Port of Loading:</strong> {{$order_data['destination'] ?? 'N/A'}}</td>
                             </tr> -->
@@ -193,11 +193,11 @@
                 
                 <tr>
                     <td colspan="4">
-                        <p><strong>Buyer (Bill to)</strong></p>
+                        <p><strong>Customer</strong></p>
                         <p>{{ $order_data['appointment']['name'] ?? $order_data['appointment']['company_name'] }}</p>
                         <p>{{ $order_data['appointment']['mobile'] }}</p>
                         <p>{{ $order_data['appointment']['address'] ?? '' }}, {{ $order_data['appointment']['city'] ?? '' }}, {{ $order_data['appointment']['state'] ?? '' }}, {{ $order_data['appointment']['pincode'] ?? '' }} {{ $order_data['appointment']['country'] ?? '' }}</p>
-                        <p><strong>GSTIN/UIN</strong>: {{ $order_data['gst_no'] ?? 'N/A' }}</p>
+                        {{-- <p><strong>GSTIN/UIN</strong>: {{ $order_data['gst_no'] ?? 'N/A' }}</p> --}}
                     </td>
                 </tr>
             </table>
@@ -209,9 +209,9 @@
                     <th class="table-heading">Quantity</th>
                     <th class="table-heading">Unit</th>
                     <th class="table-heading">Price</th>
-					<th class="table-heading">Tax %</th>
-                    <th class="table-heading">Discount %</th>
-                    <th class="table-heading">Amount</th>
+					{{-- <th class="table-heading">Tax %</th> --}}
+                    {{-- <th class="table-heading">Discount %</th> --}}
+                    <th class="table-heading">Bid Amount</th>
                 </tr>
                 <?php $total = 0; $gst_amount=0; $total_gst_per=0;$per_item_discount=0; $per_item_total_discount=0;   ?>
                 @foreach($order_data['quotaiton_section'] as $sectionItem)
@@ -233,10 +233,10 @@
                     <!-- <td>{{$item['qty']}}</td> -->
                     <td>{{$item['qty']}}</td>
                     <td>{{$item['unit']}}</td>
-                    <td>{{$item['price']}}</td>
-					<td>{{round($item['gst_percentage'])}}</td>  
-                    <td>{{round($item['discount'])}}</td>
-                    <td>{{((round(($item['price']*$item['qty'])- $per_item_discount)))}}</td>
+                    <td>${{$item['price']}}</td>
+					{{-- <td>{{round($item['gst_percentage'])}}</td>  
+                    <td>{{round($item['discount'])}}</td> --}}
+                    <td>${{((round(($item['price']*$item['qty'])- $per_item_discount)))}}</td>
                 </tr>
                 <?php  $per_item_discount=0; ?>
                 @endforeach    
@@ -255,10 +255,10 @@
                     <td class="align-right">{{ $gst_amount/2 }}</td>
                 </tr>
                 @else
-                <tr>
+                {{-- <tr>
                     <td style="text-align: right; width: 35.20%;">Total </td>
                     <td class="align-right">{{ round($gst_amount) }}</td>
-                </tr>
+                </tr> --}}
                 
                 @endif
 
@@ -278,7 +278,7 @@
             <table>
                 <tr>
                     <td style="width: 62%;">Amount Chargeable (in words):</td>
-                    <td class="align-right">E. & O.E</td>
+                    {{-- <td class="align-right">E. & O.E</td> --}}
                 </tr>
                 <tr>
 				<?php use NumberToWords\NumberToWords;
@@ -311,14 +311,17 @@
                 <tr>
                     <td>
                         <p><strong>Terms and Conditions</strong></p>
-                        <ul style="padding-left: 25px;">
+                        {{-- <ul style="padding-left: 25px;">
                             <li>Payment non-refundable.</li>
                             <li>Delivery of goods within 15 days
                                 of payment received.</li>
                             <li>Payment can be done
                                 via Bank account, Google Pay, or Phone Pay.</li>
                             <li>Any changes in order will be charged extra.</li>
-                        </ul>
+                        </ul> --}}
+                        <p>Satelitte realignments are the resonsibility of homeowner. We will resintall
+                            dishes on the roof if requested or dispose for free, but do not guarantee signal.
+                            If you have a dish, please let us know.</p>
                     </td>
                 </tr>
             </table>

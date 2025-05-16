@@ -797,4 +797,51 @@ class AppointmentController extends Controller
         return substr($text, 0, -1 * $pad);
     }
 
+    public function editLead($id){
+        $leadData = Appointment::findOrFail($id);
+        // dd($leadData);
+        $typeProperties = ['Residential', 'Commercial', 'Industrial'];
+        $requirementTypes = ['Installation', 'Maintenance', 'Repair', 'Inspection'];
+        $leadSources = ['Google', 'Referral', 'Website', 'PhoneCall', 'Email', 'Walk-in', 'Social Media', 'Others'];
+        $cityStateData = ZipCode::where('status', 'active') // 👈 Filter only active
+        ->orderBy('state')
+        ->orderBy('city')
+        ->get();
+        $groupedCityStateData = $cityStateData->groupBy('state')->map(function ($items) {
+            return $items->pluck('city')->unique()->values();
+        });
+        return view('admin.leads.edit',compact('leadData','groupedCityStateData',
+        'typeProperties',
+        'requirementTypes',
+        'leadSources'));
+    }
+
+    public function editUpdate(Request $request , $id){
+        // dd($request->all());
+        $request->validate([
+            "name" => "required|string|max:255",
+            "email" => "required|email",
+            "mobile" => "required|digits_between:10,15",
+            "address" => "required|string|max:255",
+            "type_property" => "required",
+            "requirement_type" => "required|string|max:100",
+            "lead_source" => "required|string|max:100",
+            "notes" => "required",
+            "scope_work" => "required|string|max:100",
+        ]);
+
+        $lead = Appointment::findOrFail($id);
+        $lead->name = $request->name;
+        $lead->email = $request->email;
+        $lead->address = $request->address;
+        $lead->mobile = $request->mobile;
+        $lead->type_property = $request->type_property;
+        $lead->requirement_type = $request->requirement_type;
+        $lead->lead_source = $request->lead_source;
+        $lead->notes = $request->notes;
+        $lead->scope_work = $request->scope_work;
+        $lead->save();
+        return response()->json(['success' => true, 'message' => 'Lead updated successfully.']);
+    }
+
 }

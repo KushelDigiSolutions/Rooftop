@@ -55,7 +55,27 @@
                     </li> --}}
                     <li class="{{ request()->is('bids') ? 'active' : '' }}">
                         <a href="{{ route('quotations.list') }}">
-                            <i class="bi bi-receipt-cutoff"></i><span class="text">Customer Bids</span>
+                            <i class="bi bi-tools"></i><span class="text">Customer Bids</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#?">
+                            <i class="bi bi-receipt-cutoff"></i><span class="text">Sub Contractor</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#?">
+                            <i class="bi bi-receipt-cutoff"></i><span class="text">Jobs</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#?">
+                            <i class="bi bi-receipt-cutoff"></i><span class="text">Appointments</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#?">
+                            <i class="bi bi-receipt-cutoff"></i><span class="text">Quick Book</span>
                         </a>
                     </li>
                     <li class="{{ request()->is('zipcodes*') || request()->is('product-types*') || request()->is('suppliers*') || request()->is('supplier-collections*') || request()->is('supplierCollectionDesigns*') || request()->is('compositions*') || request()->is('types*') || request()->is('usages*') || request()->is('design-types*') ? 'active' : '' }}">
