@@ -110,7 +110,45 @@
                 </div>
             </div>
 
-            
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <!-- <label for="state" class="form-label">State <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="Enter State" required> -->
+                    <label for="state" class="form-label">State<span class="requried">*</span></label>
+                    <select name="state" id="state" class="form-control">
+                        <option value="">Select State</option>
+                        @foreach ($groupedCityStateData as $state => $cities)
+                        <option value="{{ $state }}">{{ $state }}</option>
+                        @endforeach
+                    </select>
+                    <div class="invalid-feedback">Please enter a valid state name.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="city" class="form-label">City<span class="requried">*</span></label>
+                    <select name="city" id="city" class="form-control">
+                        <option value="">Select City</option>
+                        <!-- Cities will be populated dynamically based on the selected state -->
+                    </select>
+                    <div class="invalid-feedback">Please enter a valid city name.</div>
+                </div>
+        </div>
+       
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country" value="USA" required readonly>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-3 checkPincode">
+                <label for="pincode" class="form-label">Zipcode <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="PincodeInput" name="pincode" placeholder="Enter Pincode" maxlength="6" required>
+                <div class="invalid-feedback">Please enter a valid 6 digit pincode</div>
+            </div>
+        </div>
             
 
             <div class="mt-3 d-flex gap-3 mb-4">
@@ -212,6 +250,10 @@
                 lead_source: $("#lead_source").val(),
                 notes: $("#notes").val(),
                 scope_work: $("#scope_work").val(),
+                city: $("#city").val(),
+                state: $("#state").val(),
+                country: $("#country").val(),
+                pincode: $("#PincodeInput").val(),
                 _token: $("input[name='_token']").val()
             };
 

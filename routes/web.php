@@ -25,9 +25,11 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SubContractorController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use PHPUnit\Framework\Attributes\Group;
+
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -90,6 +92,16 @@ Route::get('appointment/{id}/assign', [AppointmentController::class, 'assign'])-
 Route::get('getFranchiseList/{apnt_id}', [AppointmentController::class, 'getFranchiseList']);
 Route::get('getFranchiseName/{apnt_id}', [AppointmentController::class, 'getFranchiseName']);
 Route::put('appointment/{id}/reject', [AppointmentController::class, 'reject'])->name('appointment.reject');
+
+Route::get('sub_contractor', [SubContractorController::class, 'sub_contractor'])->name('sub_contractor');
+Route::get('create/sub_contractor', [SubContractorController::class, 'createSubcontractor'])->name('sub_contractor.create');
+Route::post('/subcontractors', [SubContractorController::class, 'store'])->name('subcontractors.store');
+Route::get('/sub_contractor/data', [SubContractorController::class, 'getSubcontractorData'])->name('getSubcontractorData');
+Route::get('/sub-contractor/edit/{id}', [SubcontractorController::class, 'edit'])->name('subcontractors.edit');
+Route::post('/subcontractors/{id}/update', [SubcontractorController::class, 'update'])->name('subcontractors.update');
+Route::delete('/subcontractors/{id}/delete', [SubContractorController::class, 'destroy']);
+
+
 });
 // web.php
 Route::post('/appointments/assign', [AppointmentController::class, 'assign'])->name('appointments.assign');

@@ -58,8 +58,8 @@
                             <i class="bi bi-tools"></i><span class="text">Customer Bids</span>
                         </a>
                     </li>
-                    <li class="">
-                        <a href="#?">
+                    <li class="{{ request()->is(['sub_contractor','create/sub_contractor']) ? 'active' : '' }}">
+                        <a href="{{route('sub_contractor')}}">
                             <i class="bi bi-receipt-cutoff"></i><span class="text">Sub Contractor</span>
                         </a>
                     </li>

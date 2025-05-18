@@ -16,7 +16,7 @@ class Appointment extends Model
     }
 
     public function local_franchise(){
-        return $this->hasMany(Franchise::class, 'city', 'city'); 
+        return $this->hasMany(Subcontractor::class, 'city', 'city'); 
     }
 
     public function getCreatedAtFormattedAttribute()

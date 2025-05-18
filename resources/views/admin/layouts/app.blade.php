@@ -63,7 +63,7 @@
         <!-- delete modal end -->
 
     </div>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
         integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -85,6 +85,14 @@
     <!-- <script src="{{ url('admin/JS/searchableselect.js') }}"></script> -->
     <!-- <script src="{{ url('admin/JS/createquote.js') }}"></script> -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
     <script>
         Fancybox.bind("[data-fancybox]", {
             // Your custom options

@@ -1,6 +1,7 @@
     <?php use Razorpay\Api\Api; ?>
     @extends('admin.layouts.app')
     @section('title', 'Customer List')
+    
     @section('content')
     <div class="dataOverviewSection mt-3">
         <div class="section-title">
@@ -72,9 +73,9 @@
 
                    
 
-                    {{-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small">({{ $completedCount }})</span></button>
-                    </li> --}}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small"></span></button>
+                    </li>
 
                     {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-rejected-tab" data-bs-toggle="pill" data-bs-target="#pills-rejected" type="button" role="tab" aria-controls="pills-rejected" aria-selected="false">Reject <span class="fw-normal small">({{ $rejectCount }})</span></button>
@@ -300,7 +301,7 @@
                             @php
                                 $now = \Carbon\Carbon::now()->addDay()->format('Y-m-d\TH:i');
                             @endphp
-                            <input type="datetime-local" name="dateFilter" id="dateFilter" placeholder="Filter by date" value="{{ request('dateFilter') }}" min="{{ $now }}" class="form-control me-3 w-100">
+                            <input type="text" name="dateFilter" id="appointmentdate" placeholder="MM-DD-YY" value="{{ request('dateFilter') }}" min="{{ $now }}" class="form-control me-3 w-100">
                             <div class="error" style="color: red;"></div>
                         </div>
 
@@ -775,7 +776,7 @@
                     $(selectId).empty();      
                     let htmlProductType = `<option disabled selected>Select Franchise</option>`;
                     result.local_franchise.forEach(function(item) {
-                        htmlProductType += `<option value="${item.id}">${item.name}</option>`;
+                        htmlProductType += `<option value="${item.id}">${item.contact_person}</option>`;
                     });
                     $(selectId).append(htmlProductType);
                 }
@@ -927,6 +928,7 @@
                                 viewType = 'complete';
                                 statusBadge = '<span class="badge badge-active">Completed</span>';
                                 actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
+                                actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Sub Contractor</a></li>';
                                 break;
                             case '3':
                                 viewType = 'sent_bid';
@@ -1260,4 +1262,11 @@
             });
         });
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#appointmentdate", {
+            dateFormat: "m-d-Y" // mm-dd-yyyy
+        });
+      </script>
     @endsection

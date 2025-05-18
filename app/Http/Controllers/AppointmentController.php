@@ -278,6 +278,10 @@ class AppointmentController extends Controller
             "requirement_type" => "required|string|max:100",
             "lead_source" => "required|string|max:100",
             "notes" => "required",
+            "city" => "required",
+            "state" => "required",
+            "country" => "required",
+            "pincode" => "required",
             "scope_work" => "required|string|max:100",
         ]);
 
@@ -337,10 +341,11 @@ class AppointmentController extends Controller
     public function assign(Request $request)
     {
         // Validate the input fields
+        // dd($request->all());
         $request->validate([
             "appointment_id" => "required|exists:appointments,id",
-            "franchise_id" => "required|exists:franchises,id",
-            "dateFilter" => "required|date|after_or_equal:today",
+            "franchise_id" => "required|exists:subcontractors,id",
+            "dateFilter" => "nullable",
         ]);
 
         // Find the appointment by ID
@@ -371,41 +376,17 @@ class AppointmentController extends Controller
 
 
         // send whatsaap Message
-        $parameters = [
-            [
-                'type' => 'text',
-                'text' => $appointmentname
-            ],
-            [
-                'type' => 'text',
-                'text' => $franchiseName
-            ],
-            [
-                'type' => 'text',
-                'text' => ' '
-            ],
-            [
-                'type' => 'text',
-                'text' => $appointmentDate .' '.$appointmentTime
-            ],
-            [
-                'type' => 'text',
-                'text' => $appointmentfulladdress
-            ],
-            
-        ];
+       
 
-        $this->whatsAppService->sendMessage('91'.$franchiseDetail->mobile, 'appointments_schedule_new', $parameters); // send to franchise
-        $this->whatsAppService->sendMessage('91'.$appointment->mobile, 'appointments_schedule_new', $parameters); // send to customer
         // end send whatsaap Message
 
         // Pass these to the email
-        Mail::to($appointment->email)->send(
-            new AppointmentScheduleMail($appointment, $appointmentDate, $appointmentTime, $franchiseName)
-        );
-         Mail::to($franchiseEmail)->send(
-            new AppointmentScheduleMail($appointment, $appointmentDate, $appointmentTime, $franchiseName)
-        );
+        // Mail::to($appointment->email)->send(
+        //     new AppointmentScheduleMail($appointment, $appointmentDate, $appointmentTime, $franchiseName)
+        // );
+        //  Mail::to($franchiseEmail)->send(
+        //     new AppointmentScheduleMail($appointment, $appointmentDate, $appointmentTime, $franchiseName)
+        // );
         
 
         // Redirect back with success message
