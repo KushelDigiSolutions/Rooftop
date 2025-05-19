@@ -55,12 +55,12 @@
                     </li> --}}
                     <li class="{{ request()->is('bids') ? 'active' : '' }}">
                         <a href="{{ route('quotations.list') }}">
-                            <i class="bi bi-tools"></i><span class="text">Customer Bids</span>
+                            <i class="bi bi-tools"></i><span class="text">Customers Bid</span>
                         </a>
                     </li>
                     <li class="{{ request()->is(['sub_contractor','create/sub_contractor']) ? 'active' : '' }}">
                         <a href="{{route('sub_contractor')}}">
-                            <i class="bi bi-receipt-cutoff"></i><span class="text">Sub Contractor</span>
+                            <i class="bi bi-receipt-cutoff"></i><span class="text">Sub Contractors</span>
                         </a>
                     </li>
                     <li class="">
@@ -83,21 +83,21 @@
                             <i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i>
                         </a>
                         <ul class="sub-menu">
-                            {{-- <li class="{{ request()->is('zipcodes') ? 'active' : '' }}">
+                            <li class="{{ request()->is('zipcodes') ? 'active' : '' }}">
                                 <a href="{{ route('zipcodes.index') }}"><span class="text">ZIP Codes</span></a>
-                            </li> --}}
+                            </li>
                             <li class="{{ request()->is('product-types') ? 'active' : '' }}">
                                 <a href="{{ route('product-types.index') }}"><span class="text">Product Type</span></a>
                             </li>
-                            {{-- <li class="{{ request()->is('suppliers') ? 'active' : '' }}">
-                                <a href="{{ route('suppliers.index') }}"><span class="text">Supplier Name</span></a>
-                            </li> --}}
-                            {{-- <li class="{{ request()->is('supplier-collections') ? 'active' : '' }}">
-                                <a href="{{ route('supplier-collections.index') }}"><span class="text">Supplier Collection</span></a>
-                            </li> --}}
-                            {{-- <li class="{{ request()->is('supplierCollectionDesigns') ? 'active' : '' }}">
-                                <a href="{{ route('supplierCollectionDesigns.index') }}"><span class="text">Supplier Design</span></a>
-                            </li> --}}
+                            <li class="{{ request()->is('suppliers') ? 'active' : '' }}">
+                                <a href="{{ route('suppliers.index') }}"><span class="text">Vendor Name</span></a>
+                            </li>
+                            <li class="{{ request()->is('supplier-collections') ? 'active' : '' }}">
+                                <a href="{{ route('supplier-collections.index') }}"><span class="text">Vendor Collection</span></a>
+                            </li>
+                            <li class="{{ request()->is('supplierCollectionDesigns') ? 'active' : '' }}">
+                                <a href="{{ route('supplierCollectionDesigns.index') }}"><span class="text">Vendor Design</span></a>
+                            </li>
                             {{-- <li class="{{ request()->is('compositions') ? 'active' : '' }}">
                                 <a href="{{ route('compositions.index') }}"><span class="text">Composition</span></a>
                             </li> --}}

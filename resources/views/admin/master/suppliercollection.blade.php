@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
-@section('title', 'Manage Suppliers Collection')
+@section('title', 'Manage Vendors Collection')
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Supplier Collection <span class="fw-normal text-muted">({{ $collections->count() }})</span></h6>
+        <h6 class="fw-bold m-0">All Vendors Collection <span class="fw-normal text-muted"></span></h6>
         <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addCollectionModal">+
-            Add Supplier Collection</a>
+            Add Vendor Collection</a>
     </div>
 
-    <!-- Add Supplier Collection Modal Start -->
+    <!-- Add Supplier Collection Modal Start ({{ $collections->count() }})-->
     <div class="modal fade" id="addCollectionModal" tabindex="-1" aria-labelledby="addCollectionModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addCollectionModalLabel">Add Supplier Collection</h1>
+                    <h1 class="modal-title fs-5" id="addCollectionModalLabel">Add Vendor Collection</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -23,16 +23,16 @@
                     <input type="hidden" name="_method" value="POST" id="methodFieldCollection">
                     <div class="modal-body">
                         <div class="mb-3 w-100">
-                            <label for="supplier_id" class="form-label mb-1">Supplier <span class="text-danger">*</span></label>
+                            <label for="supplier_id" class="form-label mb-1">Vendor <span class="text-danger">*</span></label>
                             <select class="form-control w-100" id="supplier_id" name="supplier_id" required>
-                                <option value="" disabled selected>Select Supplier</option>
+                                <option value="" disabled selected>Select Vendor</option>
                                 @foreach($suppliers as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-1 w-100">
-                            <label for="CollectionInput" class="form-label mb-1">Supplier Collection <span class="text-danger">*</span></label>
+                            <label for="CollectionInput" class="form-label mb-1">Vendor Collection <span class="text-danger">*</span></label>
                             <input type="text" class="form-control w-100" id="CollectionInput" name="collection_name" required>
                         </div>
                     </div>
@@ -51,9 +51,9 @@
             <table class="table" id="projectsTable">
     <thead>
         <tr>
-            <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;" scope="col">S/N</th>
-            <th scope="col">Supplier Collection</th>
-            <th scope="col">Supplier Name</th> <!-- New column -->
+            <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;" scope="col">S/NO</th>
+            <th scope="col">Vendor Collection</th>
+            <th scope="col">Vendor Name</th> <!-- New column -->
             <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" scope="col">Action</th>
         </tr>
     </thead>

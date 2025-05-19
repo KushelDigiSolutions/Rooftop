@@ -225,6 +225,8 @@ Route::resource('supplier-collections', SupplierCollectionController::class);
 Route::resource('supplierCollectionDesigns', SupplierCollectionDesignController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::get('suppliers/{id}/collections',[SupplierController::class, 'collections']);
+Route::get('/get-collections/{supplier_id}', [SupplierController::class, 'getCollections'])->name('get.collections');
+Route::get('/get-designs/{collection_id}', [SupplierController::class, 'getDesigns'])->name('get.designs');
 Route::resource('types', TypeController::class);
 Route::resource('usages', UsageController::class);
 

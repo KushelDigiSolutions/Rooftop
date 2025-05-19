@@ -90,4 +90,16 @@ class SupplierController extends Controller
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
     }
+
+    public function getCollections($supplier_id)
+    {
+        $collections = SupplierCollection::where('supplier_id', $supplier_id)->get();
+        return response()->json($collections);
+    }
+
+    public function getDesigns($collection_id)
+    {
+        $designs = SupplierCollectionDesign::where('supplier_collection_id', $collection_id)->get();
+        return response()->json($designs);
+    }
 }

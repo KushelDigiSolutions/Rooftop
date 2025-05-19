@@ -40,8 +40,8 @@
             </div>
 
             <div class="row mb-2">
-                {{-- <div class="col-md-4">
-                    <label for="supplier_name" class="form-label m-0 mb-1">Supplier Name <span class="text-danger">*</span></label>
+                <div class="col-md-4">
+                    <label for="supplier_name" class="form-label m-0 mb-1">Vendor Name <span class="text-danger">*</span></label>
                     <select name="supplier_name" id="supplier_name" class="form-select select2" required>
                         <option value="">Select</option>
                         @foreach ($suppliers as $supplier)
@@ -50,17 +50,17 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="supplier_collection" class="form-label m-0 mb-1">Supplier Collection </label>
+                    <label for="supplier_collection" class="form-label m-0 mb-1">Vendor Collection </label>
                     <select name="supplier_collection" id="supplier_collection" class="form-select w-100 select2">
                         <option value="">Select</option>
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="supplier_collection_design" class="form-label m-0 mb-1">Supplier Collection Design </label>
+                    <label for="supplier_collection_design" class="form-label m-0 mb-1">Vendor Collection Design </label>
                     <select name="supplier_collection_design" id="supplier_collection_design" class="form-select w-100 select2">
                         <option value="">Select</option>
                     </select>
-                </div> --}}
+                </div>
             </div>
             {{-- <div class="row mb-2">
                 <div class="col-md-4">
@@ -410,4 +410,50 @@ document.getElementById("gstInput").addEventListener("input", calculateMRP);
 
 window.onload = calculateMRP;
 </script>
+<script>
+    var getCollectionsURL = "{{ route('get.collections', ['supplier_id' => '__ID__']) }}";
+    var getDesignsURL = "{{ route('get.designs', ['collection_id' => '__ID__']) }}";
+</script>
+<script>
+    $(document).ready(function() {
+        $('#supplier_name').on('change', function() {
+            var supplierId = $(this).val();
+            var url = getCollectionsURL.replace('__ID__', supplierId);
+            $('#supplier_collection').html('<option value="">Loading...</option>');
+            $('#supplier_collection_design').html('<option value="">Select</option>');
+    
+            if(supplierId) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#supplier_collection').html('<option value="">Select</option>');
+                        $.each(data, function(key, value) {
+                            $('#supplier_collection').append('<option value="' + value.id + '">' + value.collection_name + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    
+        $('#supplier_collection').on('change', function() {
+            var collectionId = $(this).val();
+            var url = getDesignsURL.replace('__ID__', collectionId);
+            $('#supplier_collection_design').html('<option value="">Loading...</option>');
+    
+            if(collectionId) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#supplier_collection_design').html('<option value="">Select</option>');
+                        $.each(data, function(key, value) {
+                            $('#supplier_collection_design').append('<option value="' + value.id + '">' + value.design_name + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    });
+    </script>
 @endsection

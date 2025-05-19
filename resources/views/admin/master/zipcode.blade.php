@@ -3,7 +3,7 @@
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Zip Code <span class="fw-normal text-muted">({{ $zipCodes->count() }})</span></h6>
+        <h6 class="fw-bold m-0">All Zip Code <span class="fw-normal text-muted"></span></h6>
         <div class="d-flex align-items-center">
             <a class="dropdown-item small me-2" href="/zipcodes.xlsx"><i class="bi bi-file-earmark-arrow-down"></i> Download Template</a>
             <form action="{{ route('zipcodes.import') }}" method="POST" enctype="multipart/form-data" id="import_form" style="display: inline-flex;">
@@ -41,7 +41,7 @@
                     <div class="modal-body">
                         <div class="mb-1 w-100">
                             <label for="CountryInput" class="form-label mb-1">Country <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control w-100" id="CountryInput" name="country" value="India" readonly>
+                            <input type="text" class="form-control w-100" id="CountryInput" name="country" value="USA" readonly>
                         </div>
                         <div class="mb-1 w-100">
                             <label for="StateInput" class="form-label mb-1">State <span class="text-danger">*</span></label>
@@ -131,7 +131,7 @@
                 <thead>
                     <tr>
                         <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
-                            scope="col">S/N</th>
+                            scope="col">S/NO</th>
                         <th scope="col">Country</th>
                         <th scope="col">State</th>
                         <th scope="col">City</th>
@@ -235,8 +235,8 @@
             zip_code: {
                 required: false,
                 number: true,
-                minlength: 6,
-                maxlength: 6
+                minlength: 5,
+                maxlength: 5
             }
         },
         messages: {

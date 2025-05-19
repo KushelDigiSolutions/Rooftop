@@ -40,12 +40,12 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Close & Prospect <span class="fw-normal small"></span></button>
+                        <button class="nav-link" id="pills-prospect-tab" data-bs-toggle="pill" data-bs-target="#pills-prospect" type="button" role="tab" aria-controls="pills-prospect" aria-selected="false">Closed & Prospect <span class="fw-normal small"></span></button>
                     </li>
 
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-dead-tab" data-bs-toggle="pill" data-bs-target="#pills-dead" type="button" role="tab" aria-controls="pills-dead" aria-selected="false">Close & Dead <span class="fw-normal small"></span></button>
+                        <button class="nav-link" id="pills-dead-tab" data-bs-toggle="pill" data-bs-target="#pills-dead" type="button" role="tab" aria-controls="pills-dead" aria-selected="false">Closed & Dead <span class="fw-normal small"></span></button>
                     </li>
 
                     <li class="nav-item" role="presentation">
@@ -74,7 +74,7 @@
                    
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Completed <span class="fw-normal small"></span></button>
+                        <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="false">Closed & Completed <span class="fw-normal small"></span></button>
                     </li>
 
                     {{-- <li class="nav-item" role="presentation">
@@ -883,7 +883,7 @@
                             
                             case '8':
                                 viewType = 'prospect';
-                                statusBadge = '<span class="badge badge-pending">Close & Prospect</span>';
+                                statusBadge = '<span class="badge badge-pending">Closed & Prospect</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';
@@ -892,7 +892,7 @@
 
                             case '10':
                                 viewType = 'dead';
-                                statusBadge = '<span class="badge badge-pending text-danger">Close & Dead</span>';
+                                statusBadge = '<span class="badge badge-pending text-danger">Closed & Dead</span>';
                                 // actions = '<li><a href="javascript:" id="open-appointment-details-' + appnt.id + '" class="dropdown-item" data-id="' + appnt.id + '" data-checkType="' + viewType + '">View</a></li>';
                                 actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-id="' + appnt.id + '" onclick="startBid(this)">Create Bid</a></li>';
                                 // actions += '<li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="confirmAssign(\'' + appnt.id + '\')">Assign Lead</a></li>';

@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
-@section('title', 'Manage Supplier Collection Design')
+@section('title', 'Manage Vendor Collection Design')
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Supplier Collection Design <span class="fw-normal text-muted">({{ $supplierCollectionDesigns->count() }})</span></h6>
+        <h6 class="fw-bold m-0">All Vendor Collection Design <span class="fw-normal text-muted">({{ $supplierCollectionDesigns->count() }})</span></h6>
         <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addSupplierCollectionDesignModal">+
-            Add Supplier Collection Design</a>
+            Add Vendor Collection Design</a>
     </div>
 
     <!-- Add Supplier Collection Design Modal Start -->
@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addSupplierCollectionDesignModalLabel">Add Supplier Collection Design</h1>
+                    <h1 class="modal-title fs-5" id="addSupplierCollectionDesignModalLabel">Add Vendor Collection Design</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -25,9 +25,9 @@
     <div class="modal-body">
         <!-- Supplier Dropdown -->
         <div class="mb-3 w-100">
-            <label for="SupplierSelect" class="form-label mb-1">Supplier <span class="text-danger">*</span></label>
+            <label for="SupplierSelect" class="form-label mb-1">Vendor <span class="text-danger">*</span></label>
             <select class="form-control w-100" id="supplierId" name="supplier_id" required>
-                <option value="" disabled selected>Select Supplier</option>
+                <option value="" disabled selected>Vendor Supplier</option>
                 @foreach($suppliers as $supplier)
                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                 @endforeach
@@ -36,16 +36,16 @@
 
         <!-- Supplier Collection Dropdown (Populated Dynamically) -->
         <div class="mb-1 w-100">
-            <label for="supplierCollectionSelect" class="form-label mb-1">Supplier Collection <span class="text-danger">*</span></label>
+            <label for="supplierCollectionSelect" class="form-label mb-1">Vendor Collection <span class="text-danger">*</span></label>
             <select class="form-control w-100" id="supplierCollectionSelect" name="supplier_collection_id" required>
-                <option value="" disabled selected>Select Supplier Collection</option>
+                <option value="" disabled selected>Select Vendor Collection</option>
                 <!-- Options will be populated dynamically based on the selected supplier -->
             </select>
         </div>
 
         <!-- Design Input -->
         <div class="mb-1 w-100">
-            <label for="SupplierCollectionDesignInput" class="form-label mb-1">Supplier Collection Design <span class="text-danger">*</span></label>
+            <label for="SupplierCollectionDesignInput" class="form-label mb-1">Vendor Collection Design <span class="text-danger">*</span></label>
             <input type="text" class="form-control w-100" id="SupplierCollectionDesignInput" name="design_name" required>
         </div>
     </div>
@@ -68,9 +68,9 @@
                     <tr>
                         <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
                             scope="col">S/N</th>
-                        <th scope="col">Supplier Collection Design</th>
-                        <th scope="col">Supplier Collection</th>
-                        <th scope="col">Supplier Name</th>
+                        <th scope="col">Vendor Collection Design</th>
+                        <th scope="col">Vendor Collection</th>
+                        <th scope="col">Vendor Name</th>
                         <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;"
                             scope="col">Action</th>
                     </tr>

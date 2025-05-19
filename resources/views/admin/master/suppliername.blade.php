@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
-@section('title', 'Manage Supplier Name')
+@section('title', 'Manage Vendors Name')
 @section('content')
 <div class="dataOverviewSection mt-3">
     <div class="section-title">
-        <h6 class="fw-bold m-0">All Supplier Name <span class="fw-normal text-muted">({{ $suppliers->count() }})</span></h6>
+        <h6 class="fw-bold m-0">All Vendors Name <span class="fw-normal text-muted"></span></h6>
         <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addSupplierModal">+
-            Add Supplier Name</a>
+            Add Vendor Name</a>
     </div>
 
-    <!-- Add Supplier Modal Start -->
+    <!-- Add Supplier Modal Start  ({{ $suppliers->count() }})-->
     <div class="modal fade" id="addSupplierModal" tabindex="-1" aria-labelledby="addSupplierModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addSupplierModalLabel">Add Supplier Name</h1>
+                    <h1 class="modal-title fs-5" id="addSupplierModalLabel">Add Vendor Name</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -23,7 +23,7 @@
                     <input type="hidden" name="_method" value="POST" id="methodFieldSupplier">
                     <div class="modal-body">
                         <div class="mb-1 w-100">
-                            <label for="SupplierNameInput" class="form-label mb-1">Supplier Name</label>
+                            <label for="SupplierNameInput" class="form-label mb-1">Vendor Name</label>
                             <input type="text" class="form-control w-100" id="SupplierNameInput" name="supplier_name" required>
                         </div>
                     </div>
@@ -42,8 +42,8 @@
             <table class="table" id="projectsTable">
                 <thead>
                     <tr>
-                        <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;" scope="col">S/N</th>
-                        <th scope="col">Supplier Name</th>
+                        <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;" scope="col">S/NO</th>
+                        <th scope="col">Vendor Name</th>
                         <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" scope="col">Action</th>
                     </tr>
                 </thead>
