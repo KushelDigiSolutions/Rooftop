@@ -1,0 +1,487 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Add Product')
+
+@section('content')
+<div class="dataOverviewSection mt-3 mb-3">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="mt-3" id="productForm">
+        @csrf
+        <div class="dataOverview mt-3">
+            <h6 class="m-0">Add New Product</h6>
+            <hr class="m-0 mt-2 mb-2">
+            <div class="row mb-2">
+				<div class="col-md-12">
+                    <label for="noteInput" class="form-label mb-1">Product Name</label>
+                    <input type="text" class="form-control w-100" id="" name="name">
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-1 w-100">
+                        <label class="form-label m-0 mb-1" for="type">Category <span class="text-danger">*</span></label>
+                        <select name="product_name" id="product_name" class="form-select w-100 select2" required>
+                            <option value="opt1">Select</option>
+                            @foreach ($productTypes as $productType)
+                            <option value="{{ $productType->id }}" data-unit="{{ $productType->product_unit }}">{{ $productType->product_type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-1 w-100">
+                        <label for="code" class="form-label mb-1">Code</label>
+                        <input type="text" class="form-control w-100" id="tally_code" name="tally_code" readonly>
+                    </div>
+                </div>
+                 <div class="col-md-4">
+					<label for="colour" class="form-label m-0 mb-1">Color <span class="text-danger">*</span></label>
+					<select class="form-control w-100 select2" id="colour" name="colour" required>
+						<option value="">Select Color</option>
+						<option value="Red" >Red</option>
+						<option value="Blue" >Blue</option>
+						<option value="Green" >Green</option>
+						<option value="Yellow" >Yellow</option>
+						<option value="Black" >Black</option>
+						<option value="White" >White</option>
+						<option value="Brown" >Brown</option>
+						<option value="Gray" >Gray</option>
+						<option value="Orange" >Orange</option>
+						<option value="Purple" >Purple</option>
+						<option value="Pink" >Pink</option>
+						<option value="Maroon" >Maroon</option>
+						<option value="Navy" >Navy</option>
+						<option value="Olive" >Olive</option>
+					</select>
+				</div>
+                {{-- <div class="col-md-4">
+                    <div class="mb-1 w-100">
+                        <label for="file_number" class="form-label mb-1">File Number <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control w-100" id="file_number" name="file_number" required>
+                    </div>
+                </div> --}}
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-4">
+                    <label for="supplier_name" class="form-label m-0 mb-1">Vendor Name <span class="text-danger">*</span></label>
+                    <select name="supplier_name" id="supplier_name" class="form-select select2" required>
+                        <option value="">Select</option>
+                        @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="supplier_collection" class="form-label m-0 mb-1">Manufacturer Brand </label>
+                    <select name="supplier_collection" id="supplier_collection" class="form-select w-100 select2">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        <label class="form-label m-0 mb-1" for="Unit">Availability <span class="text-danger">*</span></label>
+                        <!-- <input type="text" class="form-control w-100" name="unit" id="unit" value="" readonly> -->
+                        <select name="availability" id="availability" class="form-select w-100" required>
+							<option value="0">In Stock</option>
+							<option value="1">Special Order</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="row mb-2">
+                <div class="col-md-4">
+                    <div class="mb-1 w-100">
+                        <label for="design_sku" class="form-label mb-1">Color Number</label>
+                        <input type="text" class="form-control w-100" id="design_sku" name="design_sku">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-1 w-100">
+                        <label for="rubs_martendale" class="form-label mb-1">Rubs/Martendale</label>
+                        <input type="text" class="form-control w-100" id="rubs_martendale" name="rubs_martendale">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-1 w-100">
+                        <label for="width" class="form-label mb-1">Width</label>
+                        <input type="text" class="form-control w-100" id="width" name="width">
+                    </div>
+                </div>
+            </div> --}}
+            <!-- Image Upload -->
+            <div class="mb-2 w-100 d-flex justify-content-start">
+                <img src="{{ url('admin/images/image.jpg') }}" class="rounded" id="imagePreview" alt="" width="140"
+                    height="140">
+                <div class="w-100 ms-3">
+                    <div>
+                        <label for="image" class="form-label mb-1">Image </label>
+                        <input type="file" class="form-control w-100" id="image" name="image" onchange="previewImage(event)"
+                            required>
+                    </div>
+                    {{-- <div>
+                        <label for="image_alt" class="form-label mb-1">Image Alt</label>
+                        <input type="text" class="form-control w-100" id="image_alt" name="image_alt" required>
+                    </div> --}}
+                </div>
+            </div>
+            {{-- <div class="row mb-2">
+                <div class="col-md-4">
+                    <label for="usage" class="form-label m-0 mb-1">Usage<span class="text-danger">*</span></label>
+                    <select name="usage[]" id="usage" class="mySelect for" multiple="multiple" style="width: 100%">
+                        @foreach ($usages as $ug => $usage)
+                        <option value="{{ $usage->usages }}">{{ $usage->usages }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="type" class="form-label m-0 mb-1">Type (Technical specs)<span class="text-danger">*</span></label>
+                    <select name="type[]" id="type" class="mySelect for" multiple="multiple" style="width: 100%">
+                        @foreach ($types as $tp => $type)
+                        <option value="{{ $type->type }}">{{ $type->type }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="design_type" class="form-label m-0 mb-1">Design Type<span class="text-danger">*</span></label>
+                    <select name="design_type[]" id="design_type" class="mySelect for" multiple="multiple" style="width: 100%">
+                        @foreach ($designTypes as $dt => $designType)
+                        <option value="{{ $designType->design_type }}"> {{ $designType->design_type }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div> --}}
+
+            <div class="row mb-2">
+                
+                {{-- <div class="col-md-4">
+                    <label for="composition" class="form-label m-0 mb-1">Composition<span class="text-danger">*</span></label>
+                    <select name="composition[]" id="composition" class="mySelect for" multiple="multiple" style="width: 100%">
+                        @foreach ($compositions as $composition)
+                        <option value="{{ $composition->composition }}">{{ $composition->composition }}</option>
+                        @endforeach
+                    </select>
+                </div> --}}
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <label for="noteInput" class="form-label mb-1">Notes</label>
+                    <textarea name="note" id="noteInput" class="form-control w-100"></textarea>
+                </div>
+                
+            </div>
+            <hr class="m-0 mt-4 mb-2">
+
+
+            <div class="row mb-2">
+                {{-- <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        <label for="CostPriceInput" class="form-label mb-1">Cost Price <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control w-100" id="supplierPriceInput" name="supplier_price">
+                    </div>
+                </div> --}}
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        <label for="mrpInput" class="form-label mb-1">Price <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control w-100" id="mrpInput" name="mrp" >
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        <label class="form-label m-0 mb-1 " for="Unit">Unit <span class="text-danger">*</span></label>
+                        <!-- <input type="text" class="form-control w-100" name="unit" id="unit" value="" readonly> -->
+                        <select name="unit" id="unit" class="form-select w-100 select2" required>
+                        </select>
+                    </div>
+                </div>
+				   <div class="col-md-3">
+                    <label for="noteInput" class="form-label mb-1">Calculation</label>
+                    <input type="text" class="form-control w-100" id="calculation" name="calculation">
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="freightInput" class="form-label mb-1">Freight <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="freightInput" name="freight">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="profitInput" class="form-label mb-1">Profit % <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="profitInput" name="profit_percentage">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-1 w-100">
+                        {{-- <label for="gstInput" class="form-label mb-1">Tax % <span class="text-danger">*</span></label> --}}
+                        <input type="hidden" class="form-control w-100" id="gstInput" name="gst_percentage">
+                    </div>
+                </div>
+
+              
+            </div>
+
+            <div class="mt-3 d-flex gap-3 mb-4">
+                <button type="submit" class="btn primary-btn">Create Product</button>
+                <button type="reset" class="btn secondary-btn" onclick="window.location.href='/products'">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@endsection
+
+@section('script')
+<script>
+// Image Preview function remains unchanged
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const output = document.getElementById('imagePreview');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing dropdown filtering code remains unchanged
+    document.querySelectorAll('.search-input').forEach(input => {
+        input.addEventListener('keyup', function() {
+            const filter = this.value.toLowerCase();
+            const options = this.closest('.dropdown-menu').querySelectorAll('.options-list .dropdown-item');
+            options.forEach(option => {
+                const text = option.textContent || option.innerText;
+                option.style.display = text.toLowerCase().includes(filter) ? '' : 'none';
+            });
+        });
+    });
+
+    document.querySelectorAll('.dropdown-menu .dropdown-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const button = this.closest('.dropdown').querySelector('.dropdown-toggle');
+            button.textContent = this.textContent;
+        });
+    });
+
+    // Enhanced jQuery Form Validation
+    $(document).ready(function() {
+        $('#product_name').change(function() {
+            var selectedProductId = $(this).val();
+            var selectedOption = $('#product_name option[value="' + selectedProductId + '"]');
+            var productUnit = selectedOption.data('unit');
+
+            if (typeof productUnit === 'string') {
+                productUnit = productUnit.split(',');
+            } else {
+                productUnit = []; 
+            }
+            var unitSelect = $('#unit');
+            unitSelect.empty();
+            let options = '<option value="" selected>Select</option>';
+            productUnit.forEach(function(unit) {
+                options += '<option value="' + unit + '">' + unit + '</option>';
+            });
+            unitSelect.append(options);
+        });
+
+        $('#productForm').validate({
+            rules: {
+                product_name: {
+                    required: true
+                },
+                file_number: {
+                    required: false
+                },
+                supplier_name: {
+                    required: false
+                },
+                'usage[]': {
+                    required: false
+                },
+                'type[]': {
+                    required: false
+                },
+                'design_type[]': {
+                    required: false
+                },
+                colour: {
+                    required: true
+                },
+                'composition[]': {
+                    required: false
+                },
+                image: {
+                    required: false
+                },
+                image_alt: {
+                    required: false
+                },
+                supplier_price: {
+                    required: true,
+                    number: true
+                },
+                freight: {
+                    required: false,
+                    number: false
+                },
+                profit_percentage: {
+                    required: false,
+                    number: false
+                },
+                gst_percentage: {
+                    required: false,
+                    number: false
+                },
+                unit: {
+                    required: true
+                }
+            },
+            messages: {
+                product_name: {
+                    required: "Please select a product type."
+                },
+                file_number: {
+                    required: "Please enter a file number."
+                },
+                supplier_name: {
+                    required: "Please select a supplier."
+                },
+                'usage[]': {
+                    required: "Please select at least one usage."
+                },
+                'type[]': {
+                    required: "Please select at least one technical specification."
+                },
+                'design_type[]': {
+                    required: "Please select at least one design type."
+                },
+                colour: {
+                    required: "Please enter a colour."
+                },
+                'composition[]': {
+                    required: "Please select at least one composition."
+                },
+                image: {
+                    required: "Please upload an image."
+                },
+                image_alt: {
+                    required: "Please enter image alt text."
+                },
+                supplier_price: {
+                    required: "Please enter a cost price.",
+                    number: "Please enter a valid number."
+                },
+                freight: {
+                    required: "Please enter freight cost.",
+                    number: "Please enter a valid number."
+                },
+                profit_percentage: {
+                    required: "Please enter profit percentage.",
+                    number: "Please enter a valid number."
+                },
+                gst_percentage: {
+                    required: "Please enter GST percentage.",
+                    number: "Please enter a valid number."
+                },
+                unit: {
+                    required: "Please select a unit."
+                }
+            },
+            errorElement: "div",
+            errorPlacement: function(error, element) {
+                error.addClass("form-text text-danger xsmall");
+                if (element.hasClass('select2') || element.hasClass('mySelect')) {
+                    error.insertAfter(element.next('.select2-container'));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            highlight: function(element) {
+                $(element).addClass("is-invalid").removeClass("is-valid");
+            },
+            unhighlight: function(element) {
+                $(element).removeClass("is-invalid").addClass("is-valid");
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    });
+
+    // Rest of your existing code (Supplier handlers, MRP calculation) remains unchanged
+    // ...
+});
+
+// Existing MRP calculation functions remain unchanged
+function calculateMRP() {
+    var supplierPrice = parseFloat(document.getElementById("supplierPriceInput").value) || 0;
+    var freight = parseFloat(document.getElementById("freightInput").value) || 0;
+    var profitPercentage = parseFloat(document.getElementById("profitInput").value) || 0;
+    var gstPercentage = parseFloat(document.getElementById("gstInput").value) || 0;
+
+    if (supplierPrice <= 0 || freight < 0 || profitPercentage < 0 || gstPercentage < 0) {
+        document.getElementById("mrpInput").value = "";
+        return;
+    }
+    var cpf = supplierPrice + freight;
+    var profit = cpf * (profitPercentage / 100);
+    var mrpBeforeGST = cpf + profit;
+    finalMRP = Math.round(mrpBeforeGST);
+    document.getElementById("mrpInput").value = finalMRP;
+}
+
+document.getElementById("supplierPriceInput").addEventListener("input", calculateMRP);
+document.getElementById("freightInput").addEventListener("input", calculateMRP);
+document.getElementById("profitInput").addEventListener("input", calculateMRP);
+document.getElementById("gstInput").addEventListener("input", calculateMRP);
+
+window.onload = calculateMRP;
+</script>
+<script>
+    var getCollectionsURL = "{{ route('get.collections', ['supplier_id' => '__ID__']) }}";
+    var getDesignsURL = "{{ route('get.designs', ['collection_id' => '__ID__']) }}";
+</script>
+<script>
+    $(document).ready(function() {
+        $('#supplier_name').on('change', function() {
+            var supplierId = $(this).val();
+            var url = getCollectionsURL.replace('__ID__', supplierId);
+            $('#supplier_collection').html('<option value="">Loading...</option>');
+            $('#supplier_collection_design').html('<option value="">Select</option>');
+    
+            if(supplierId) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#supplier_collection').html('<option value="">Select</option>');
+                        $.each(data, function(key, value) {
+                            $('#supplier_collection').append('<option value="' + value.id + '">' + value.collection_name + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    
+        $('#supplier_collection').on('change', function() {
+            var collectionId = $(this).val();
+            var url = getDesignsURL.replace('__ID__', collectionId);
+            $('#supplier_collection_design').html('<option value="">Loading...</option>');
+    
+            if(collectionId) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#supplier_collection_design').html('<option value="">Select</option>');
+                        $.each(data, function(key, value) {
+                            $('#supplier_collection_design').append('<option value="' + value.id + '">' + value.design_name + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    });
+    </script>
+@endsection
