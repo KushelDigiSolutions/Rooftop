@@ -126,7 +126,6 @@ class JobController extends Controller
     if ($applyStatusFilter) {
         $quotationQuery->where('status', '=', $status);
     }
-
     $quotationList = $quotationQuery
         ->with(['appointment','bid','subcontract'])
         ->get();
