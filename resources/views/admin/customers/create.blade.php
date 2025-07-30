@@ -171,7 +171,7 @@
                 <button type="submit" id="submitBtnappoint" class="primary-btn" > Create
                 <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
             </button>
-                <button type="reset" class="btn secondary-btn" onclick="window.location.href='/products'">Cancel</button>
+                <button type="button" class="btn secondary-btn" onclick="window.location.href='/customer_list'">Cancel</button>
             </div>
         </div>
     </form>
@@ -296,7 +296,7 @@
                 url: "{{ route('createDirectCustomer') }}",
                 data: formData,
                 success: function (response) {
-                    toastr.success("Lead saved successfully!");
+                    toastr.success("Customer saved successfully!");
                     $("#contact-form1")[0].reset();
 					setTimeout(function () {
 						window.location.href = "{{ route('customer.list.index') }}";

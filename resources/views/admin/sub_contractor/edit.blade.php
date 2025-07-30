@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="zip_code" class="form-label">Zip Code<span class="requried">*</span></label>
-                <input type="text" class="form-control" name="zip_code" value="{{ $subcontractor->zip_code }}">
+                <input type="text" class="form-control" name="zip_code" maxlength="6" value="{{ $subcontractor->zip_code }}">
                 <span class="text-danger error-zip_code"></span>
             </div>
             <div class="col-md-4 mb-3">
@@ -68,7 +68,7 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="experience_years" class="form-label">Years of Experience<span class="requried">*</span></label>
-                <input type="number" class="form-control" name="experience_years" value="{{ $subcontractor->experience_years }}">
+                <input type="number" class="form-control" name="experience_years" min="0" value="{{ $subcontractor->experience_years }}">
                 <span class="text-danger error-experience_years"></span>
             </div>
             <div class="col-md-4 mb-3">
@@ -111,7 +111,7 @@
                 Update
                 <span class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
             </button>
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='/subcontractors'">Cancel</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/sub_contractor'">Cancel</button>
         </div>
     </form>
 </div>

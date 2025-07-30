@@ -136,6 +136,9 @@
     }
 
     document.getElementById('confirmDelete').addEventListener('click', function () {
+        const btn = this;
+        btn.disabled = true; // disable button
+        btn.innerText = "Deleting...";
         if (deleteId) {
             const form = document.createElement('form');
             form.action = `/suppliers/${deleteId}`;
@@ -148,5 +151,13 @@
             form.submit();
         }
     });
+</script>
+<script>
+  $(function() {
+    $('#supplierForm').on('submit', function () {
+      const btn = $(this).find('button.primary-btn');
+      btn.prop('disabled', true).text('Submitting...');
+    });
+  });
 </script>
 @endsection

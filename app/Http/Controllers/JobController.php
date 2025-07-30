@@ -254,13 +254,21 @@ class JobController extends Controller
 }
 
 public function restartWork(Request $request){
+    $messages = [
+        're_start_date.regex' => 'The hold date must be in MM-DD-YY format.',
+    ];
      $request->validate([
         'job_id' => 'required|exists:jobs,id',
-    ]);
+        're_start_date' => [
+            'required',
+            'regex:/^(0[1-9]|1[0-2])[-\/](0[1-9]|[12][0-9]|3[01])[-\/]\d{4}$/'
+        ]
+   ], $messages);
 
     try {
-        $quotation = Job::findOrFail($request->job_id);       
-		$quotation->re_start_date = $request->re_start_date ?? '';
+        $quotation = Job::findOrFail($request->job_id); 
+        $reStartDate = \Carbon\Carbon::createFromFormat('m-d-Y', $request->re_start_date)->format('Y-m-d');   
+		$quotation->re_start_date = $reStartDate ?? '';
         $quotation->status  = '3'; // Status: Work started
 
         $quotation->save();
@@ -272,13 +280,21 @@ public function restartWork(Request $request){
 }
 
 public function holdWork(Request $request) {
+    $messages = [
+            'hold_date.regex' => 'The  date must be in MM-DD-YY format.',
+        ];
     $request->validate([
         'job_id' => 'required|exists:jobs,id',
-    ]);
+        'hold_date' => [
+            'required',
+            'regex:/^(0[1-9]|1[0-2])[-\/](0[1-9]|[12][0-9]|3[01])[-\/]\d{4}$/'
+        ],
+    ], $messages);
 
     try {
-        $quotation = Job::findOrFail($request->job_id);       
-		$quotation->hold_date = $request->hold_date ?? '';
+        $quotation = Job::findOrFail($request->job_id); 
+        $holdDate = \Carbon\Carbon::createFromFormat('m-d-Y', $request->hold_date)->format('Y-m-d');      
+		$quotation->hold_date = $holdDate;
 		$quotation->hold_reason = $request->hold_reason ?? '';
         $quotation->status  = '2'; // Status: Work started
 
@@ -331,18 +347,37 @@ public function holdWork(Request $request) {
         return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
     }
 }
+
+public function approvalWork(Request $request){
+    $jobData = Appointment::findOrFail($request->lead_id);
+    $jobData->status = "4";
+    $jobData->save();
+    return response()->json(["message" => 'Job completed successfully!'], 201);
+}
 	
 	public function getWorkImages($id)
-{
-    $quotation = Job::findOrFail($id);
+    {
+        $quotation = Job::findOrFail($id);
 
-    return response()->json([
-        'before_images' => json_decode($quotation->beforeImage, true),
-        'after_images'  => json_decode($quotation->afterImage, true),
-        'afterWorkRemark'       => $quotation->afterWorkRemark,
-        'beforeWorkRemark'       => $quotation->beforeWorkRemark,
-    ]);
-}
+        return response()->json([
+            'before_images' => json_decode($quotation->beforeImage, true),
+            'after_images'  => json_decode($quotation->afterImage, true),
+            'afterWorkRemark'       => $quotation->afterWorkRemark,
+            'beforeWorkRemark'       => $quotation->beforeWorkRemark,
+        ]);
+    }
+
+
+    public function getWorkDetails($id)
+    {
+        $data = Job::findOrFail($id);
+        $subContract = Subcontractor::findOrFail($data->subContract_id);
+        // dd($subContract);
+        return response()->json([
+            'data'        => $data,
+            'subContract' => $subContract,
+        ]);
+    }
 
 	
 }

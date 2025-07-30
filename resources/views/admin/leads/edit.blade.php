@@ -92,7 +92,7 @@
                
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="country" class="form-label">Internal Notes <span class="text-danger">*</span></label>
+                        <label for="country" class="form-label">Internal Notes <span class="text-danger"></span></label>
                         <textarea name="notes" class="form-control" id="notes" cols="30" rows="10">{{$leadData->notes}}</textarea>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
         });
 
         // jQuery Validation
-        $("#contact-form1").validate({
+        $("#editLeadForm").validate({
             rules: {
                 name: "required",
                 email: {
@@ -152,11 +152,18 @@
                     maxlength: 6
                 },
                 type_property: "required",
-                requirement_type: "required",
+                requirement_type: "required", 
                 lead_source: "required"
+                scope_work: "required"
             },
             messages: {
                 name: "Please enter your name",
+                scope_work:{
+                    required: "Please enter mobile number",
+                    digits: "Only numbers allowed",
+                    minlength: "Enter 10 digit number",
+                    maxlength: "Enter 10 digit number"
+                },
                 email: {
                     required: "Please enter your email",
                     email: "Enter a valid email"
@@ -216,7 +223,7 @@
                 data: formData,
                 success: function (response) {
                     toastr.success("Lead saved successfully!");
-                    $("#contact-form1")[0].reset();
+                    $("#editLeadForm")[0].reset();
                 },
                 error: function (xhr) {
                     $(".error-message").remove();
@@ -256,9 +263,12 @@
             type: 'POST',
             data: data,
             success: function (response) {
-                alert('Lead updated successfully');
-                // Optionally redirect or reload
-                // window.location.href = '/leads';
+                // alert('Lead updated successfully');
+                toastr.success("Lead updated successfully!");
+            
+                setTimeout(function () {
+                    window.location.href = "{{ route('leads.list.index') }}";
+                }, 1500);
             },
             error: function (xhr) {
                 if (xhr.status === 422) {

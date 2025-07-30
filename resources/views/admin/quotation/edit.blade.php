@@ -1156,7 +1156,8 @@
 
         <button class="primary-btn">Update Quotation</button>
 
-        <button class="secondary-btn">Cancel</button>
+        {{-- <button class="secondary-btn">Cancel</button> --}}
+        <button type="button" class="secondary-btn" onclick="window.location.href='/bids'">Cancel</button>
 
       </div>
 
@@ -1598,6 +1599,15 @@ function initializeSelect2() {
       errorBox.style.display = 'none';
       this.classList.remove('is-invalid');
     }
+  });
+</script>
+
+<script>
+  $(function() {
+    $('#productForm').on('submit', function () {
+      const btn = $(this).find('button.primary-btn');
+      btn.prop('disabled', true).text('Updating...');
+    });
   });
 </script>
 

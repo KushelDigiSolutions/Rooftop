@@ -173,6 +173,9 @@ $(document).ready(function () {
 
     // Confirm Delete
     document.getElementById('confirmDelete').addEventListener('click', function () {
+         const btn = this;
+        btn.disabled = true; // disable button
+        btn.innerText = "Deleting...";
         if (deleteId) {
             const form = document.createElement('form');
             form.action = `/supplier-collections/${deleteId}`;
@@ -185,5 +188,13 @@ $(document).ready(function () {
             form.submit();
         }
     });
+</script>
+<script>
+  $(function() {
+    $('#collectionForm').on('submit', function () {
+      const btn = $(this).find('button.primary-btn');
+      btn.prop('disabled', true).text('Submitting...');
+    });
+  });
 </script>
 @endsection

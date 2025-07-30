@@ -170,6 +170,8 @@ public function submitComment(Request $request ) {
         'status' => 'draft',
     ]);
 
+    Quotation::where('id', $request->quotation_id)->update(['status' => "1"]);
+
     return redirect()->route('contracts.index')->with('success', 'Contract created successfully.');
 }
 public function preview(Request $request)
@@ -272,6 +274,8 @@ Mail::send('emails.contract', ['order_data' => $order_data], function ($message)
 });
 $lead_data->status = '9';
 	$lead_data->save();
+
+    Quotation::where('id', $request->qoutationId)->update(['status' => "1"]);
     return redirect()->route('customer.list.index')->with('success', 'Contract created successfully.');
 }
 

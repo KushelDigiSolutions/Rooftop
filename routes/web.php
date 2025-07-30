@@ -199,6 +199,8 @@ Route::middleware(['auth'])->prefix('jobs')->group(function () {
 	Route::post('/update/work', [JobController::class, 'updateWork'])->name('update.work');
 	Route::post('/complete/update/work', [JobController::class, 'completeUpdateWork'])->name('complete.update.work');
 	Route::get('/get-work-images/{id}', [JobController::class, 'getWorkImages'])->name('work.images');
+	Route::get('/get-work-details/{id}', [JobController::class, 'getWorkDetails'])->name('work.details');
+	Route::post('/work-approval/', [JobController::class, 'approvalWork'])->name('approvalWork');
 });
 
 

@@ -293,8 +293,8 @@
  <div class="modal fade" id="assignAppointmentModal" tabindex="-1" aria-labelledby="approveFranchiseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('appointments.assign') }}" method="POST">
-                    @csrf
+                <form id="assignAppointmentForm">
+                  @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="approveFranchiseModalLabel">Assign Sub Contract</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -315,7 +315,7 @@
                             @php
                                 $now = \Carbon\Carbon::now()->addDay()->format('Y-m-d\TH:i');
                             @endphp
-                            <input type="text" name="dateFilter" id="dateFilter" placeholder="MM-DD-YY" value="{{ request('dateFilter') }}" min="{{ $now }}" class="form-control me-3 w-100">
+                            <input type="text" name="dateFilter" id="dateFilter" placeholder="MM-DD-YY" value="{{ request('dateFilter') }}" min="{{ $now }}" class="form-control me-3 w-100" autocomplete="off">
                             <div class="error" style="color: red;"></div>
                         </div>
 
@@ -334,6 +334,36 @@
     </div>
 {{-- hold work --}}
 
+{{-- Aroval --}}
+<div class="modal fade" id="approvalWorkModal" tabindex="-1" aria-labelledby="approveFranchiseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="approvalWorkForm">
+                  @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="approveFranchiseModalLabel">Approval For Work</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" id="approveJobId1" name="job_id">
+                        <input type="hidden" id="approveJobId2" name="lead_id">
+                        
+
+                        <div class="mb-3">
+                            <p>Are You Want to Approve This Job</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="secondary-btn" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="primary-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{{-- end --}}
+
 <div class="modal fade" id="holdWorkModal" tabindex="-1" aria-labelledby="reapproveFranchiseModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -350,7 +380,7 @@
 
                     <div class="mb-3">
                         <label for="date" class="form-label">Date<span class="requried">*</span></label>
-                        <input type="text" name="hold_date" id="dateFilter1" placeholder="MM-DD-YY"  class="form-control me-3 w-100" autocomplete="off">
+                        <input type="text" name="hold_date" id="dateFilter1" placeholder="MM-DD-YY"  class="form-control me-3 w-100" autocomplete="off" required>
                         <div class="error" style="color: red;"></div>
                     </div>
 
@@ -386,7 +416,7 @@
 
                     <div class="mb-3">
                         <label for="date" class="form-label">Re-Start Date<span class="requried">*</span></label>
-                        <input type="text" name="re_start_date" id="re_start_date" placeholder="MM-DD-YY"  class="form-control me-3 w-100" autocomplete="off">
+                        <input type="text" name="re_start_date" id="re_start_date" placeholder="MM-DD-YY"  class="form-control me-3 w-100" autocomplete="off" required>
                         <div class="error" style="color: red;"></div>
                     </div>
 
@@ -418,7 +448,7 @@
 
                     <div class="mb-3">
                         <label for="date" class="form-label">Shedule Date<span class="requried">*</span></label>
-                        <input type="text" name="dateFilter1" id="dateFilter1" placeholder="MM-DD-YY"  class="form-control me-3 w-100">
+                        <input type="text" name="dateFilter1" id="re-shedule-date" placeholder="MM-DD-YY"  class="form-control me-3 w-100" autocomplete="off">
                         <div class="error" style="color: red;"></div>
                     </div>
 
@@ -452,7 +482,7 @@
 
                     <div class="mb-3">
                         <label for="date" class="form-label">Image<span class="requried">*</span></label>
-                        <input type="file" id="beforeImage" name="beforeImage[]"  class="form-control me-3 w-100" multiple>
+                        <input type="file" id="beforeImage" name="beforeImage[]"  class="form-control me-3 w-100" multiple required>
                         <div class="error" style="color: red;"></div>
 						<!-- PREVIEW CONTAINER -->
 						<div id="image-preview" class="d-flex flex-wrap gap-2 mt-2"></div>
@@ -489,7 +519,7 @@
 
                     <div class="mb-3">
                         <label for="date" class="form-label">After Work Image<span class="requried">*</span></label>
-                        <input type="file" id="afterImage" name="afterImage[]"  class="form-control me-3 w-100" multiple>
+                        <input type="file" id="afterImage" name="afterImage[]"  class="form-control me-3 w-100" multiple required>
                         <div class="error" style="color: red;"></div>
 						<!-- PREVIEW CONTAINER -->
 						<div id="image-preview2" class="d-flex flex-wrap gap-2 mt-2"></div>
@@ -509,6 +539,53 @@
     </div>
 </div>
 
+{{-- Job Detail --}}
+<div class="modal fade" id="viewWorkDetailModal" tabindex="-1" aria-labelledby="viewWorkLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{-- <h5 class="modal-title">Job Details</h5> --}}
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="job-details">
+  <h6 class="mb-3">Job Information</h6>
+  <table class="table table-bordered">
+    <tr><th>Job Code</th><td id="job_code"></td></tr>
+    <tr><th>Start Date</th><td id="start_date"></td></tr>
+    <tr><th>Reschedule Date</th><td id="reshedule_date"></td></tr>
+    <tr><th>Re-Start Date</th><td id="re_start_date_view"></td></tr>
+    <tr><th>Hold Date</th><td id="hold_date"></td></tr>
+    <tr><th>Hold Reason</th><td id="hold_reason"></td></tr>
+    <tr><th>Remarks</th><td id="remarks"></td></tr>
+    <tr><th>Before Work Remark</th><td id="beforeWorkRemark"></td></tr>
+    <tr><th>Before Work Image</th><td id="beforeImage"></td></tr>
+  </table>
+</div>
+
+<hr>
+
+<div class="subcontractor-details">
+  <h6 class="mb-3">Subcontractor Information</h6>
+  <table class="table table-bordered">
+    <tr><th>Company</th><td id="companyName"></td></tr>
+    <tr><th>Contact Person</th><td id="contact_person"></td></tr>
+    <tr><th>Phone</th><td id="phone"></td></tr>
+    <tr><th>Email</th><td id="sub_email"></td></tr>
+    <tr><th>License Number</th><td id="license_number"></td></tr>
+    <tr><th>Office Address</th><td id="office_address"></td></tr>
+    <tr><th>City</th><td id="sub_city"></td></tr>
+    <tr><th>State</th><td id="sub_state"></td></tr>
+    <tr><th>Zip Code</th><td id="zip_code"></td></tr>
+    <tr><th>Specialization</th><td id="specialization"></td></tr>
+  </table>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{{-- end --}}
 
 <div class="modal fade" id="viewWorkModal" tabindex="-1" aria-labelledby="viewWorkLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -567,6 +644,22 @@
 @section('script')
 
 <script> 
+
+$(document).on('click', '.approveWork-appointment-btn', function () {
+    const appointmentId = $(this).data('appointment-id');
+    const leadId = $(this).data('lead-id');
+    // alert(leadId);
+    console.log("Appointment ID:", appointmentId);
+    console.log("Lead ID:", leadId);
+
+    $('#approvalWorkModal').modal('show');
+    $('#approveJobId1').val(appointmentId);
+    $('#approveJobId2').val(leadId);
+
+    let selectId = "#approve_franchise";
+    get_franchise_list(appointmentId, selectId);
+});
+
     $(document).on('click', '.assign-appointment-btn', function () {
     const appointmentId = $(this).data('appointment-id');
     const leadId = $(this).data('lead-id');
@@ -739,6 +832,16 @@
 									  
 									  ${(response.role === 'Sub Contractor' || response.role === 'Super Admin') && appnt.status == 4 ? `
                                           <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkArfter(\'' + ${appnt.id} + '\')">View Status After Work</a></li>
+                                          
+                                      ` : ''}
+
+                                      ${(response.role === 'Super Admin') && appnt.status == 4 ? `
+                                          <li><a href="javascript:" class="dropdown-item small approveWork-appointment-btn" data-lead-id="${appnt.lead_id}" data-appointment-id="${appnt.id}">Approval</a></li>
+                                          
+                                      ` : ''}
+
+                                      ${(response.role === 'Super Admin') && appnt.status == 1 ? `
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkDetails(\'' + ${appnt.id} + '\')">View</a></li>
                                           
                                       ` : ''}
 									  
@@ -1169,7 +1272,9 @@ initImagePreview('afterImage', 'image-preview2');
 
 <script>
     const workImageRoute = "{{ route('work.images', ':id') }}";
+    const workDetailsoute = "{{ route('work.details', ':id') }}";
 </script>
+
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     $(document).ready(function () {
@@ -1214,7 +1319,67 @@ initImagePreview('afterImage', 'image-preview2');
             });
         });
     });
-	
+	function formatDate(dateStr) {
+  if (!dateStr) return '';
+
+  const date = new Date(dateStr);
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+   const yyyy = date.getFullYear();
+
+  return `${mm}-${dd}-${yyyy}`;
+}
+function viewWorkDetails(id) {
+  const finalUrl = workDetailsoute.replace(':id', id);
+  
+  $.ajax({
+    url: finalUrl,
+    type: 'GET',
+    success: function (res) {
+      const data = res.data;
+      const sub = res.subContract;
+
+      $('#job_code').text(data.job_code);
+      $('#start_date').text(data.start_date);
+      $('#reshedule_date').text(data.reshedule_date);
+      $('#re_start_date_view').text(formatDate(data.re_start_date));
+      $('#hold_date').text(formatDate(data.hold_date));
+      $('#hold_reason').text(data.hold_reason);
+      $('#remarks').text(data.remarks);
+      $('#beforeWorkRemark').text(data.beforeWorkRemark);
+
+      // Handle image (if exists)
+      if (data.beforeImage) {
+        let images = JSON.parse(data.beforeImage);
+        let imageHtml = '';
+        images.forEach(function (img) {
+          imageHtml += `<img src="/path-to-your-upload-folder/${img}" alt="Before Image" class="img-thumbnail" width="100"> `;
+        });
+        $('#beforeImage').html(imageHtml);
+      } else {
+        $('#beforeImage').text('No image available');
+      }
+
+      // Subcontractor data
+      $('#companyName').text(sub.company_name);
+      $('#contact_person').text(sub.contact_person);
+      $('#phone').text(sub.phone);
+      $('#sub_email').text(sub.email);
+      $('#license_number').text(sub.license_number);
+      $('#office_address').text(sub.office_address);
+      $('#sub_city').text(sub.city);
+      $('#sub_state').text(sub.state);
+      $('#zip_code').text(sub.zip_code);
+      $('#specialization').text(sub.specialization);
+
+      $('#viewWorkDetailModal').modal('show');
+    },
+    error: function () {
+      toastr.error("Unable to fetch data.");
+    }
+  });
+}
+    
 	
 	function viewWorkArfter(id) {
 		const finalUrl = workImageRoute.replace(':id', id);
@@ -1291,7 +1456,10 @@ initImagePreview('afterImage', 'image-preview2');
     minDate: 1 // disables past and current day
 		
 });
-	
+	$('#re-shedule-date').datepicker({
+    dateFormat: 'mm-dd-yy',
+    minDate: 1
+    });
 	
 	$('#dateFilter1').datepicker({
     dateFormat: 'mm-dd-yy',
@@ -1307,6 +1475,93 @@ $(document).on('click', '.before-image-thumb', function () {
     const imageUrl = $(this).data('image');
     $('#zoomedImage').attr('src', imageUrl);
     $('#imageZoomModal').modal('show');
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#assignAppointmentForm').on('submit', function(e) {
+        e.preventDefault();
+
+        let form = $(this);
+        let formData = form.serialize();
+
+        // Clear previous errors
+        $('.error').text('');
+
+        $.ajax({
+            url: "{{ route('appointments.assign') }}",
+            method: "POST",
+            data: formData,
+            success: function(response) {
+                alert('Subcontract assigned successfully!');
+                $('#assignAppointmentModal').modal('hide');
+                location.reload();
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    if (errors.subContract_id) {
+                        $('select[name="subContract_id"]').next('.error').text(errors.subContract_id[0]);
+                    }
+                    if (errors.dateFilter) {
+                        $('input[name="dateFilter"]').next('.error').text(errors.dateFilter[0]);
+                    }
+                } else {
+                    alert('Something went wrong!');
+                }
+            },
+             complete: function() {
+            // Hide loader and enable button
+            $('#assignBtnText').text('Assign');
+            $('#assignLoader').addClass('d-none');
+            $('#assignBtn').removeAttr('disabled');
+        }
+        });
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#approvalWorkForm').on('submit', function(e) {
+        e.preventDefault();
+
+        let form = $(this);
+        let formData = form.serialize();
+
+        // Clear previous errors
+        $('.error').text('');
+
+        $.ajax({
+            url: "{{ route('approvalWork') }}",
+            method: "POST",
+            data: formData,
+            success: function(response) {
+                alert('Subcontract assigned successfully!');
+                $('#assignAppointmentModal').modal('hide');
+                location.reload();
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    if (errors.subContract_id) {
+                        $('select[name="subContract_id"]').next('.error').text(errors.subContract_id[0]);
+                    }
+                    if (errors.dateFilter) {
+                        $('input[name="dateFilter"]').next('.error').text(errors.dateFilter[0]);
+                    }
+                } else {
+                    alert('Something went wrong!');
+                }
+            },
+             complete: function() {
+            // Hide loader and enable button
+            $('#assignBtnText').text('Assign');
+            $('#assignLoader').addClass('d-none');
+            $('#assignBtn').removeAttr('disabled');
+        }
+        });
+    });
 });
 </script>
 @endsection

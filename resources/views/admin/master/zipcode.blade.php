@@ -58,7 +58,7 @@
                         </div>
                         <div class="mb-1 w-100">
                             <label for="ZIPCodeInput" class="form-label mb-1">ZIP Code <span class="text-danger"></span></label>
-                            <input type="number" class="form-control w-100" id="ZIPCodeInput" name="zip_code" required>
+                            <input type="text" class="form-control w-100" id="ZIPCodeInput" name="zip_code" maxlength="5" required>
                         </div>
                         <!-- ✅ Status Dropdown Field -->
                         <div class="mb-1 w-100">
@@ -109,7 +109,7 @@
                         </div>
                         <div class="mb-1 w-100">
                             <label for="ZIPCodeInput" class="form-label mb-1">ZIP Code <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control w-100" id="editZIPCodeInput" name="zip_code" >
+                            <input type="text" class="form-control w-100" id="editZIPCodeInput" name="zip_code" maxlength="5" >
                         </div>
                         <div class="mb-1 w-100">
                             <label for="StatusInput" class="form-label mb-1">Status <span class="text-danger">*</span></label>
@@ -181,9 +181,14 @@
         </div>
     </div>
 </div>
+
+
 @endsection
 @section('script')
 <script>
+    $('#ZIPCodeInput, #mobile').on('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
     function editZipCode(id) {
         fetch(`/zipcodes/${id}/edit`)
             .then(response => response.json())
@@ -295,6 +300,9 @@
     }
 
     document.getElementById('confirmDelete').addEventListener('click', function () {
+        const btn = this; // current button
+        btn.disabled = true; // disable button
+        btn.innerText = "Deleting..."; 
         if (deleteId) {
             const form = document.createElement('form');
             form.action = `/zipcodes/${deleteId}`;
@@ -308,5 +316,15 @@
         }
     });
 </script>
+
+<script>
+  $(function() {
+    $('#zipcodeForm').on('submit', function () {
+      const btn = $(this).find('button.primary-btn');
+      btn.prop('disabled', true).text('Submitting...');
+    });
+  });
+</script>
+
 
 @endsection

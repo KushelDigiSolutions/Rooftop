@@ -163,7 +163,7 @@
                 Create
                 <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
             </button>
-            <button type="reset" class="btn btn-secondary" onclick="window.location.href='/subcontractors'">Cancel</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/sub_contractor'">Cancel</button>
         </div>
     </div>
 </form>

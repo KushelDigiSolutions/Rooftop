@@ -282,7 +282,7 @@ class CustomerController extends Controller
             "state" => "required",
             "country" => "required",
             "pincode" => "required",
-            "scope_work" => "required|string",
+            "scope_work" => "required|string|max:300",
 			
         ]);
         DB::beginTransaction();

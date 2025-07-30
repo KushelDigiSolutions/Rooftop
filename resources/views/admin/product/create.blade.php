@@ -183,7 +183,7 @@
                 <div class="col-md-3">
                     <div class="mb-1 w-100">
                         <label for="mrpInput" class="form-label mb-1">Price <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control w-100" id="mrpInput" name="mrp" >
+                        <input type="number" min="0" class="form-control w-100" id="mrpInput" name="mrp" >
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -224,7 +224,7 @@
 
             <div class="mt-3 d-flex gap-3 mb-4">
                 <button type="submit" class="btn primary-btn">Create Product</button>
-                <button type="reset" class="btn secondary-btn" onclick="window.location.href='/products'">Cancel</button>
+                <button type="button" class="btn secondary-btn" onclick="window.location.href='/products'">Cancel</button>
             </div>
         </div>
     </form>

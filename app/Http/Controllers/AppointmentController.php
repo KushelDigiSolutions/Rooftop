@@ -289,8 +289,8 @@ class AppointmentController extends Controller
             "city" => "required",
             "state" => "required",
             "country" => "required",
-            "pincode" => "required",
-            "scope_work" => "required|string|max:100",
+            "pincode" => "required|max:5",
+            "scope_work" => "required|string|max:300",
         ]);
 
         // if (in_array($validatedData["city"], $zipCodes)) {
@@ -435,12 +435,20 @@ class AppointmentController extends Controller
     {
         // Validate the input fields
          //dd($request->all());
+         $messages = [
+            'dateFilter1.regex' => 'The  date must be in MM-DD-YY format.',
+        ];
         $request->validate([
             "job_id" => "required|exists:jobs,id",
           //  "dateFilter1" => "required|date|after_or_equal:today",
-            "dateFilter1" => "required",
+            // "dateFilter1" => "required",
+            'dateFilter1' => [
+                'required',
+                'regex:/^(0[1-9]|1[0-2])[-\/](0[1-9]|[12][0-9]|3[01])[-\/]\d{4}$/'
+            ]
            // "franchise_id1" => "required|exists:franchises,id",
-        ]);
+        ], $messages);
+        
          $user = Auth::user();
 		//dd($user);
         // Find the appointment by ID
@@ -778,8 +786,8 @@ class AppointmentController extends Controller
             "type_property" => "required",
             "requirement_type" => "required|string|max:100",
             "lead_source" => "required|string|max:100",
-            "notes" => "required",
-            "scope_work" => "required|string|max:100",
+            "notes" => "nullable",
+            "scope_work" => "required|string|max:300",
         ]);
 
         $lead = Appointment::findOrFail($id);

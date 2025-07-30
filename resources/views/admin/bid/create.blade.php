@@ -1367,4 +1367,13 @@
       dateFormat: "m-d-Y" // mm-dd-yyyy
   });
 </script>
+
+<script>
+  $(function() {
+    $('#productForm').on('submit', function () {
+      const btn = $(this).find('button.primary-btn');
+      btn.prop('disabled', true).text('Submitting...');
+    });
+  });
+</script>
 @endsection

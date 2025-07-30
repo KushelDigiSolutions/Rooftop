@@ -105,7 +105,7 @@ class SubContractorController extends Controller
         'email' => 'required|email|unique:subcontractors,email,' . $id,
         'city' => 'required',
         'state' => 'required',
-        'zip_code' => 'required',
+        'zip_code' => 'required|digits:6',
         'specialization' => 'required',
         'experience_years' => 'required|numeric',
         'availability_status' => 'required',

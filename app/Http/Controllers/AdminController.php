@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Franchise;
+use App\Models\Job;
 use App\Models\Product;
 use App\Models\Appointment;
+use App\Models\Subcontractor;
 use App\Models\FranchiseTemp;
 use App\Models\Quotation;
 use App\Models\User;
@@ -22,9 +24,11 @@ class AdminController extends Controller
         // $userRole = Auth::user()->getRoleNames()[0];
         $userRole = Auth::user()->getRoleNames();
         $user = Auth::user();
-
+        // dd($user->subContract_id);
         if(!empty($user)){
             $franchiseID = Franchise::where('user_id',$user->id)->first();
+            $totalJobs = Job::where('subContract_id',$user->subContract_id)->count();
+            
         }
         
         $product=Product::all();
@@ -47,7 +51,8 @@ class AdminController extends Controller
         }
         $quotationCount = $quotations->count();
         $quotations = $quotations->get();
-        $user=User::all();
+        $user = User::whereNotNull('lead_id')->get();
+        $subContractor = Subcontractor::all();
 
         $franchiseQuery = new Franchise;
         $franchiseTemp = new FranchiseTemp;
@@ -75,7 +80,7 @@ class AdminController extends Controller
         
         $salesLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
         $salesData = [1200, 1500, 1700, 1400, 2000];    
-        return view('admin.dashboard',compact('salesData','salesLabels','totalCustomer','franchise','total_franchise','product','appointment','appointmentCount','user','quotations','quotationCount','totalOrders'));
+        return view('admin.dashboard',compact('subContractor','salesData','salesLabels','totalCustomer','franchise','total_franchise','product','appointment','appointmentCount','user','quotations','quotationCount','totalOrders','totalJobs'));
     }
 
     public function getLocationByPincode(Request $request)

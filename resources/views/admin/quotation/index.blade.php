@@ -343,8 +343,8 @@
                    let statusText = '';
 					if (appnt.status == 0) {
 						statusText = response.role === 'Super Admin' ? 'Hold' : 'Waiting';
-					} else if (appnt.status == 4) {
-						statusText = 'Complete';
+					} else if (appnt.status == 1) {
+						statusText = 'Approved';
 					} else {
 						statusText = appnt.status;
 					}

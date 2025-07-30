@@ -19,14 +19,14 @@
             </div>
         </a>
     @elseif (Auth::user()->hasRole('Sub Contractor'))
-        <a href="/appointments_list">
+        <a href="/jobs">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_franchise.svg') }}" alt="">
-                <h2 class="fw-bold m-0 mb-1">{{$appointmentCount}}</h2>
-                <p class="m-0 small">Total number of Appointments</p>
+                <h2 class="fw-bold m-0 mb-1">{{$totalJobs}}</h2>
+                <p class="m-0 small">Total number of Job</p>
             </div>
         </a>
-        <a href="/quotations">
+        <a href="#?">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_products.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{$quotationCount}}</h2>
@@ -34,7 +34,7 @@
             </div>
         </a>
     @elseif (Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin'))
-        <a href="javascript::void(0)">
+        <a href="/leads_list">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_franchise.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($appointment) }}</h2>
@@ -44,14 +44,14 @@
         <a href="{{route('customer.list.index')}}">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_products.svg') }}" alt="">
-                <h2 class="fw-bold m-0 mb-1">{{ count($totalCustomer) }}</h2>
+                <h2 class="fw-bold m-0 mb-1">{{ count($user) }}</h2>
                 <p class="m-0 small">Total number of Customer</p>
             </div>
         </a>
-        <a href="javascript::void(0)">
+        <a href="/sub_contractor">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_users.svg') }}" alt="">
-                <h2 class="fw-bold m-0 mb-1">0</h2>
+                <h2 class="fw-bold m-0 mb-1">{{count($subContractor)}}</h2>
                 <p class="m-0 small">Total number of Contractor</p>
             </div>
         </a>

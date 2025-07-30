@@ -171,7 +171,7 @@
                 <button type="submit" id="submitBtnappoint" class="primary-btn" > Create
                 <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
             </button>
-                <button type="reset" class="btn secondary-btn" onclick="window.location.href='/products'">Cancel</button>
+                <button type="reset" class="btn secondary-btn" onclick="window.location.href='/leads_list'">Cancel</button>
             </div>
         </div>
     </form>

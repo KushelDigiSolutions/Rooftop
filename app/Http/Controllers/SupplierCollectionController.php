@@ -22,7 +22,7 @@ class SupplierCollectionController extends Controller
         }
         
         $suppliers = Supplier::orderBy('id', 'desc')->get();
-        $collections = SupplierCollection::with('supplier')->get();
+        $collections = SupplierCollection::with('supplier')->latest()->get();
         return view('admin.master.suppliercollection', compact('collections', 'suppliers'));
     }
 
