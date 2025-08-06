@@ -30,7 +30,8 @@
 
                         <div class="mb-1 w-100">
                             <label for="ProductUnitInput" class="form-label mb-1">Unit <span class="text-danger">*</span></label>
-                            <select class="form-control w-100" name="product_unit[]" id="product_unit">
+                            <select class="form-control w-100" name="product_unit[]" id="product_unit" required>
+                                <option value="">--Select One--</option>
                                 <option value="SQS">SQS</option>
                                 <option value="Each">Each</option>
                                 <option value="Feet">Feet</option>
@@ -182,6 +183,12 @@
 <script>
   $(function() {
     $('#productTypeForm').on('submit', function () {
+         const form = $(this);
+
+        if (!form.valid()) {
+            e.preventDefault(); // prevent submission if not valid
+            return false;
+        }
       const btn = $(this).find('button.primary-btn');
       btn.prop('disabled', true).text('Submitting...');
     });

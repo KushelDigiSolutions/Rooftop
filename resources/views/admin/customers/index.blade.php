@@ -1087,7 +1087,7 @@
 								
 								case '11':
                                 viewType = 'approve_contract';
-                                statusBadge = '<span class="badge badge-active">Signed Contract</span>';
+                                statusBadge = '<span class="badge badge-active">Contract Signed</span>';
                                  actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="close_prospect(\'' + appnt.id + '\')" >Closed & Prospect</a></li>';
 								
 								actions += '<li><a href="#" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + appnt.id + '" onclick="close_dead(\'' + appnt.id + '\')" >Closed & Dead</a></li>';

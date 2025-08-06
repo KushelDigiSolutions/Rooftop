@@ -46,22 +46,22 @@
                <div class="row mb-3">
                      <div class="col-md-6">
                         <label for="street" class="form-label">Roof Type</label>
-                        <input type="text" class="form-control rounded-3" name="roof_type" value="">
+                        <input type="text" class="form-control rounded-3" name="roof_type" value="{{ old('roof_type') }}">
                      </div>
                       <div class="col-md-6">
                         <label for="email" class="form-label">Roof Color</label>
-                        <input type="text" class="form-control rounded-3" name="roof_color" value="">
+                        <input type="text" class="form-control rounded-3" name="roof_color" value="{{ old('roof_color') }}">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                      <div class="col-md-6">
                         <label for="street" class="form-label">Estimated Start Date</label>
-                        <input type="text" class="form-control rounded-3" name="est_start" value="">
+                        <input type="text" class="form-control rounded-3 payment-date" name="est_start" value="{{ old('est_start') }}">
                      </div>
                       <div class="col-md-6">
                         <label for="email" class="form-label">Estimated Completion Time</label>
-                        <input type="text" class="form-control rounded-3" name="est_end" value="">
+                        <input type="text" class="form-control rounded-3" name="est_end" value="{{ old('est_end') }}">
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                     </div> --}}
                    <div class="col-md-4">
                     <label for="price" class="form-label">Contract Price ($)</label>
-                    <input type="number" step="0.01" class="form-control rounded-3" name="price">
+                    <input type="number" min="0" step="0" class="form-control rounded-3" name="price">
                 </div>
                 </div>
 
@@ -206,11 +206,11 @@ function renderPaymentSchedules() {
             <div class="row mb-3 paymentRow" data-index="${index}">
                 <div class="col-md-6">
                     <label class="form-label">${count} Payment Date</label>
-                    <input type="text" class="form-control rounded-3 payment-date" name="installments[${index}][due_date]" value="${schedule.due_date || ''}">
+                    <input type="text" class="form-control rounded-3 payment-date" name="installments[${index}][due_date]" value="${schedule.due_date || ''}" onchange="validateTotalAmount()">
                 </div>
                 <div class="col-md-5">
                     <label class="form-label">${count} Payment Amount ($)</label>
-                    <input type="text" class="form-control rounded-3" name="installments[${index}][amount]" value="${schedule.amount || ''}">
+                    <input type="text" class="form-control rounded-3" name="installments[${index}][amount]" value="${schedule.amount || ''}" onchange="validateTotalAmount()">
                 </div>
                 <div class="col-md-1 d-flex align-items-end">
                     ${paymentSchedules.length > 1 ? `<button type="button" class="btn btn-danger btn-sm" onclick="removePaymentSchedule(${index})">Remove</button>` : ''}
@@ -228,8 +228,37 @@ function renderPaymentSchedules() {
 
 let paymentSchedules = [{}]; // start with one
 
+// function addPaymentSchedule() {
+//     paymentSchedules.push({});
+//     renderPaymentSchedules();
+// }
+
 function addPaymentSchedule() {
-    paymentSchedules.push({});
+    // 👇 Save existing values before adding new one
+    const rows = document.querySelectorAll('.paymentRow');
+    paymentSchedules = []; // Clear and rebuild from form
+
+    let total = 0;
+
+    rows.forEach((row, index) => {
+        const date = row.querySelector('.payment-date').value;
+        const amount = row.querySelector(`input[name="installments[${index}][amount]"]`).value;
+
+        paymentSchedules.push({
+            due_date: date,
+            amount: amount
+        });
+    });
+
+     const contractPrice = parseFloat(document.getElementById('contractPrice').value) || 0;
+        if (total >= contractPrice && contractPrice > 0) {
+        alert("Total schedule amount exceeds or equals contract price.");
+        return; // Stop adding new schedule
+    }
+
+    // 👇 Push new empty row
+    paymentSchedules.push({ due_date: '', amount: '' });
+
     renderPaymentSchedules();
 }
 
@@ -240,5 +269,20 @@ function removePaymentSchedule(index) {
 
 // Initial render
 renderPaymentSchedules();
+</script>
+<script>
+    function validateTotalAmount() {
+    const contractPrice = parseFloat(document.getElementById('contractPrice').value) || 0;
+    let total = 0;
+
+    document.querySelectorAll('.paymentRow').forEach((row, index) => {
+        const amount = parseFloat(row.querySelector(`input[name="installments[${index}][amount]"]`).value) || 0;
+        total += amount;
+    });
+
+    if (total > contractPrice) {
+        alert("Total amount exceeds contract price!");
+    }
+}
 </script>
 @endsection

@@ -45,14 +45,14 @@
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_products.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($user) }}</h2>
-                <p class="m-0 small">Total number of Customer</p>
+                <p class="m-0 small">Total number of Customers</p>
             </div>
         </a>
         <a href="/sub_contractor">
             <div class="card info-card">
                 <img src="{{ url('admin/images/tab_users.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{count($subContractor)}}</h2>
-                <p class="m-0 small">Total number of Contractor</p>
+                <p class="m-0 small">Total number of Sub Contractors</p>
             </div>
         </a>
     @elseif (Auth::user()->hasRole('Help Desk'))

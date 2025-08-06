@@ -180,21 +180,21 @@ public function preview(Request $request)
     $baseValidation = [
         'appointment_id' => 'nullable|exists:appointments,id',
         'qoutationId' => 'nullable',
-        'customer_name' => 'nullable|string',
-        'mobile' => 'nullable|string',
-        'email' => 'nullable|string',
+        'customer_name' => 'required|string',
+        'mobile' => 'required|string',
+        'email' => 'required|string',
         'contract_date' => 'nullable|string',
         'street' => 'nullable|string',
-        'city_state_zip' => 'nullable|string',
-        'roof_type' => 'nullable|string',
-        'roof_color' => 'nullable|string',
-        'scope_of_work' => 'nullable|string',
-        'notes' => 'nullable|string',
-        'est_start' => 'nullable|string',
-        'est_end' => 'nullable|string',
+        'city_state_zip' => 'required|string',
+        'roof_type' => 'required|string',
+        'roof_color' => 'required|string',
+        'scope_of_work' => 'required|string',
+        'notes' => 'required|string',
+        'est_start' => 'required|string',
+        'est_end' => 'required|string',
         'week_of' => 'nullable|string',
-        'price' => 'nullable|numeric',
-        'installments' => 'nullable|array'
+        'price' => 'required|numeric',
+        'installments' => 'required|array'
     ];
 
     // Add dynamic payment schedules

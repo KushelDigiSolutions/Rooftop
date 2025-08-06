@@ -28,19 +28,19 @@
             <div class="col-md-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="name" name="name"  required>
+                        <input type="text" class="form-control" id="name" name="name_xxyz" required autocomplete="new-password">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email ID <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="email" name="email" >
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="new-password">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="mobile" autocomplete="off" class="form-label">Mobile Number <span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="mobile" name="mobile"  maxlength="10" required>
+                        <input type="tel" class="form-control" id="mobile" name="mobile"  maxlength="10" required autocomplete="new-password"> 
 
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="mb-3">
                         <label for="address" autocomplete="off" class="form-label">Address <span class="text-danger">*</span></label>
                         {{-- <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required> --}}
-                        <textarea name="address" class="form-control" id="address" cols="30" rows="30"></textarea>
+                        <textarea name="address" class="form-control" id="address" cols="30" rows="30" autocomplete="new-password"></textarea>
                     </div>
                 </div>
 				<div class="col-md-6">
@@ -86,7 +86,7 @@
         <div class="col-md-6">
             <div class="mb-3 checkPincode">
                 <label for="pincode" class="form-label">Zipcode <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="PincodeInput" name="pincode" placeholder="Enter Zipcode" maxlength="5" required>
+                <input type="text" class="form-control" id="PincodeInput" name="pincode" placeholder="Enter Zipcode" maxlength="5" required autocomplete="new-password">
                 <div style="color: red;">Please enter a valid 5 digit zipcode</div>
             </div>
         </div>
@@ -150,14 +150,14 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="country" class="form-label">Internal Notes <span class="text-danger"></span></label>
-                        <textarea name="notes" class="form-control" id="notes" cols="30" rows="10"></textarea>
+                        <textarea name="notes" class="form-control" id="notes" cols="30" rows="10" autocomplete="new-password"></textarea>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="country" class="form-label">Scope of work requested <span class="text-danger">*</span></label>
-                        <input type="text"  id="scope_work" class="form-control" name="scope_work"   required >
+                        <input type="text"  id="scope_work" class="form-control" name="scope_work"   required autocomplete="new-password">
 						<div style="color: red;">Max limit: 300 words</div>
                     </div>
                 </div>

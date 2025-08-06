@@ -110,7 +110,7 @@
 
             <div class="mt-3 d-flex gap-3 mb-4">
                 <!-- <button type="submit" class="btn primary-btn">Create Lead</button> -->
-                <button type="submit" id="submitBtnappoint" class="primary-btn" > Create
+                <button type="submit" id="submitBtnappoint" class="primary-btn" > Update
                 <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
             </button>
                 <button type="reset" class="btn secondary-btn" onclick="window.location.href='/leads_list'">Cancel</button>

@@ -118,8 +118,8 @@
                         {{-- <th>Franchise Assign</th> --}}
                         <th>City</th>
                         <th>Zipcode</th>
-                        <th>Start Working</th>
-						 <th>Re-Shedule</th>
+                        <th>Start Date</th>
+						 <th>Re-Schedule</th>
 						<th>Assigned To</th>
 						<th>Status</th>
                         <th>Action</th>
@@ -447,7 +447,7 @@
                    
 
                     <div class="mb-3">
-                        <label for="date" class="form-label">Shedule Date<span class="requried">*</span></label>
+                        <label for="date" class="form-label">Schedule Date<span class="requried">*</span></label>
                         <input type="text" name="dateFilter1" id="re-shedule-date" placeholder="MM-DD-YY"  class="form-control me-3 w-100" autocomplete="off">
                         <div class="error" style="color: red;"></div>
                     </div>
@@ -472,7 +472,7 @@
             <form  id="workUpdateForm" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="">Update Work</h1>
+                    <h1 class="modal-title fs-5" id="">Update</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -591,7 +591,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Work Images (After Work)</h5>
+        <h5 class="modal-title">Images (After Work)</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
@@ -612,7 +612,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Work Images (Before Work)</h5>
+        <h5 class="modal-title">Images (Before Work)</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
@@ -816,7 +816,7 @@ $(document).on('click', '.approveWork-appointment-btn', function () {
                                       ` : ''}
 									  
 									  ${(response.role === 'Sub Contractor' || response.role === 'Super Admin') && appnt.status == 3 ? `
-                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkBefore(\'' + ${appnt.id} + '\')">View Status Before Work</a></li>
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkBefore(\'' + ${appnt.id} + '\')">View Images Before Work</a></li>
                                           
                                       ` : ''}
 
@@ -826,12 +826,12 @@ $(document).on('click', '.approveWork-appointment-btn', function () {
                                       ` : ''}
 
                                       ${(response.role === 'Sub Contractor' || response.role === 'Super Admin') && appnt.status == 4 ? `
-                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkBefore(\'' + ${appnt.id} + '\')">View Status Before Work</a></li>
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkBefore(\'' + ${appnt.id} + '\')">View Images Before Work</a></li>
                                           
                                       ` : ''}
 									  
 									  ${(response.role === 'Sub Contractor' || response.role === 'Super Admin') && appnt.status == 4 ? `
-                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkArfter(\'' + ${appnt.id} + '\')">View Status After Work</a></li>
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="viewWorkArfter(\'' + ${appnt.id} + '\')">View Images After Work</a></li>
                                           
                                       ` : ''}
 
@@ -846,7 +846,7 @@ $(document).on('click', '.approveWork-appointment-btn', function () {
                                       ` : ''}
 									  
 									  ${(response.role === 'Sub Contractor') && appnt.status == 1 ? `
-                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="reshedule(\'' + ${appnt.id} + '\')">Re-Shedule</a></li>
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="reshedule(\'' + ${appnt.id} + '\')">Re-Schedule</a></li>
                                           
                                       ` : ''}
 
@@ -856,12 +856,12 @@ $(document).on('click', '.approveWork-appointment-btn', function () {
                                       ` : ''}
 									  
 									  ${(response.role === 'Sub Contractor') && appnt.status == 1? `
-                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="updateWork(\'' + ${appnt.id} + '\')">Update Work</a></li>
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="updateWork(\'' + ${appnt.id} + '\')">Update</a></li>
                                           
                                       ` : ''}
 									  
 									  ${(response.role === 'Sub Contractor') && appnt.status == 3 ? `
-                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="updateWork2(\'' + ${appnt.id} + '\')">Update Work</a></li>
+                                          <li><a href="javascript:" class="dropdown-item small approve-appointment-btn" data-appointment-id="' + ${appnt.id} + '" onclick="updateWork2(\'' + ${appnt.id} + '\')">Update</a></li>
                                           
                                       ` : ''}
                                        
