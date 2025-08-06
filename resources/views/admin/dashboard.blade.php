@@ -1,3 +1,6 @@
+@php
+use App\Models\User;
+@endphp
 @extends('admin.layouts.app') 
 
 @section('content')
@@ -10,15 +13,15 @@
                 <p class="m-0 small">Total number of Products</p>
             </div>
         </a>
-    @elseif(auth()->user()->hasRole('Fulfillment Desk'))
+    <!-- @elseif(auth()->user()->hasRole('Fulfillment Desk'))
         <a href="/orders">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_franchise.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($franchise) }}</h2>
                 <p class="m-0 small">Total number of Order</p>
             </div>
-        </a>
-    @elseif (Auth::user()->hasRole('Vendor'))
+        </a> -->
+    @elseif (Auth::user()->hasRole('Sub-Vendor'))
         <a href="/appointments_list">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_franchise.svg') }}" alt="">
@@ -37,25 +40,25 @@
         <a href="{{ route('franchise.temp.index') }}">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_franchise.svg') }}" alt="">
-                <h2 class="fw-bold m-0 mb-1">{{ $total_franchise }}</h2>
-                <p class="m-0 small">Total number of Franchise</p>
+                <h2 class="fw-bold m-0 mb-1">{{ $CustomerCount }}</h2>
+                <p class="m-0 small">Total number of Customer</p>
             </div>
         </a>
         <a href="/products">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_products.svg') }}" alt="">
                 <h2 class="fw-bold m-0 mb-1">{{ count($product) }}</h2>
-                <p class="m-0 small">Total number of Products</p>
+                <p class="m-0 small"> Totle number of Open Jobs</p>
             </div>
         </a>
         <a href="/user_list">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_users.svg') }}" alt="">
-                <h2 class="fw-bold m-0 mb-1">{{ count($user) }}</h2>
+                <h2 class="fw-bold m-0 mb-1">{{$customerCount = User::role('Customer')->count();}}</h2>
                 <p class="m-0 small">Total number of Users</p>
             </div>
         </a>
-    @elseif (Auth::user()->hasRole('Help Desk'))
+    @elseif (Auth::user()->hasRole('Customer'))
         <a href="/orders">
             <div class="card info-card">
                 <img src="{{ asset('admin/images/tab_franchise.svg') }}" alt="">
@@ -79,7 +82,7 @@
         </a>
     @endif
 </div>
-@if(Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Help Desk') || Auth::user()->hasRole('Franchise'))
+@if(Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Customer') || Auth::user()->hasRole('Sub-Vendor'))
 <div class="dataOverviewSection">
     <div class="dataOverview">
         <div class="d-flex justify-content-between">
@@ -210,7 +213,7 @@
                         <label for="franchise" class="form-label">Select Franchise</label>
                         <select id="franchise" name="franchise_id" class="form-select">
                             <option value="">Select Franchise</option>
-                            @foreach($franchise as $franchises)
+                            @foreach($Customer as $franchises)
                                 <option value="{{ $franchises->id }}">{{ $franchises->company_name }}</option>
                             @endforeach
                         </select>

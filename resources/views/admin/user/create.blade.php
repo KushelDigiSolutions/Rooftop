@@ -65,12 +65,11 @@
                             <label for="role" class="col-form-label text-md-end required">Select Role</label>
                             <select name="role" class="form-select">
                                 <option value="">Select</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Help Desk">Help Desk</option>
-                                <option value="Fulfillment Desk">Fulfillment Desk</option>
-                                <option value="Data Entry Operator">Data Entry Operator</option>
-                                <option value="Accounts">Accounts</option>
-                                 <option value="Vendors">Vendors</option>
+                               
+                                <option value="Customer">Customer</option>
+                                
+                               
+                                 <option value="Sub-Sub Contractors">Sub-Sub Contractors</option>
                                 <!--<option value="Franchise Team Member">Franchise Team Member</option> -->
                             </select>
                         </div>

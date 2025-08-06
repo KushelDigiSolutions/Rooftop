@@ -60,11 +60,11 @@ class LoginController extends Controller
             return redirect('/dashboard');
         }
 
-        if ($user->hasRole('Admin')) {
+        if ($user->hasRole('Sub Contractor')) {
             return redirect('/dashboard');
         }
 
-        if ($user->hasRole('Help Desk')) {
+        if ($user->hasRole('Customer')) {
             return redirect('/dashboard');
         }
 

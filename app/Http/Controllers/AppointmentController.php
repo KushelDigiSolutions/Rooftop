@@ -41,13 +41,13 @@ class AppointmentController extends Controller
     {
         $userRole = Auth::user()->getRoleNames()[0];
         $user = Auth::user();
-       
-        
-        $appointments = collect(); 
+
+
+        $appointments = collect();
 
         $appointmentsQuery = Appointment::with('franchise')->where("status", "!=", "0");
 
-        if ($userRole == "Vendor") {
+        if ($userRole == "Sub-Vendor") {
             $franchise = Franchise::where("user_id", $user->id)->first();
             if ($franchise) {
                 $appointments = $appointmentsQuery
@@ -62,7 +62,7 @@ class AppointmentController extends Controller
             } else {
                 $pendingCount = $completedCount = $holdCount = $assignedCount = $rejectedCount = 0;
             }
-        } elseif (in_array($userRole, ["Admin", "Super Admin","Help Desk"])) {
+        } elseif (in_array($userRole, ["Admin", "Super Admin", "Customer"])) {
             $appointments = $appointmentsQuery->get();
             $statusCounts = $appointments->groupBy("status")->map->count();
 
@@ -84,7 +84,7 @@ class AppointmentController extends Controller
             ->where("appointments.status", "2")
             ->with('franchise')
             ->get();
-            
+
 
         $franchises = Franchise::orderBy("id", "desc")->get();
 
@@ -161,9 +161,11 @@ class AppointmentController extends Controller
         $franchises = [];
 
         // Check if the user is a Franchise or Admin/Super Admin
-        $userRole = Auth::user()->getRoleNames()[0];
+        $userRole = Auth::user()->role()
+            ? "Super Admin"
+            : Auth::user()->role();
 
-        if ($userRole === "Vendor") {
+        if ($userRole === "Sub Contractor") {
             // Fetch Franchise-specific appointments
             $statusMap = [
                 "pending" => "2",
@@ -185,7 +187,7 @@ class AppointmentController extends Controller
                     ->get()
                     ->toArray();
             }
-        } elseif (in_array($userRole, ["Admin", "Super Admin","Help Desk"])) {
+        } elseif (in_array($userRole, ["Admin", "Super Admin", "Customer"])) {
             $franchises = Appointment::where("status", $status)
                 ->with('franchise')
                 ->orderBy('id', 'desc')
@@ -229,14 +231,14 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create($validatedData);
 
-        if($validatedData["status"] == 0){
+        if ($validatedData["status"] == 0) {
 
             // send whatsaap Message
             $parameters = [
-                
+
             ];
 
-            $this->whatsAppService->sendMessageWp('91'.$request->mobile, 'triggersforcustomerservicingtheirarea');
+            $this->whatsAppService->sendMessageWp('91' . $request->mobile, 'triggersforcustomerservicingtheirarea');
             // end send whatsaap Message
 
 
@@ -244,7 +246,7 @@ class AppointmentController extends Controller
             Mail::to($appointment->email)->send(
                 new QueryBookedMail($appointment)
             );
-        }else{
+        } else {
             // send whatsaap Message
             $parameters = [
                 [
@@ -253,7 +255,7 @@ class AppointmentController extends Controller
                 ]
             ];
 
-            $this->whatsAppService->sendMessage('91'.$request->mobile, 'thankyour', $parameters);
+            $this->whatsAppService->sendMessage('91' . $request->mobile, 'thankyour', $parameters);
             // end send whatsaap Message
 
             Mail::to($appointment->email)->send(
@@ -261,9 +263,9 @@ class AppointmentController extends Controller
             );
         }
         // Send success email
-        
 
-        return response()->json(["message" => $responseMessage,'status_check' => $validatedData["status"]], 201);
+
+        return response()->json(["message" => $responseMessage, 'status_check' => $validatedData["status"]], 201);
     }
 
     public function assign(Request $request)
@@ -292,7 +294,7 @@ class AppointmentController extends Controller
         $franchiseName = $franchiseDetail ? $franchiseDetail->name : 'N/A';
         $franchiseEmail = $franchiseDetail ? $franchiseDetail->email : 'N/A';
         $appointmentDate = Carbon::parse($appointment->appointment_date)->format('d/m/Y');
-        $appointmentTime = Carbon::parse($appointment->appointment_date)->format('H.i').'hrs';
+        $appointmentTime = Carbon::parse($appointment->appointment_date)->format('H.i') . 'hrs';
 
 
         // send whatsaap Message
@@ -303,19 +305,19 @@ class AppointmentController extends Controller
             ],
             [
                 'type' => 'text',
-                'text' => $appointmentDate .' '.$appointmentTime
+                'text' => $appointmentDate . ' ' . $appointmentTime
             ]
         ];
 
-        $this->whatsAppService->sendMessage('91'.$franchiseDetail->mobile, 'appointmentscheduled', $parameters); // send to franchise
-        $this->whatsAppService->sendMessage('91'.$appointment->mobile, 'appointmentscheduled', $parameters); // send to customer
+        $this->whatsAppService->sendMessage('91' . $franchiseDetail->mobile, 'appointmentscheduled', $parameters); // send to franchise
+        $this->whatsAppService->sendMessage('91' . $appointment->mobile, 'appointmentscheduled', $parameters); // send to customer
         // end send whatsaap Message
 
         // Pass these to the email
         Mail::to($appointment->email)->cc($franchiseEmail)->send(
             new AppointmentScheduleMail($appointment, $appointmentDate, $appointmentTime, $franchiseName)
         );
-        
+
 
         // Redirect back with success message
         return redirect()
@@ -334,7 +336,7 @@ class AppointmentController extends Controller
         ]);
 
         // Find the appointment by ID
-        
+
         $appointment = Appointment::findOrFail($request->appointment_id1);
 
         // Convert the date to a Carbon instance (if it's not already)
@@ -351,7 +353,7 @@ class AppointmentController extends Controller
         $franchiseName = $franchiseDetail ? $franchiseDetail->name : 'N/A';
         $franchiseEmail = $franchiseDetail ? $franchiseDetail->email : 'N/A';
         $appointmentDate = Carbon::parse($appointment->appointment_date)->format('d/m/Y');
-        $appointmentTime = Carbon::parse($appointment->appointment_date)->format('H.i').'hrs';
+        $appointmentTime = Carbon::parse($appointment->appointment_date)->format('H.i') . 'hrs';
 
 
         // send whatsaap Message
@@ -362,12 +364,12 @@ class AppointmentController extends Controller
             ],
             [
                 'type' => 'text',
-                'text' => $appointmentDate .' '.$appointmentTime
+                'text' => $appointmentDate . ' ' . $appointmentTime
             ]
         ];
 
-        $this->whatsAppService->sendMessage('91'.$franchiseDetail->mobile, 'rescheduledappointment', $parameters);  // send to franchise
-        $this->whatsAppService->sendMessage('91'.$appointment->mobile, 'rescheduledappointment', $parameters); // send to customer
+        $this->whatsAppService->sendMessage('91' . $franchiseDetail->mobile, 'rescheduledappointment', $parameters);  // send to franchise
+        $this->whatsAppService->sendMessage('91' . $appointment->mobile, 'rescheduledappointment', $parameters); // send to customer
         // end send whatsaap Message
 
         // Send the success email
@@ -381,9 +383,9 @@ class AppointmentController extends Controller
             ->with("success", "Vendor Re-assigned successfully.");
     }
 
-    public function getAppointmentDetails($id, $type=null)
+    public function getAppointmentDetails($id, $type = null)
     {
-		 //echo $type;die; 
+        //echo $type;die; 
         // Fetch the appointment by ID
         $appointment = Appointment::findOrFail($id);
 
@@ -426,7 +428,7 @@ class AppointmentController extends Controller
         $appointData = Appointment::findOrFail($id);
 
         // Update the status to 'reject'
-        $appointData->status = "Vendors Rejected";
+        $appointData->status = "Sub Contractors Rejected";
 
         // Save the changes
         $appointData->save();
@@ -441,9 +443,10 @@ class AppointmentController extends Controller
         return Excel::download(new BookQueryExport, 'book_query.xlsx');
     }
 
-    public function getFranchiseList($apnt_id){
+    public function getFranchiseList($apnt_id)
+    {
         $franchises = Appointment::with('local_franchise')
-        ->findOrFail($apnt_id);
+            ->findOrFail($apnt_id);
         return $franchises;
     }
 }
