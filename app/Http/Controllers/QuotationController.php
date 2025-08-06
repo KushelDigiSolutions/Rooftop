@@ -249,7 +249,7 @@ class QuotationController extends Controller
 
         return redirect()
             ->route("quotations.list")
-            ->with("success", "Quotation created successfully!");
+            ->with("success", "Bid created successfully!");
     }
 
 
@@ -313,13 +313,13 @@ class QuotationController extends Controller
                     'quotation' => $quotation,
                     'appointment' => $appointment,
                 ],
-                'message' => 'Quotations details fetched successfully.'
+                'message' => 'Bids details fetched successfully.'
             ]);
 
         } else {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Quotations not found or status mismatch.'
+                'message' => 'Bid not found or status mismatch.'
             ]);
         }
     }
@@ -328,7 +328,7 @@ class QuotationController extends Controller
     public function deleteQuotationsData($id){
         $appointData = Quotation::findOrFail($id);
         $appointData->delete();
-        return redirect()->back()->with('success', 'Quotation deleted successfully.');
+        return redirect()->back()->with('success', 'Bid deleted successfully.');
     }
 
 

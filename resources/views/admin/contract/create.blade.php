@@ -50,7 +50,24 @@
                      </div>
                       <div class="col-md-6">
                         <label for="email" class="form-label">Roof Color</label>
-                        <input type="text" class="form-control rounded-3" name="roof_color" value="{{ old('roof_color') }}">
+                        {{-- <input type="text" class="form-control rounded-3" name="roof_color" value="{{ old('roof_color') }}"> --}}
+                        <select class="form-control select2" id="roof_color" name="roof_color" required>
+						<option value="">Select Color</option>
+						<option value="Red" >Red</option>
+						<option value="Blue" >Blue</option>
+						<option value="Green" >Green</option>
+						<option value="Yellow" >Yellow</option>
+						<option value="Black" >Black</option>
+						<option value="White" >White</option>
+						<option value="Brown" >Brown</option>
+						<option value="Gray" >Gray</option>
+						<option value="Orange" >Orange</option>
+						<option value="Purple" >Purple</option>
+						<option value="Pink" >Pink</option>
+						<option value="Maroon" >Maroon</option>
+						<option value="Navy" >Navy</option>
+						<option value="Olive" >Olive</option>
+					</select>
                     </div>
                 </div>
 

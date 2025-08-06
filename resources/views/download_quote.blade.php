@@ -77,44 +77,7 @@
         page-break-before: always;
     }
 
-    .contract-container {
-        width: 800px;
-        margin: auto;
-        background: #fff;
-        padding: 20px;
-        border: 1px solid #ddd;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    th, td {
-        border: 1px solid #000;
-        padding: 5px;
-        text-align: left;
-    }
-
-    .section-header {
-        background-color: #f8f8f8;
-        padding: 10px;
-        font-weight: bold;
-        text-align: center;
-        border: 1px solid #000;
-        border-bottom: none;
-    }
-
-    .section-description {
-        border: 1px solid #000;
-        border-top: none;
-        padding: 10px;
-    }
-
-    .total-row td {
-        font-weight: bold;
-    }
+    
 
 </style>
 <?php //dd($order_data); 
@@ -125,7 +88,7 @@
     <?php $total = 0; $gst_amount=0; $total_gst_per=0;$per_item_discount=0; $per_item_total_discount=0;   ?>
 
     @foreach($order_data['quotaiton_section'] as $sectionItem)
-    <div class="page-break ">
+     <div class="{{ !$loop->first ? 'page-break' : '' }}">
 
         {{-- 🧾 Header --}}
         @include('admin.quotation.partials.header', ['order_data' => $order_data])

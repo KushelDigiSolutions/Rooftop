@@ -7,16 +7,17 @@
         body {
             font-family: Arial, sans-serif;
             background: #fff;
-            font-size: 14px;
+            font-size: 13px;
             margin: 0;
-            padding: 30px;
+            padding: 20px;
         }
 
         .container {
             max-width: 900px;
             margin: auto;
-            border: 2px solid #000;
-            padding: 30px;
+            /* border: 1px solid #000; */
+            padding: 20px;
+            page-break-inside: avoid;
         }
 
         .header {
@@ -36,53 +37,49 @@
 
         h2 {
             margin: 0;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .section-title {
             text-align: center;
             font-weight: bold;
-            margin-top: 30px;
+            margin-top: 20px;
             margin-bottom: 10px;
             text-decoration: underline;
         }
 
-        .info-table {
+        .info-table, .signature-table {
             width: 100%;
-            margin-bottom: 20px;
+            font-size: 13px;
+            margin-bottom: 15px;
         }
 
-        .info-table td {
-            padding: 5px 0;
+        .info-table td, .signature-table td {
+            padding: 4px 0;
         }
 
         .content-box {
-            padding: 10px;
+            padding: 5px;
             margin-bottom: 10px;
         }
 
         .price {
-            font-size: 20px;
-            margin: 20px 0;
-        }
-
-        .signature-table {
-            width: 100%;
-            margin-top: 40px;
-        }
-
-        .signature-table td {
-            vertical-align: top;
+            font-size: 16px;
+            margin: 15px 0;
         }
 
         .legal-notice {
-            font-size: 13px;
-            line-height: 1.6;
-            margin-top: 30px;
+            font-size: 12px;
+            line-height: 1.4;
+            margin-top: 20px;
         }
 
-        .bold {
-            font-weight: bold;
+        ul {
+            padding-left: 20px;
+        }
+
+        hr {
+            margin: 15px 0;
         }
 
         .green {
@@ -91,114 +88,93 @@
     </style>
 </head>
 <body>
-    <div style="max-width: 900px; margin: auto; padding: 30px; border: 2px solid #000; background: #fff; font-family: Arial, sans-serif;" class="mt-5">
-
-    {{-- Header --}}
-    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-        <div style="width: 60%;">
-            <h2 style="margin: 0; font-size: 20px;">KMI CONSTRUCTION INDUSTRIES, LLC</h2>
-            <p style="margin: 4px 0; font-size: 14px;">
-                8800 St Charles Rock Rd<br>
-                St Louis, MO 63114<br>
-                Bus: (314) 739-3434<br>
-                KMI@kmiconstructionllc.com
-            </p>
+    <div class="container">
+        <div class="header">
+            <div class="company-info">
+                <h2>KMI CONSTRUCTION INDUSTRIES, LLC</h2>
+                <p>
+                    8800 St Charles Rock Rd<br>
+                    St Louis, MO 63114<br>
+                    Bus: (314) 739-3434<br>
+                    KMI@kmiconstructionllc.com
+                </p>
+            </div>
+           <div style="text-align: right;">
+                <img src="https://kmiroofing.com/images/rooftop_logo.png" style="max-height: 80px;">
+            </div>
         </div>
-        <div style="width: 35%; text-align: right;">
-            <img src="https://kmiroofing.com/images/rooftop_logo.png" style="max-height: 100px;">
+
+        <hr>
+
+        <h2 class="section-title">CONTRACT</h2>
+        <p style="text-align: center; font-weight: bold;">Customer Information and Project Location</p>
+
+        <table class="info-table">
+            <tr>
+                <td><strong>Name:</strong> {{ $data['customer_name'] }}</td>
+                <td style="text-align: right;"><strong>Email:</strong> {{ $data['email'] }}</td>
+            </tr>
+            <tr>
+                <td><strong>Mobile:</strong> {{ $data['mobile'] }}</td>
+                <td style="text-align: right;"><strong>City, State, Zip:</strong> {{ $data['city_state_zip'] }}</td>
+            </tr>
+        </table>
+
+        <p style="text-align: center;"><strong>Scope of Work:</strong></p>
+        <div class="content-box">
+            {!! $data['scope_of_work'] !!}
         </div>
-    </div>
 
-    <hr style="margin: 20px 0;">
+        <table class="info-table">
+            <tr>
+                <td style="text-align: right;"><strong>Estimated Start:</strong> {{ $data['est_start'] }}</td>
+                <td style="text-align: right;"><strong>Estimated Completion:</strong> {{ $data['est_end'] }}</td>
+            </tr>
+        </table>
 
-    {{-- Title --}}
-    <h2 style="text-align: center; text-decoration: underline; margin-bottom: 10px;">CONTRACT</h2>
-    <p style="text-align: center; font-weight: bold; margin-bottom: 30px;">Customer Information and Project Location</p>
+        <p class="price"><strong>Contract Price:</strong> <span class="green">${{ number_format($data['price'], 2) }}</span></p>
 
-    {{-- Customer Info Table --}}
-    <table style="width: 100%; font-size: 14px; margin-bottom: 20px;">
-        <tr>
-            <td><strong>Name:</strong> {{ $data['customer_name'] }}</td>
-            <td style="text-align: right;"><strong>Email:</strong> {{ $data['email'] }}</td>
-        </tr>
-        <tr >
-            <td style="padding-top: 30px;"><strong>Mobile:</strong> {{ $data['mobile'] }}</td>
-            <td style="text-align: right; padding-top: 30px;"><strong>City, State, Zip:</strong> {{ $data['city_state_zip'] }}</td>
-        </tr>
-    </table>
-
-    {{-- Scope of Work --}}
-    <p style="text-align: center;"><strong>Scope of Work:</strong></p>
-    
-
-    <div style=" padding: 10px; margin-bottom: 10px; font-size: 14px;">
-       {!! $data['scope_of_work'] !!}
-    </div>
-
-    {{-- Notes --}}
-   
-
-    {{-- Schedule --}}
-     <table style="width: 100%; font-size: 14px; margin-bottom: 20px;">
-        <tr>
-            <td style="text-align: right;"><strong>Estimated Start:</strong> {{ $data['est_start'] }}</td>
-            <td style="text-align: right;"><strong>Estimated Completion:</strong> {{ $data['est_end'] }}</td>
-        </tr>
-     </table>
-   
-    {{-- Price --}}
-    <strong style="margin-top: 20px; font-size: 20px;">Contract Price: <span style="color: green;">${{ number_format($data['price'], 2) }}</span></strong>
-
-    {{-- Payment Schedule --}}
-	<br>
-    {{-- <strong style="margin-top: 20px; font-size: 20px;">Payment Schedule</strong><br> --}}
-    @php
-    $installments = $data['installments'] ?? [];
-    @endphp
-	<h5 class="mt-4">Payment Schedule</h5>
+        <h5>Payment Schedule</h5>
+        @php
+        $installments = $data['installments'] ?? [];
+        @endphp
         @if(!empty($installments))
         <ul>
             @foreach($installments as $index => $installment)
                 <li>
-                    <strong>Payment {{ $index + 1 }}:</strong> 
+                    <strong>Payment {{ $index + 1 }}:</strong>
                     {{ $installment['due_date'] ?? '-' }} — ${{ number_format($installment['amount'] ?? 0, 2) }}
                 </li>
             @endforeach
         </ul>
-    @else
-        <p>No payment schedule provided.</p>
-    @endif
-  
-    {{-- Signature Section --}}
-    <table style="width: 100%; margin-top: 40px; font-size: 14px;">
-        <tr>
-            <td style="width: 50%;">
-                <strong>Owner Signature:</strong><br><br>
-                {{ $data['customer_name'] }}<br>
-                {{-- Date: {{ $data['contract_date'] }} --}}
-            </td>
-            <td style="width: 50%; text-align: right;">
-                <strong>KMI Representative:</strong><br><br>
-                Ed Miranda<br>
-                {{-- Date: {{ $data['contract_date'] }} --}}
-            </td>
-        </tr>
-    </table>
+        @else
+            <p>No payment schedule provided.</p>
+        @endif
 
-    <hr style="margin: 30px 0;">
+        <table class="signature-table">
+            <tr>
+                <td style="width: 50%;">
+                    <strong>Owner Signature:</strong><br><br>
+                    {{ $data['customer_name'] }}<br>
+                </td>
+                <td style="width: 50%; text-align: right;">
+                    <strong>KMI Representative:</strong><br><br>
+                    Ed Miranda<br>
+                </td>
+            </tr>
+        </table>
 
-    {{-- Legal Notice --}}
-    <p style="font-size: 13px; line-height: 1.6;">
-		
-        <strong>NOTICE TO OWNER:</strong><br>
-        {!!$data['notes'] !!}
-    </p>
+        <hr>
 
-    <hr>
-    
-   
-</div>
-@include('admin.contract.contract_tearm_condition');
-@include('admin.bid.bid_pdf');
+        <p class="legal-notice">
+            <strong>NOTICE TO OWNER:</strong><br>
+            {!! $data['notes'] !!}
+        </p>
+
+        <hr>
+    </div>
+
+    @include('admin.contract.pdf_tearm_condition')
+    @include('admin.bid.email_bid_pdf')
 </body>
 </html>

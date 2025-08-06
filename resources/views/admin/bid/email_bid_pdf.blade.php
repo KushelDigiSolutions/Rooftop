@@ -56,7 +56,6 @@
     }
 </style>
 @foreach($order_data['quotaiton_section'] as $sectionItem)
-<div style="max-width: 900px; margin: auto; padding: 30px; border: 2px solid #070707; background: #fff; font-family: Arial, sans-serif;" class="mt-5">
 <div class="{{ !$loop->first ? 'page-break' : '' }}">
     <div class="contract-container">
 
@@ -131,6 +130,5 @@
         </table>
 
     </div>
-</div>
 </div>
 @endforeach

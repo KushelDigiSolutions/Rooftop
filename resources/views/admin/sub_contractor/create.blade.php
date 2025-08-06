@@ -16,19 +16,19 @@
 <div class="row">
     <div class="col-md-4 mb-3">
         <label for="company_name" class="form-label">Subcontractor Company Name<span class="requried">*</span></label>
-        <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Enter Company or Person Name">
+        <input type="text" class="form-control" name="company_name" id="company_name"  placeholder="Enter Company or Person Name" autocomplete="new-password">
         <span class="text-danger error-company_name"></span>
     </div>
 
     <div class="col-md-4 mb-3">
         <label for="contact_person" class="form-label">Contact Person Name<span class="requried">*</span></label>
-        <input type="text" class="form-control" name="contact_person" id="contact_person" placeholder="Enter Contact Person Name">
+        <input type="text" class="form-control" name="contact_person" id="contact_person" autocomplete="new-password" placeholder="Enter Contact Person Name">
         <span class="text-danger error-contact_person"></span>
     </div>
 
     <div class="col-md-4 mb-3">
         <label for="phone" class="form-label">Phone Number<span class="requried">*</span></label>
-        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Phone Number" pattern="^[6-9]\d{9}$" maxlength="10">
+        <input type="tel" class="form-control" name="phone" id="phone" autocomplete="new-password" placeholder="Enter Phone Number" pattern="^[6-9]\d{9}$" maxlength="10">
         <span class="text-danger error-phone"></span>
     </div>
 </div>
@@ -37,19 +37,19 @@
 <div class="row">
     <div class="col-md-4 mb-3">
         <label for="email" class="form-label">Email Address<span class="requried">*</span></label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
+        <input type="email" class="form-control" name="email" id="email" autocomplete="new-password" placeholder="Enter Email">
         <span class="text-danger error-email"></span>
     </div>
 
     <div class="col-md-4 mb-3">
         <label for="city" class="form-label">City<span class="requried">*</span></label>
-        <input type="text" class="form-control" name="city" id="city" placeholder="Enter City">
+        <input type="text" class="form-control" name="city" id="city" autocomplete="new-password" placeholder="Enter City">
         <span class="text-danger error-city"></span>
     </div>
 
     <div class="col-md-4 mb-3">
         <label for="state" class="form-label">State<span class="requried">*</span></label>
-        <input type="text" class="form-control" name="state" id="state" placeholder="Enter State">
+        <input type="text" class="form-control" name="state" id="state" autocomplete="new-password" placeholder="Enter State">
         <span class="text-danger error-state"></span>
     </div>
 </div>
@@ -58,7 +58,7 @@
 <div class="row">
     <div class="col-md-4 mb-3">
         <label for="zip_code" class="form-label">Zip Code<span class="requried">*</span></label>
-        <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="Enter Zip Code" maxlength="6">
+        <input type="text" class="form-control" name="zip_code" id="zip_code" autocomplete="new-password" placeholder="Enter Zip Code" maxlength="6">
         <span class="text-danger error-zip_code"></span>
     </div>
 
@@ -78,7 +78,7 @@
 
     <div class="col-md-4 mb-3">
         <label for="license_number" class="form-label">License Number (Optional)</label>
-        <input type="text" class="form-control" name="license_number" id="license_number" placeholder="Enter License Number">
+        <input type="text" class="form-control" name="license_number" id="license_number" autocomplete="new-password" placeholder="Enter License Number">
         <span class="text-danger error-license_number"></span>
     </div>
 </div>
@@ -93,7 +93,7 @@
 
     <div class="col-md-4 mb-3">
         <label for="experience_years" class="form-label">Years of Experience<span class="requried">*</span></label>
-        <input type="number" class="form-control" name="experience_years" id="experience_years" min="0" placeholder="Enter Years of Experience">
+        <input type="number" class="form-control" name="experience_years" id="experience_years" min="0" autocomplete="new-password" placeholder="Enter Years of Experience">
         <span class="text-danger error-experience_years"></span>
     </div>
 
@@ -139,19 +139,19 @@
 <div class="row">
     <div class="col-md-12 mb-3">
         <label for="office_address" class="form-label">Office Address<span class="requried">*</span></label>
-        <input type="text" class="form-control" name="office_address" id="office_address" placeholder="Enter Business Location">
+        <input type="text" class="form-control" name="office_address" id="office_address" autocomplete="new-password" placeholder="Enter Business Location">
         <span class="text-danger error-office_address"></span>
     </div>
 
     <div class="col-md-12 mb-3">
         <label for="service_areas" class="form-label">Service Areas Covered</label>
-        <input type="text" class="form-control" name="service_areas" id="service_areas" placeholder="Enter Cities, States or Areas">
+        <input type="text" class="form-control" name="service_areas" id="service_areas" autocomplete="new-password" placeholder="Enter Cities, States or Areas">
         <span class="text-danger error-service_areas"></span>
     </div>
 
     <div class="col-md-12 mb-3 d-none">
         <label for="bank_details" class="form-label">Bank Details (Optional)</label>
-        <textarea class="form-control" name="bank_details" id="bank_details" placeholder="Enter Bank Details"></textarea>
+        <textarea class="form-control" name="bank_details" id="bank_details" autocomplete="new-password" placeholder="Enter Bank Details"></textarea>
         <span class="text-danger error-bank_details"></span>
     </div>
 </div>

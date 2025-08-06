@@ -2,7 +2,8 @@
 		<table style="width: 100%; margin-bottom: 20px;">
             <tr>
                 <td style="width: 30%;">
-                    <img src="https://kmiroofing.com/images/rooftop_logo.png" alt="KMI Logo" style="height: 160px;" />
+                    {{-- <img src="https://kmiroofing.com/images/rooftop_logo.png" alt="KMI Logo" style="height: 160px;" /> --}}
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/rooftop_logo.png'))) }}" alt="KMI Logo" style="height: 160px;" />
                 </td>
                 <td style="font-size: 14px;display: flex; justify-content: space-between;">
                     <div>
